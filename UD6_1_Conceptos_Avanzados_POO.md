@@ -12,9 +12,16 @@
     - [1.2.2. Relación con **herencia** y **acoplamiento**](#122-relación-con-herencia-y-acoplamiento)
     - [1.2.3. Modificadores de acceso: `public`, `private`, `protected`, y default](#123-modificadores-de-acceso-public-private-protected-y-default)
   - [1.3. Herencia](#13-herencia)
-    - [1.3.1. Herencia simple y sus características](#131-herencia-simple-y-sus-características)
-    - [1.3.2. Sobreescritura de métodos (Overriding)](#132-sobreescritura-de-métodos-overriding)
-    - [1.3.3. Relación con encapsulamiento y polimorfismo](#133-relación-con-encapsulamiento-y-polimorfismo)
+    - [Concepto de Herencia](#concepto-de-herencia)
+    - [Jerarquías de herencia](#jerarquías-de-herencia)
+    - [Tipos de Herencia](#tipos-de-herencia)
+    - [Modificadores de acceso en la herencia](#modificadores-de-acceso-en-la-herencia)
+    - [Sobreescritura de métodos (Override)](#sobreescritura-de-métodos-override)
+    - [Uso del operador `super`](#uso-del-operador-super)
+    - [Constructores en la herencia](#constructores-en-la-herencia)
+    - [Palabra clave `final` en herencia](#palabra-clave-final-en-herencia)
+    - [Problemas y limitaciones de la herencia](#problemas-y-limitaciones-de-la-herencia)
+    - [Buenas prácticas en el uso de la herencia](#buenas-prácticas-en-el-uso-de-la-herencia)
   - [1.4. Sobrecarga y sobrescritura](#14-sobrecarga-y-sobrescritura)
     - [1.4.1. Diferencias entre **sobrecarga** (Overloading) y **sobrescritura** (Overriding)](#141-diferencias-entre-sobrecarga-overloading-y-sobrescritura-overriding)
     - [1.4.2. Ejemplos prácticos y reglas de uso](#142-ejemplos-prácticos-y-reglas-de-uso)
@@ -196,11 +203,200 @@ En este ejemplo, la clase `Departamento` tiene una relación de agregación con 
 
 ## 1.3. Herencia
 
-### 1.3.1. Herencia simple y sus características
+La herencia es uno de los pilares fundamentales de la Programación Orientada a Objetos (POO). Permite que una clase (clase derivada o hija) reutilice las propiedades y métodos de otra clase (clase base o padre), extendiendo o especializando su comportamiento.
 
-### 1.3.2. Sobreescritura de métodos (Overriding)
+### Concepto de Herencia
 
-### 1.3.3. Relación con encapsulamiento y polimorfismo
+La herencia es una relación "es-un" (is-a) entre dos clases. En esta relación:
+
+- La clase base define atributos y comportamientos comunes a un conjunto de objetos.
+- La clase derivada hereda estos atributos y métodos, pudiendo:
+  - Añadir nuevos.
+  - Sobreescribir los existentes.
+
+Ejemplo básico en Java:
+
+```java
+// Clase base
+class Animal {
+    String nombre;
+
+    public void comer() {
+        System.out.println(nombre + " está comiendo.");
+    }
+}
+
+// Clase derivada
+class Perro extends Animal {
+    public void ladrar() {
+        System.out.println(nombre + " está ladrando.");
+    }
+}
+
+// Uso de la herencia
+public class Main {
+    public static void main(String[] args) {
+        Perro perro = new Perro();
+        perro.nombre = "Max";
+        perro.comer();  // Heredado de Animal
+        perro.ladrar(); // Propio de Perro
+    }
+}
+```
+
+### Jerarquías de herencia
+
+Clase Base Única: Una clase derivada tiene una única clase base.
+Herencia Múltiple (no soportada directamente en Java): Una clase puede tener varias clases base. Esto se puede simular mediante interfaces.
+Ejemplo de jerarquía de herencia:
+
+`
+Animal
+  ├── Perro
+  └── Gato
+`
+
+### Tipos de Herencia
+
+- Simple: Una clase derivada hereda de una única clase base.
+- Jerárquica: Varias clases derivadas heredan de una clase base común.
+- Multinivel: Una clase derivada hereda de otra clase derivada.
+- Múltiple (indirecta en Java): Se logra combinando interfaces.
+- Híbrida: Mezcla de los tipos anteriores.
+
+### Modificadores de acceso en la herencia
+
+Los modificadores de acceso determinan qué miembros se heredan y cómo se accede a ellos:
+
+- private: No se hereda directamente, pero puede ser accesible mediante métodos públicos o protegidos en la clase base.
+- protected: Se hereda y es accesible en las clases derivadas.
+- public: Se hereda y es accesible desde cualquier lugar.
+- default (paquete): Se hereda, pero solo es accesible desde clases del mismo paquete.
+
+Ejemplo:
+
+```java
+Copiar código
+class Animal {
+    private String nombre;  // No se hereda directamente
+    protected int edad;     // Accesible en la clase derivada
+    public void comer() {   // Heredado y accesible
+        System.out.println("El animal está comiendo.");
+    }
+}
+```
+
+### Sobreescritura de métodos (Override)
+
+La clase derivada puede redefinir métodos de la clase base para adaptar su comportamiento. Esto se realiza usando la anotación @Override:
+
+Ejemplo:
+
+```java
+class Animal {
+    public void sonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+class Perro extends Animal {
+    @Override
+    public void sonido() {
+        System.out.println("El perro ladra.");
+    }
+}
+```
+
+Reglas:
+
+- El método debe tener el mismo nombre, tipo de retorno y parámetros que en la clase base.
+- El nivel de acceso no puede ser más restrictivo que en la clase base.
+- Si el método de la clase base es final, no puede sobreescribirse.
+
+### Uso del operador `super`
+El operador `super` se utiliza para:
+
+- Llamar al constructor de la clase base.
+- Acceder a miembros (atributos o métodos) de la clase base.
+  
+Ejemplo:
+
+```java
+
+class Animal {
+    String nombre;
+
+    public Animal(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void comer() {
+        System.out.println(nombre + " está comiendo.");
+    }
+}
+
+class Perro extends Animal {
+    public Perro(String nombre) {
+        super(nombre); // Llama al constructor de Animal
+    }
+
+    @Override
+    public void comer() {
+        super.comer(); // Llama al método de la clase base
+        System.out.println("Y disfruta mucho su comida.");
+    }
+}
+```
+
+### Constructores en la herencia
+
+En Java, los constructores de una clase base no se heredan, pero se pueden invocar desde la clase derivada usando super.
+
+Reglas importantes:
+
+Si el constructor de la clase base tiene parámetros, debe ser invocado explícitamente desde el constructor de la clase derivada.
+Si no se especifica, el compilador agrega automáticamente una llamada al constructor sin parámetros de la clase base.
+Ejemplo:
+
+java
+Copiar código
+class Animal {
+    public Animal(String nombre) {
+        System.out.println(nombre + " es un animal.");
+    }
+}
+
+class Perro extends Animal {
+    public Perro(String nombre) {
+        super(nombre); // Obligatorio si el constructor base tiene parámetros
+    }
+}
+
+### Palabra clave `final` en herencia
+
+Clases final: No pueden ser extendidas.
+Métodos final: No pueden ser sobreescritos.
+Ejemplo:
+
+java
+Copiar código
+final class Animal {
+    // No se puede extender esta clase
+}
+
+### Problemas y limitaciones de la herencia
+
+- Acoplamiento: Las clases derivadas dependen fuertemente de la clase base. Cambios en la clase base pueden romper el comportamiento de las derivadas.
+- Herencia innecesaria: Puede generar una jerarquía compleja si no se utiliza correctamente.
+- Herencia múltiple (no soportada en Java): Restringe el uso directo de múltiples clases base, pero se soluciona con interfaces.
+
+### Buenas prácticas en el uso de la herencia
+
+Usa herencia solo cuando exista una relación clara "es-un" entre las clases.
+Prefiere composición sobre herencia cuando sea posible.
+Mantén las clases base lo más simples posible.
+Utiliza @Override para evitar errores al redefinir métodos.
+Evalúa si una clase debe ser final para evitar su extensión indebida.
 
 ## 1.4. Sobrecarga y sobrescritura
 
