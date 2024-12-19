@@ -28,35 +28,35 @@
     - [1.3.9. Problemas y limitaciones de la herencia](#139-problemas-y-limitaciones-de-la-herencia)
     - [1.3.10. Buenas prácticas en el uso de la herencia](#1310-buenas-prácticas-en-el-uso-de-la-herencia)
   - [1.4. Sobrecarga y sobrescritura](#14-sobrecarga-y-sobrescritura)
-    - [1.4.1. Diferencias entre **sobrecarga** (Overloading) y **sobrescritura** (Overriding)](#141-diferencias-entre-sobrecarga-overloading-y-sobrescritura-overriding)
-    - [1.4.2. Ejemplos prácticos y reglas de uso](#142-ejemplos-prácticos-y-reglas-de-uso)
-  - [1.5. Uso de `final`](#15-uso-de-final)
-    - [1.5.1. Final aplicado a clases: cómo evitar la herencia {#final-aplicado-a-clases:-cómo-evitar-la-herencia}](#151-final-aplicado-a-clases-cómo-evitar-la-herencia-final-aplicado-a-clases-cómo-evitar-la-herencia)
-    - [1.5.2. Final aplicado a métodos: cómo evitar la sobrescritura {#final-aplicado-a-métodos:-cómo-evitar-la-sobrescritura}](#152-final-aplicado-a-métodos-cómo-evitar-la-sobrescritura-final-aplicado-a-métodos-cómo-evitar-la-sobrescritura)
-    - [1.5.3. Final aplicado a variables: creación de constantes {#final-aplicado-a-variables:-creación-de-constantes}](#153-final-aplicado-a-variables-creación-de-constantes-final-aplicado-a-variables-creación-de-constantes)
-  - [1.6. Clases abstractas {#clases-abstractas}](#16-clases-abstractas-clases-abstractas)
-    - [1.6.1. Definición y características](#161-definición-y-características)
-    - [1.6.2. Diferencias con clases concretas](#162-diferencias-con-clases-concretas)
-    - [1.6.3. Relación con herencia y polimorfismo](#163-relación-con-herencia-y-polimorfismo)
-  - [1.7. Interfaces](#17-interfaces)
-    - [1.7.1. Definición y uso de interfaces](#171-definición-y-uso-de-interfaces)
-    - [1.7.2. Diferencias entre interfaces y clases abstractas](#172-diferencias-entre-interfaces-y-clases-abstractas)
-    - [1.7.3. Implementación múltiple de interfaces](#173-implementación-múltiple-de-interfaces)
-  - [1.8. Clases anidadas y clases internas](#18-clases-anidadas-y-clases-internas)
-    - [1.8.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes](#181-clases-internas-inner-classes-local-inner-classes-y-anonymous-classes)
-    - [1.8.2. **Clases estáticas anidadas** (Static nested classes)](#182-clases-estáticas-anidadas-static-nested-classes)
-    - [1.8.3. Ventajas y desventajas de las clases anidadas](#183-ventajas-y-desventajas-de-las-clases-anidadas)
-  - [1.9. Polimorfismo](#19-polimorfismo)
-    - [1.9.1. Definición y tipos: polimorfismo estático y dinámico](#191-definición-y-tipos-polimorfismo-estático-y-dinámico)
-    - [1.9.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces](#192-ejemplos-prácticos-usando-herencia-clases-abstractas-e-interfaces)
-  - [1.10. Métodos y clases genéricas](#110-métodos-y-clases-genéricas)
-    - [1.10.1. Concepto de **generics**](#1101-concepto-de-generics)
-    - [1.10.2. Clases y métodos parametrizados](#1102-clases-y-métodos-parametrizados)
-    - [1.10.3. Ventajas y ejemplos de uso](#1103-ventajas-y-ejemplos-de-uso)
-  - [1.11. Expresiones lambda](#111-expresiones-lambda)
-    - [1.11.1. Introducción a las **interfaces funcionales**](#1111-introducción-a-las-interfaces-funcionales)
-    - [1.11.2. Uso de **expresiones lambda** para simplificar código](#1112-uso-de-expresiones-lambda-para-simplificar-código)
-    - [1.11.3. Ejemplos y aplicaciones prácticas](#1113-ejemplos-y-aplicaciones-prácticas)
+    - [1.4.1. Sobrecarga de métodos](#141-sobrecarga-de-métodos)
+    - [1.4.2. Sobreescritura de Métodos](#142-sobreescritura-de-métodos)
+    - [1.4.3. Uso de la anotación `@override`](#143-uso-de-la-anotación-override)
+    - [1.4.4. Diferencias entre Sobrecarga y Sobreescritura](#144-diferencias-entre-sobrecarga-y-sobreescritura)
+    - [1.4.5. Aplicación Práctica Combinada](#145-aplicación-práctica-combinada)
+  - [1.5. Clases abstractas](#15-clases-abstractas)
+    - [1.5.1. Características](#151-características)
+    - [1.5.2. Métodos abstractos](#152-métodos-abstractos)
+    - [1.5.3. Ventajas de las Clases Abstractas](#153-ventajas-de-las-clases-abstractas)
+  - [1.6. Interfaces](#16-interfaces)
+    - [1.6.1. Características de las Interfaces](#161-características-de-las-interfaces)
+    - [1.6.2. Diferencia entre clases abstractas e interfaces](#162-diferencia-entre-clases-abstractas-e-interfaces)
+  - [1.7. Clases anidadas y clases internas](#17-clases-anidadas-y-clases-internas)
+    - [1.7.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes](#171-clases-internas-inner-classes-local-inner-classes-y-anonymous-classes)
+    - [1.7.2. **Clases estáticas anidadas** (Static nested classes)](#172-clases-estáticas-anidadas-static-nested-classes)
+    - [1.7.3. Ventajas y desventajas de las clases anidadas](#173-ventajas-y-desventajas-de-las-clases-anidadas)
+  - [1.8. Polimorfismo](#18-polimorfismo)
+    - [1.8.1. Definición y tipos: polimorfismo estático y dinámico](#181-definición-y-tipos-polimorfismo-estático-y-dinámico)
+    - [1.8.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces](#182-ejemplos-prácticos-usando-herencia-clases-abstractas-e-interfaces)
+    - [1.8.3. Comparativa entre encapsulamiento, herencia y polimorfismo](#183-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
+  - [1.9. Métodos y Clases Genéricas](#19-métodos-y-clases-genéricas)
+    - [1.9.1. Concepto de Generics](#191-concepto-de-generics)
+    - [1.9.2. Clases y Métodos Parametrizados](#192-clases-y-métodos-parametrizados)
+    - [1.9.3. Ventajas de Generics](#193-ventajas-de-generics)
+    - [1.9.4. Ejemplo Práctico: Uso en Estructuras de Datos](#194-ejemplo-práctico-uso-en-estructuras-de-datos)
+  - [1.10. Expresiones lambda](#110-expresiones-lambda)
+    - [1.10.1. Introducción a las **interfaces funcionales**](#1101-introducción-a-las-interfaces-funcionales)
+    - [1.10.2. Uso de **expresiones lambda** para simplificar código](#1102-uso-de-expresiones-lambda-para-simplificar-código)
+    - [1.10.3. Ejemplos y aplicaciones prácticas](#1103-ejemplos-y-aplicaciones-prácticas)
 
 ## 1.1. Relaciones entre clases
 
@@ -272,13 +272,13 @@ En este caso, la clase `Procesador` está anidada dentro de `Ordenador`, y puede
 
 ### 1.1.6. Resumen de Relaciones
 
-| Tipo de Relación | Característica principal | Ejemplo clave |
-| ---------------- | ------------------------ | ------------ |
-| Composición | Relación fuerte "todo-parte" | Motor y Coche |
-| Agregación | Relación débil "todo-parte" | Profesor y Departamento |
-| Herencia | Relación "es un" | Animal y Perro |
-| Clientela | Uso temporal de servicios | Usuario e Impresora |
-| Anidamiento | Una clase dentro de otra | Procesador y Ordenador |
+| Tipo de Relación | Característica principal     | Ejemplo clave           |
+| ---------------- | ---------------------------- | ----------------------- |
+| Composición      | Relación fuerte "todo-parte" | Motor y Coche           |
+| Agregación       | Relación débil "todo-parte"  | Profesor y Departamento |
+| Herencia         | Relación "es un"             | Animal y Perro          |
+| Clientela        | Uso temporal de servicios    | Usuario e Impresora     |
+| Anidamiento      | Una clase dentro de otra     | Procesador y Ordenador  |
 
 ## 1.2. Concepto de encapsulamiento
 
@@ -381,17 +381,18 @@ Esto permite que las clases dependan solo de las interfaces públicas y no de la
 - Haz privados los atributos siempre que sea posible.
   - Proporciona acceso solo mediante métodos getters y setters.
   - Evita exponer atributos como public directamente.
-  - Mal diseño:
+  
+Mal diseño:
 
 ```java
-Copiar código
 class MalaPractica {
     public String nombre; // Exponer directamente los atributos rompe el encapsulamiento
 }
+```
+
 Buen diseño:
 
-java
-Copiar código
+```java
 class BuenaPractica {
     private String nombre;
 
@@ -583,7 +584,7 @@ class Perro extends Animal {
 
 ### 1.3.8. Palabra clave `final` en herencia
 
-La palabra reservada `final` puede ser empleada sobre las clases o sus métodos, con comportamientos diferentes a su habitual aplicación sobre los atributos (que implica que su valor no puede ser modificado en el programa).
+La palabra reservada `final` puede ser empleada sobre las clases o sus métodos, con comportamientos diferentes a su habitual aplicación sobre los atributos (que implica que su valor no puede ser modificado en el programa, es decir, que es constante).
 
 - Clases `final`: No pueden ser extendidas.
 - Métodos `final`: No pueden ser sobreescritos.
@@ -661,60 +662,626 @@ Evalúa si una clase debe ser final para evitar su extensión indebida.
 
 ## 1.4. Sobrecarga y sobrescritura
 
-### 1.4.1. Diferencias entre **sobrecarga** (Overloading) y **sobrescritura** (Overriding)
+La sobrecarga y la sobreescritura son conceptos fundamentales en la programación orientada a objetos que permiten la flexibilidad y reutilización del código. Aunque ambos conceptos están relacionados con el manejo de métodos, tienen diferencias significativas en su propósito y aplicación.
 
-### 1.4.2. Ejemplos prácticos y reglas de uso
+### 1.4.1. Sobrecarga de métodos
 
-## 1.5. Uso de `final`
+La sobrecarga ocurre cuando varios métodos en una clase tienen el mismo nombre pero diferentes firmas. Esto significa que los métodos deben diferir en el **número** o **tipo de parámetros**.
 
-### 1.5.1. Final aplicado a clases: cómo evitar la herencia {#final-aplicado-a-clases:-cómo-evitar-la-herencia}
+Características Clave:
 
-### 1.5.2. Final aplicado a métodos: cómo evitar la sobrescritura {#final-aplicado-a-métodos:-cómo-evitar-la-sobrescritura}
+- **Mismo nombre**: Los métodos tienen el mismo nombre pero distintas firmas.
+- **Diferentes parámetros**: La diferencia puede ser:
+  - Número de parámetros.
+  - Tipo de parámetros.
+  - Orden de los parámetros.
+- **Misma clase**: Todos los métodos sobrecargados deben pertenecer a la misma clase.
 
-### 1.5.3. Final aplicado a variables: creación de constantes {#final-aplicado-a-variables:-creación-de-constantes}
+Ventajas:
 
-## 1.6. Clases abstractas {#clases-abstractas}
+- Proporciona flexibilidad para usar un método en diferentes contextos.
+- Mejora la legibilidad y reutilización del código.
 
-### 1.6.1. Definición y características
+```java
+class Calculadora {
+    // Método para sumar dos números enteros
+    public int sumar(int a, int b) {
+        return a + b;
+    }
 
-### 1.6.2. Diferencias con clases concretas
+    // Sobrecarga: Método para sumar tres números enteros
+    public int sumar(int a, int b, int c) {
+        return a + b + c;
+    }
 
-### 1.6.3. Relación con herencia y polimorfismo
+    // Sobrecarga: Método para sumar dos números de punto flotante
+    public double sumar(double a, double b) {
+        return a + b;
+    }
+}
 
-## 1.7. Interfaces
+public class Main {
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
 
-### 1.7.1. Definición y uso de interfaces
+        System.out.println("Suma de dos enteros: " + calc.sumar(3, 5)); // 8
+        System.out.println("Suma de tres enteros: " + calc.sumar(3, 5, 7)); // 15
+        System.out.println("Suma de dos flotantes: " + calc.sumar(2.5, 4.3)); // 6.8
+    }
+}
+```
 
-### 1.7.2. Diferencias entre interfaces y clases abstractas
+### 1.4.2. Sobreescritura de Métodos
 
-### 1.7.3. Implementación múltiple de interfaces
+La sobreescritura ocurre cuando una subclase proporciona una implementación específica de un método que ya está definido en su clase base.
 
-## 1.8. Clases anidadas y clases internas
+**Características Clave**:
 
-### 1.8.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes
+- Misma firma: El método en la subclase debe tener el mismo nombre, tipo de retorno y parámetros que el método de la clase base.
+- Herencia: La sobreescritura requiere que exista una relación de herencia entre las clases.
+- Polimorfismo: La sobreescritura permite a las subclases redefinir el comportamiento de un método y es fundamental para implementar el polimorfismo.
 
-### 1.8.2. **Clases estáticas anidadas** (Static nested classes)
+**Reglas** para la Sobreescritura:
 
-### 1.8.3. Ventajas y desventajas de las clases anidadas
+- El método sobrescrito debe tener el mismo modificador de acceso o uno más permisivo.
+- El método no puede ser final, ya que los métodos final no pueden sobrescribirse.
+- El tipo de retorno debe ser compatible con el tipo de retorno del método de la clase base.
+- Se puede usar la anotación @Override para verificar que el método sobrescribe correctamente uno de la clase base.
 
-## 1.9. Polimorfismo
+**Ventajas**:
 
-### 1.9.1. Definición y tipos: polimorfismo estático y dinámico
+- Permite a las subclases personalizar o extender el comportamiento de la clase base.
+- Soporta el polimorfismo en tiempo de ejecución (lo veremos en profundidad más adelante).
 
-### 1.9.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces
+```java
+class Animal {
+    // Método que será sobrescrito
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
 
-## 1.10. Métodos y clases genéricas
+class Perro extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro ladra.");
+    }
+}
 
-### 1.10.1. Concepto de **generics**
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        animal.hacerSonido(); // Imprime: El animal hace un sonido.
 
-### 1.10.2. Clases y métodos parametrizados
+        Animal perro = new Perro();
+        perro.hacerSonido(); // Imprime: El perro ladra.
+    }
+} 
+```
 
-### 1.10.3. Ventajas y ejemplos de uso
+### 1.4.3. Uso de la anotación `@override`
 
-## 1.11. Expresiones lambda
+La etiqueta `@Override` es una anotación en Java que indica que un método en una subclase sobrescribe un método en su clase base. Es una herramienta importante que mejora la legibilidad y la seguridad del código, ya que permite al compilador verificar que la firma del método sobrescrito coincide exactamente con la del método en la clase padre. Si la anotación se usa incorrectamente (por ejemplo, si el método no sobrescribe realmente uno en la clase base), el compilador **generará un error**, lo que ayuda a evitar errores sutiles como diferencias en nombres de métodos o tipos de parámetros. Aunque **no es obligatoria**, su uso es altamente recomendado para mejorar la claridad y garantizar que el propósito de sobrescritura sea explícito.
 
-### 1.11.1. Introducción a las **interfaces funcionales**
+```java
+class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
 
-### 1.11.2. Uso de **expresiones lambda** para simplificar código
+class Perro extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro ladra.");
+    }
+} 
+```
 
-### 1.11.3. Ejemplos y aplicaciones prácticas
+***¿Es obligatorio el uso de `@override`?***
+
+En Java no es obligatorio usar la etiqueta @Override. Sin embargo, es altamente recomendable incluirla siempre que sobrescribas un método, por las siguientes razones:
+
+- **Detección de errores de compilación**: Si accidentalmente escribes un método que no coincide con la firma del método en la clase base (por ejemplo, por un error tipográfico o un tipo de parámetro incorrecto), el compilador **generará un error** si usas @Override. Sin esta anotación, el compilador trataría el método como uno nuevo en lugar de sobrescribir el existente, lo que podría causar problemas en la lógica de tu programa.
+- **Mayor claridad**: La anotación hace explícito para otros desarrolladores (y para ti mismo en el futuro) que un método está sobrescribiendo uno de la clase base. Esto mejora la legibilidad del código.
+- **Mejor mantenimiento**: Si el método en la clase base cambia (por ejemplo, se elimina o se modifica su firma), el compilador te advertirá si tienes métodos marcados con @Override que ya no coinciden.
+
+***Qué sucede si no se usa @Override***
+
+Si decides no usar `@Override`, el método seguirá funcionando y sobrescribirá correctamente el método de la clase base **si y solo si** la firma del método coincide exactamente con el método padre. No obstante, perderás las ventajas de detección de errores y claridad mencionadas.
+
+Ejemplo sin @Override (**riesgos**):
+
+```java
+class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+class Perro extends Animal {
+    // Supongamos que cometemos un error tipográfico aquí
+    public void hacerSonid() {
+        System.out.println("El perro ladra.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Perro();
+        animal.hacerSonido(); // Llamará al método de la clase Animal, no al supuesto método sobrescrito
+    }
+}
+```
+
+En este ejemplo, debido al error tipográfico en el método hacerSonid de la clase Perro, el método hacerSonido de la clase Animal sigue siendo llamado. Si hubiéramos usado `@Override`, el compilador habría generado un error, ayudándonos a identificar el problema.
+
+***¿Qué son las anotaciones en Java?***
+
+Las **anotaciones** en Java son **metadatos** que se asocian con elementos del programa como clases, métodos, campos, parámetros, etc. No afectan directamente la lógica del programa, pero proporcionan **información adicional** que puede ser usada por el **compilador**, **herramientas** de desarrollo o incluso en tiempo de ejecución mediante **reflexión**.
+
+Características clave de las anotaciones:
+
+- Comienzan con el símbolo '@' (por ejemplo, `@Override`, `@Deprecated`, `@SuppressWarnings`).
+- Son procesadas por el **compilador** o en tiempo de ejecución si están configuradas para ello.
+- Pueden ser definidas por el usuario para propósitos específicos (anotaciones personalizadas).
+  
+Ejemplo de uso de anotaciones:
+
+- `@Override`: Indica que un método sobrescribe otro en una superclase o implementa un método de una interfaz.
+- `@Deprecated`: Señala que un elemento (método, clase, etc.) está en desuso.
+- `@SuppressWarnings`: Instruye al compilador para ignorar ciertas advertencias.
+
+### 1.4.4. Diferencias entre Sobrecarga y Sobreescritura
+
+| Aspecto                | Sobrecarga                                                      | Sobreescritura                                               |
+| ---------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Relación de clases** | Ocurre en la misma clase.                                       | Requiere herencia entre clases.                              |
+| **Firma del método**   | Los métodos deben diferir en el número o tipo de parámetros.    | El método debe tener la misma firma que el de la clase base. |
+| **Tipo de retorno**    | Puede ser diferente.                                            | Debe ser igual o compatible con el de la clase base.         |
+| **Propósito**          | Proporcionar múltiples formas de un método con el mismo nombre. | Redefinir el comportamiento de un método heredado.           |
+| **Tiempo de decisión** | Resuelto en tiempo de compilación.                              | Resuelto en tiempo de ejecución.                             |
+
+### 1.4.5. Aplicación Práctica Combinada
+
+La combinación de sobrecarga y sobreescritura puede ser útil en jerarquías de clases complejas.
+
+```java
+class Figura {
+    public double calcularArea() {
+        return 0; // Área genérica
+    }
+}
+
+class Circulo extends Figura {
+    private double radio;
+
+    // Constructor para sobrecargar inicialización
+    public Circulo(double radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * radio * radio;
+    }
+}
+
+class Rectangulo extends Figura {
+    private double ancho;
+    private double alto;
+
+    // Sobrecarga para inicializar un cuadrado o rectángulo
+    public Rectangulo(double lado) {
+        this.ancho = lado;
+        this.alto = lado;
+    }
+
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ancho * alto;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Figura[] figuras = {new Circulo(5), new Rectangulo(4), new Rectangulo(3, 6)};
+
+        for (Figura figura : figuras) {
+            System.out.println("Área: " + figura.calcularArea());
+        }
+    }
+}
+```
+
+## 1.5. Clases abstractas
+
+Las **clases abstractas** son un concepto clave en la programación orientada a objetos (POO). Se utilizan para definir **comportamientos generales** que serán compartidos por diferentes clases derivadas, mientras dejan ciertos detalles específicos para ser implementados en esas clases hijas. En esencia, una clase abstracta actúa como una **plantilla** o un **modelo**.
+
+### 1.5.1. Características
+
+- No se pueden instanciar: una clase abstracta no puede ser utilizada directamente para crear objetos. Debe ser heredada por otras clases que implementen sus métodos abstractos.
+
+```java
+abstract class Figura {
+    // Clase abstracta, no puede instanciarse
+}
+
+Figura figura = new Figura(); // Error: no se puede instanciar una clase abstracta
+```
+
+- Pueden contener métodos abstractos y concretos: los métodos abstractos no tienen implementación en la clase abstracta; las clases derivadas están obligadas a implementarlos; mientras tanto, los métodos concretos tienen una implementación por defecto que las clases derivadas pueden usar o sobrescribir si lo necesitan.
+
+```java
+
+abstract class Figura {
+    abstract double calcularArea(); // Método abstracto
+
+    void descripcion() { // Método concreto
+        System.out.println("Soy una figura.");
+    }
+}
+```
+
+- Pueden tener atributos y constructores: aunque no se puedan instanciar, las clases abstractas pueden tener atributos y constructores que serán utilizados por sus subclases.
+  
+```java
+Copiar código
+abstract class Figura {
+    String color;
+
+    Figura(String color) {
+        this.color = color;
+    }
+
+    String getColor() {
+        return color;
+    }
+}
+```
+
+- Sirven como punto común para la herencia: permiten crear una jerarquía de clases que comparten una estructura común, promoviendo el concepto de reutilización de código.
+
+```java
+// Clase abstracta Empleado
+abstract class Empleado {
+    private String nombre;
+    private double salarioBase;
+
+    public Empleado(String nombre, double salarioBase) {
+        this.nombre = nombre;
+        this.salarioBase = salarioBase;
+    }
+
+    // Método concreto: común para todas las clases derivadas
+    public void mostrarInformacion() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Salario Base: " + salarioBase);
+    }
+
+    // Método abstracto: cada tipo de empleado lo implementará de forma distinta
+    public abstract double calcularSalario();
+}
+
+// Clase concreta: EmpleadoFijo
+class EmpleadoFijo extends Empleado {
+    private double bonificacion;
+
+    public EmpleadoFijo(String nombre, double salarioBase, double bonificacion) {
+        super(nombre, salarioBase);
+        this.bonificacion = bonificacion;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return super.salarioBase + bonificacion;
+    }
+}
+
+// Clase concreta: EmpleadoPorHoras
+class EmpleadoPorHoras extends Empleado {
+    private double horasTrabajadas;
+    private double tarifaPorHora;
+
+    public EmpleadoPorHoras(String nombre, double salarioBase, double horasTrabajadas, double tarifaPorHora) {
+        super(nombre, salarioBase);
+        this.horasTrabajadas = horasTrabajadas;
+        this.tarifaPorHora = tarifaPorHora;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return super.salarioBase + (horasTrabajadas * tarifaPorHora);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Crear empleados de diferentes tipos
+        Empleado empleadoFijo = new EmpleadoFijo("Ana López", 1500, 300);
+        Empleado empleadoPorHoras = new EmpleadoPorHoras("Carlos García", 1000, 40, 15);
+
+        // Mostrar información y calcular salario para cada empleado
+        System.out.println("Empleado Fijo:");
+        empleadoFijo.mostrarInformacion();
+        System.out.println("Salario Total: " + empleadoFijo.calcularSalario());
+
+        System.out.println("\nEmpleado Por Horas:");
+        empleadoPorHoras.mostrarInformacion();
+        System.out.println("Salario Total: " + empleadoPorHoras.calcularSalario());
+    }
+}
+```
+
+### 1.5.2. Métodos abstractos
+
+Un método abstracto es un **método declarado sin cuerpo** en una clase abstracta. Las **subclases deben proporcionar su propia implementación**.
+
+```java
+abstract class Figura {
+    abstract double calcularArea(); // Declaración de un método abstracto
+}
+
+class Circulo extends Figura {
+    double radio;
+
+    Circulo(double radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    double calcularArea() { // Implementación obligatoria
+        return Math.PI * radio * radio;
+    }
+}
+```
+
+### 1.5.3. Ventajas de las Clases Abstractas
+
+- **Estandarización**: Proveen una estructura común que todas las clases derivadas deben seguir.
+- **Promueven la reutilización**: Los métodos concretos y los atributos compartidos se implementan una vez y se reutilizan en todas las subclases.
+- **Flexibilidad**: Permiten implementar métodos concretos que las subclases pueden sobrescribir si es necesario.
+- **Facilitan la extensión**: Las clases abstractas son ideales para modelar jerarquías donde se espera que las clases concretas amplíen y personalicen el comportamiento.
+
+## 1.6. Interfaces
+
+En programación orientada a objetos, una interfaz es un **contrato** que define un **conjunto de métodos** que una clase **debe implementar**. A diferencia de las clases abstractas, las interfaces no proporcionan implementación (salvo desde Java 8, donde se pueden usar métodos predeterminados y estáticos). Las interfaces son una herramienta poderosa para garantizar la **uniformidad de comportamiento** en las clases que las implementan.
+
+### 1.6.1. Características de las Interfaces
+
+- **Definición de métodos abstractos**: Todos los métodos definidos en una interfaz son **implícitamente** abstractos y públicos (hasta Java 8, cuando no tenían implementación predeterminada).
+
+```java
+interface Animal {
+    void comer();
+    void dormir();
+}
+```
+
+- **No contienen atributos con estado**: las interfaces no pueden tener atributos con estado mutable, pero pueden tener constantes (public static final).
+```java
+interface Configuracion {
+    int TIEMPO_MAXIMO = 60; // Equivalente a "public static final int TIEMPO_MAXIMO = 60;"
+}
+```
+
+- Implementación múltiple: una clase puede implementar múltiples interfaces, lo que permite una forma de herencia múltiple, algo que no es posible con clases.
+
+```java
+interface Volador {
+    void volar();
+}
+
+interface Nadador {
+    void nadar();
+}
+
+class Pato implements Volador, Nadador {
+    @Override
+    public void volar() {
+        System.out.println("El pato vuela.");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("El pato nada.");
+    }
+}
+```
+
+- **Métodos predeterminados y estáticos** (desde Java 8): los métodos predeterminados (`default`) permiten a las interfaces proporcionar implementaciones básicas que las clases pueden sobrescribir si lo necesitan. Los métodos estáticos  (`static`) pertenecen a la interfaz y no a las clases que la implementan.
+
+```java
+Copiar código
+interface Saludo {
+    default void saludar() {
+        System.out.println("Hola!");
+    }
+
+    static void despedirse() {
+        System.out.println("Adiós!");
+    }
+}
+```
+
+- **No pueden ser instanciadas**: las interfaces no se pueden usar directamente para crear objetos.
+  
+```java
+Animal a = new Animal(); // Error: no se puede instanciar una interfaz
+```
+
+### 1.6.2. Diferencia entre clases abstractas e interfaces
+
+Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
+
+| Característica | Clases Abstractas | Interfaces |
+| ----- | ----- | ----- |
+| **Instanciación** | No se pueden instanciar | Tampoco se pueden instanciar |
+| **Métodos concretos** | Pueden tener métodos concretos | Desde Java 8, permiten métodos por defecto y estáticos |
+| **Herencia múltiple** | Una clase solo puede extender una clase abstracta | Una clase puede implementar múltiples interfaces |
+| **Atributos** | Pueden tener atributos con estado | Solo pueden tener constantes |
+
+## 1.7. Clases anidadas y clases internas
+
+### 1.7.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes
+
+### 1.7.2. **Clases estáticas anidadas** (Static nested classes)
+
+### 1.7.3. Ventajas y desventajas de las clases anidadas
+
+## 1.8. Polimorfismo
+
+### 1.8.1. Definición y tipos: polimorfismo estático y dinámico
+
+### 1.8.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces
+
+### 1.8.3. Comparativa entre encapsulamiento, herencia y polimorfismo
+
+| Aspecto              | Encapsulamiento                                                               | Herencia                                                                  | Polimorfismo                                                                       |
+| -------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Propósito            | Ocultar la implementación interna.                                            | Reutilizar y extender comportamientos.                                    | Cambiar el comportamiento dinámicamente.                                           |
+| Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
+| Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
+
+## 1.9. Métodos y Clases Genéricas
+
+Los métodos y clases genéricas son un mecanismo en Java que permite definir estructuras de datos y algoritmos que pueden operar con cualquier tipo de objeto, garantizando al mismo tiempo seguridad en el tipo durante el tiempo de compilación.
+
+### 1.9.1. Concepto de Generics
+
+Los **generics** introducen el concepto de parametrización de tipos en Java. Esto significa que, en lugar de especificar un tipo concreto al declarar una clase o un método, puedes definirlos con un parámetro de tipo. Este parámetro es sustituido por un tipo real en el momento de la ejecución, asegurando flexibilidad y seguridad de tipo.
+
+**Ejemplo básico de Generics:**
+
+```java
+// Clase genérica
+public class Caja<T> {
+    private T contenido;
+
+    public void setContenido(T contenido) {
+        this.contenido = contenido;
+    }
+
+    public T getContenido() {
+        return contenido;
+    }
+}
+```
+
+### 1.9.2. Clases y Métodos Parametrizados
+
+**Clases Genéricas**: Una clase genérica permite definir una plantilla que puede operar con diferentes tipos de datos. Esto evita la necesidad de crear múltiples clases para manejar distintos tipos.
+
+**Ejemplo de Clase Genérica:**
+
+```java
+// Clase genérica para almacenar pares de datos
+public class Par<K, V> {
+    private K clave;
+    private V valor;
+
+    public Par(K clave, V valor) {
+        this.clave = clave;
+        this.valor = valor;
+    }
+
+    public K getClave() {
+        return clave;
+    }
+
+    public V getValor() {
+        return valor;
+    }
+}
+
+// Uso:
+public class Main {
+    public static void main(String[] args) {
+        Par<String, Integer> par = new Par<>("Edad", 30);
+        System.out.println("Clave: " + par.getClave());
+        System.out.println("Valor: " + par.getValor());
+    }
+}
+```
+
+**Salida:**
+
+```java
+`Clave: Edad`
+`Valor: 30`
+```
+
+**Métodos Genéricos**: Los métodos genéricos permiten definir un único método que puede trabajar con diferentes tipos de datos.
+
+**Ejemplo de Método Genérico:**
+
+```java
+// Método genérico para encontrar el máximo de dos elementos
+public class Util {
+    public static <T extends Comparable<T>> T maximo(T a, T b) {
+        return (a.compareTo(b) > 0) ? a : b;
+    }
+}
+
+// Uso:
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Mayor entre 10 y 20: " + Util.maximo(10, 20));
+        System.out.println("Mayor entre 'gato' y 'perro': " + Util.maximo("gato", "perro"));
+    }
+}
+```
+
+**Salida:**
+
+```java
+Mayor entre 10 y 20: 20
+Mayor entre 'gato' y 'perro': perro
+```
+
+En este ejemplo, `maximo` puede trabajar con cualquier tipo que implemente la interfaz `Comparable`.
+
+### 1.9.3. Ventajas de Generics
+
+1. **Reutilización del código**: Permiten diseñar clases y métodos más versátiles que pueden manejar múltiples tipos sin necesidad de duplicar código.  
+2. **Seguridad de tipo**: Detectan errores de tipo en tiempo de compilación, reduciendo posibles fallos en tiempo de ejecución.  
+3. **Legibilidad y mantenimiento**: El código genérico es más fácil de entender y mantener porque evita la proliferación de clases específicas para cada tipo.  
+4. **Eliminación de conversiones explícitas**: Reducen la necesidad de realizar conversiones (`casting`) manuales al trabajar con tipos genéricos.
+
+### 1.9.4. Ejemplo Práctico: Uso en Estructuras de Datos
+
+Un ejemplo clásico del uso de generics es la clase `ArrayList`, que permite almacenar cualquier tipo de objeto:
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Lista genérica para almacenar cadenas de texto
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("Manzana");
+        lista.add("Pera");
+
+        for (String fruta : lista) {
+            System.out.println(fruta);
+        }
+    }
+}
+```
+
+Sin **generics**, tendríamos que utilizar una lista sin tipo y realizar conversiones manuales, lo cual es propenso a errores.
+
+Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas
+
+## 1.10. Expresiones lambda
+
+### 1.10.1. Introducción a las **interfaces funcionales**
+
+### 1.10.2. Uso de **expresiones lambda** para simplificar código
+
+### 1.10.3. Ejemplos y aplicaciones prácticas
