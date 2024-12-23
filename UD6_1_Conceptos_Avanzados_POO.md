@@ -53,10 +53,20 @@
     - [1.9.2. Clases y Métodos Parametrizados](#192-clases-y-métodos-parametrizados)
     - [1.9.3. Ventajas de Generics](#193-ventajas-de-generics)
     - [1.9.4. Ejemplo Práctico: Uso en Estructuras de Datos](#194-ejemplo-práctico-uso-en-estructuras-de-datos)
-  - [1.10. Expresiones lambda](#110-expresiones-lambda)
-    - [1.10.1. Introducción a las **interfaces funcionales**](#1101-introducción-a-las-interfaces-funcionales)
-    - [1.10.2. Uso de **expresiones lambda** para simplificar código](#1102-uso-de-expresiones-lambda-para-simplificar-código)
-    - [1.10.3. Ejemplos y aplicaciones prácticas](#1103-ejemplos-y-aplicaciones-prácticas)
+  - [1.10. Interfaces funcionales y expresiones Lambda](#110-interfaces-funcionales-y-expresiones-lambda)
+    - [1.10.1. Introducción a las Interfaces Funcionales](#1101-introducción-a-las-interfaces-funcionales)
+    - [1.10.2. Interfaces Funcionales Predefinidas en Java](#1102-interfaces-funcionales-predefinidas-en-java)
+    - [1.10.3. Uso de Expresiones Lambda para Simplificar Código](#1103-uso-de-expresiones-lambda-para-simplificar-código)
+      - [1.10.3.1. Sintaxis de las Expresiones Lambda](#11031-sintaxis-de-las-expresiones-lambda)
+      - [1.10.3.2. Ejemplo Simple](#11032-ejemplo-simple)
+    - [1.10.4. Ventajas de las Expresiones Lambda](#1104-ventajas-de-las-expresiones-lambda)
+    - [1.10.5. Ejemplos y Aplicaciones Prácticas](#1105-ejemplos-y-aplicaciones-prácticas)
+      - [1.10.5.1. Filtrado de Elementos con `Predicate`](#11051-filtrado-de-elementos-con-predicate)
+      - [1.10.5.2. Transformación con `Function`](#11052-transformación-con-function)
+      - [1.10.5.3. Iteración con `Consumer`](#11053-iteración-con-consumer)
+      - [1.10.5.4. Suministrar Datos con `Supplier`](#11054-suministrar-datos-con-supplier)
+      - [1.10.5.5. Composición de Funciones](#11055-composición-de-funciones)
+    - [1.10.6. Conclusión](#1106-conclusión)
 
 ## 1.1. Relaciones entre clases
 
@@ -931,7 +941,7 @@ abstract class Figura {
 - Pueden tener atributos y constructores: aunque no se puedan instanciar, las clases abstractas pueden tener atributos y constructores que serán utilizados por sus subclases.
   
 ```java
-Copiar código
+
 abstract class Figura {
     String color;
 
@@ -1097,7 +1107,7 @@ class Pato implements Volador, Nadador {
 - **Métodos predeterminados y estáticos** (desde Java 8): los métodos predeterminados (`default`) permiten a las interfaces proporcionar implementaciones básicas que las clases pueden sobrescribir si lo necesitan. Los métodos estáticos  (`static`) pertenecen a la interfaz y no a las clases que la implementan.
 
 ```java
-Copiar código
+
 interface Saludo {
     default void saludar() {
         System.out.println("Hola!");
@@ -1278,10 +1288,223 @@ Sin **generics**, tendríamos que utilizar una lista sin tipo y realizar convers
 
 Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas
 
-## 1.10. Expresiones lambda
+## 1.10. Interfaces funcionales y expresiones Lambda
 
-### 1.10.1. Introducción a las **interfaces funcionales**
+Las expresiones lambda, introducidas en **Java 8**, representan un cambio importante en el paradigma de programación del lenguaje, permitiendo escribir código más conciso y funcional. Se utilizan principalmente para implementar interfaces funcionales de forma clara y simplificada.
 
-### 1.10.2. Uso de **expresiones lambda** para simplificar código
+### 1.10.1. Introducción a las Interfaces Funcionales
 
-### 1.10.3. Ejemplos y aplicaciones prácticas
+Una **interfaz funcional** es una interfaz que tiene exactamente **un único método abstracto**. Este método abstracto representa la funcionalidad que implementará la expresión lambda.  
+Las interfaces funcionales pueden tener:
+
+* Métodos abstractos (uno obligatorio).  
+* Métodos por defecto y estáticos adicionales (sin restricciones en su cantidad).
+
+Se identifican con la anotación `@FunctionalInterface` (opcional, pero recomendada).
+
+**Ejemplo de una Interfaz Funcional:**
+
+```java
+@FunctionalInterface
+public interface Operacion {
+    int ejecutar(int a, int b); // Un único método abstracto
+}
+```
+
+### 1.10.2. Interfaces Funcionales Predefinidas en Java
+
+Java 8 incluye muchas interfaces funcionales en el paquete `java.util.function`. Algunas de las más comunes son:
+
+- **Predicate\<T\>:** Devuelve un valor booleano basado en una condición.  
+  
+```java
+boolean test(T t);
+```
+
+- **Function\<T, R\>:** Aplica una transformación y devuelve un resultado.  
+  
+```java  
+R apply(T t);
+```
+
+- **Consumer\<T\>:** Ejecuta una operación sobre un objeto recibido.  
+
+```java
+void accept(T t);
+```
+
+- **Supplier\<T\>:** Proporciona un resultado sin entrada.  
+
+```java
+T get();
+```
+
+**BiFunction\<T, U, R\>:** Aplica una función que toma dos argumentos y devuelve un resultado.  
+
+```java  
+R apply(T t, U u);
+```
+
+### 1.10.3. Uso de Expresiones Lambda para Simplificar Código
+
+#### 1.10.3.1. Sintaxis de las Expresiones Lambda
+
+La expresión lambda permite definir un comportamiento en una única línea o bloque compacto. Su estructura es:
+
+```java
+(parametros) -> { cuerpo };
+```
+
+- **Parámetros:** La lista de argumentos que recibe el método. Pueden omitirse los tipos si son inferibles.  
+- **Operador `->`:** Separa los parámetros del cuerpo de la función.  
+- **Cuerpo:** El bloque de código que implementa la funcionalidad.
+
+#### 1.10.3.2. Ejemplo Simple
+
+```java
+Operacion suma = (a, b) -> a + b;
+System.out.println(suma.ejecutar(5, 3)); // Salida: 8
+```
+
+En este caso:
+
+* `(a, b)` son los parámetros.  
+* `a + b` es la implementación del método `ejecutar`.
+
+### 1.10.4. Ventajas de las Expresiones Lambda
+
+1. **Concisión:** Eliminan la necesidad de clases anónimas para implementar interfaces funcionales.  
+2. **Legibilidad:** Reducen el código ceremonial y facilitan la comprensión.  
+3. **Flexibilidad:** Permiten combinar programación funcional y orientación a objetos.
+
+**Sin Lambda (Clase Anónima):**
+
+```java
+
+Operacion suma = new Operacion() {
+    @Override
+    public int ejecutar(int a, int b) {
+        return a + b;
+    }
+};
+```
+
+**Con Lambda:**
+
+```java
+Operacion suma = (a, b) -> a + b;
+```
+
+
+### 1.10.5. Ejemplos y Aplicaciones Prácticas
+
+#### 1.10.5.1. Filtrado de Elementos con `Predicate`
+
+Las expresiones lambda son ideales para filtrar colecciones.
+
+**Ejemplo:**
+
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> nombres = Arrays.asList("Ana", "Pedro", "Luis", "Marta");
+
+        // Filtrar nombres que comienzan con "M"
+        Predicate<String> empiezaConM = nombre -> nombre.startsWith("M");
+        nombres.stream().filter(empiezaConM).forEach(System.out::println); 
+        // Salida: Marta
+    }
+}
+```
+
+#### 1.10.5.2. Transformación con `Function`
+
+Permiten transformar datos fácilmente.
+
+**Ejemplo:**
+
+```java
+import java.util.function.Function;
+
+public class Main {
+    public static void main(String[] args) {
+        Function<Integer, String> convertir = num -> "Número: " + num;
+
+        System.out.println(convertir.apply(5)); // Salida: Número: 5
+    }
+}
+
+```
+
+#### 1.10.5.3. Iteración con `Consumer`
+
+Ideal para realizar operaciones sobre cada elemento de una colección.
+
+**Ejemplo:**
+
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> frutas = Arrays.asList("Manzana", "Pera", "Uva");
+
+        Consumer<String> imprimir = fruta -> System.out.println("Fruta: " + fruta);
+        frutas.forEach(imprimir);
+        // Salida:
+        // Fruta: Manzana
+        // Fruta: Pera
+        // Fruta: Uva
+    }
+}
+```
+
+#### 1.10.5.4. Suministrar Datos con `Supplier`
+
+Se utilizan para generar datos dinámicamente.
+
+**Ejemplo:**
+
+```java
+import java.util.function.Supplier;
+
+public class Main {
+    public static void main(String[] args) {
+        Supplier<Double> generarAleatorio = () -> Math.random();
+
+        System.out.println("Número aleatorio: " + generarAleatorio.get());
+    }
+}
+```
+
+
+#### 1.10.5.5. Composición de Funciones
+
+Las expresiones lambda permiten la composición de múltiples operaciones.
+
+**Ejemplo:**
+
+```java
+import java.util.function.Function;
+
+public class Main {
+    public static void main(String[] args) {
+        Function<Integer, Integer> duplicar = x -> x * 2;
+        Function<Integer, Integer> sumarTres = x -> x + 3;
+
+        Function<Integer, Integer> combinar = duplicar.andThen(sumarTres);
+
+        System.out.println(combinar.apply(4)); // Salida: 11 (4 * 2 + 3)
+    }
+}
+```
+
+### 1.10.6. Conclusión
+
+Las expresiones lambda son una herramienta poderosa para escribir código funcional y conciso en Java. Junto con las interfaces funcionales y las herramientas de la API de streams, permiten manejar colecciones y funciones de una manera más declarativa y legible, mejorando la productividad del desarrollo.
