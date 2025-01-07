@@ -11,7 +11,7 @@
   - [1.2. Concepto de encapsulamiento](#12-concepto-de-encapsulamiento)
     - [1.2.1. Definición y beneficios del encapsulamiento](#121-definición-y-beneficios-del-encapsulamiento)
     - [1.2.2. Implementación del Encapsulamiento](#122-implementación-del-encapsulamiento)
-    - [1.2.3. Relación con **herencia** y **acoplamiento**](#123-relación-con-herencia-y-acoplamiento)
+    - [1.2.3. Relación con herencia y acoplamiento](#123-relación-con-herencia-y-acoplamiento)
       - [1.2.3.1. Encapsulamiento y Herencia](#1231-encapsulamiento-y-herencia)
       - [1.2.3.2. Encapsulamiento y Acoplamiento](#1232-encapsulamiento-y-acoplamiento)
     - [1.2.4. Beneficios del encapsulamiento](#124-beneficios-del-encapsulamiento)
@@ -33,21 +33,25 @@
     - [1.4.3. Uso de la anotación `@override`](#143-uso-de-la-anotación-override)
     - [1.4.4. Diferencias entre Sobrecarga y Sobreescritura](#144-diferencias-entre-sobrecarga-y-sobreescritura)
     - [1.4.5. Aplicación Práctica Combinada](#145-aplicación-práctica-combinada)
-  - [1.5. Clases abstractas](#15-clases-abstractas)
-    - [1.5.1. Características](#151-características)
-    - [1.5.2. Métodos abstractos](#152-métodos-abstractos)
-    - [1.5.3. Ventajas de las Clases Abstractas](#153-ventajas-de-las-clases-abstractas)
-  - [1.6. Interfaces](#16-interfaces)
-    - [1.6.1. Características de las Interfaces](#161-características-de-las-interfaces)
-    - [1.6.2. Diferencia entre clases abstractas e interfaces](#162-diferencia-entre-clases-abstractas-e-interfaces)
-  - [1.7. Clases anidadas y clases internas](#17-clases-anidadas-y-clases-internas)
-    - [1.7.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes](#171-clases-internas-inner-classes-local-inner-classes-y-anonymous-classes)
-    - [1.7.2. **Clases estáticas anidadas** (Static nested classes)](#172-clases-estáticas-anidadas-static-nested-classes)
-    - [1.7.3. Ventajas y desventajas de las clases anidadas](#173-ventajas-y-desventajas-de-las-clases-anidadas)
-  - [1.8. Polimorfismo](#18-polimorfismo)
-    - [1.8.1. Definición y tipos: polimorfismo estático y dinámico](#181-definición-y-tipos-polimorfismo-estático-y-dinámico)
-    - [1.8.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces](#182-ejemplos-prácticos-usando-herencia-clases-abstractas-e-interfaces)
-    - [1.8.3. Comparativa entre encapsulamiento, herencia y polimorfismo](#183-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
+  - [1.5. Polimorfismo en Programación Orientada a Objetos](#15-polimorfismo-en-programación-orientada-a-objetos)
+    - [1.5.1. Definición](#151-definición)
+    - [1.5.2. Tipos de Polimorfismo](#152-tipos-de-polimorfismo)
+    - [1.5.3. Relación con Ligadura Dinámica](#153-relación-con-ligadura-dinámica)
+    - [1.5.4. Más ejemplos Prácticos](#154-más-ejemplos-prácticos)
+    - [1.5.5. Ventajas del Polimorfismo](#155-ventajas-del-polimorfismo)
+    - [1.5.6. Desventajas y Consideraciones](#156-desventajas-y-consideraciones)
+    - [1.5.7. Comparativa entre encapsulamiento, herencia y polimorfismo](#157-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
+  - [1.6. Clases abstractas](#16-clases-abstractas)
+    - [1.6.1. Características](#161-características)
+    - [1.6.2. Métodos abstractos](#162-métodos-abstractos)
+    - [1.6.3. Ventajas de las Clases Abstractas](#163-ventajas-de-las-clases-abstractas)
+  - [1.7. Interfaces](#17-interfaces)
+    - [1.7.1. Características de las Interfaces](#171-características-de-las-interfaces)
+    - [1.7.2. Diferencia entre clases abstractas e interfaces](#172-diferencia-entre-clases-abstractas-e-interfaces)
+  - [1.8. Clases Anidadas y Clases Internas](#18-clases-anidadas-y-clases-internas)
+    - [1.8.1. Clases Internas](#181-clases-internas)
+    - [1.8.2. Clases Estáticas Anidadas](#182-clases-estáticas-anidadas)
+    - [1.8.3. Ventajas y Desventajas de las Clases Anidadas](#183-ventajas-y-desventajas-de-las-clases-anidadas)
   - [1.9. Métodos y Clases Genéricas](#19-métodos-y-clases-genéricas)
     - [1.9.1. Concepto de Generics](#191-concepto-de-generics)
     - [1.9.2. Clases y Métodos Parametrizados](#192-clases-y-métodos-parametrizados)
@@ -347,7 +351,7 @@ class Persona {
 }
 ```
 
-### 1.2.3. Relación con **herencia** y **acoplamiento**
+### 1.2.3. Relación con herencia y acoplamiento
 
 El encapsulamiento interactúa estrechamente con otros principios de POO, como la herencia y el acoplamiento:
 
@@ -909,11 +913,194 @@ public class Main {
 }
 ```
 
-## 1.5. Clases abstractas
+
+## 1.5. Polimorfismo en Programación Orientada a Objetos
+
+El **polimorfismo** es uno de los pilares fundamentales de la programación orientada a objetos (POO), junto con la encapsulación y la herencia. Este concepto describe la capacidad de un objeto para adoptar múltiples formas, lo que permite a diferentes clases responder de manera única a la misma operación o mensaje.
+
+### 1.5.1. Definición
+
+El término "polimorfismo" proviene del griego, que significa "muchas formas". En POO, el polimorfismo permite que un método, una interfaz o un operador tenga diferentes implementaciones o comportamientos según el contexto.
+
+**Ventajas del Polimorfismo**
+
+1. **Flexibilidad del código**: Permite escribir código genérico que puede trabajar con cualquier clase que cumpla ciertas condiciones.  
+2. **Reutilización del código**: Facilita extender o modificar programas sin cambiar el código existente.  
+3. **Mantenibilidad**: Reduce la necesidad de duplicar código y centraliza las operaciones comunes.
+
+### 1.5.2. Tipos de Polimorfismo
+
+Existen dos tipos principales de polimorfismo en POO: **polimorfismo estático** y **polimorfismo dinámico**.
+
+**Polimorfismo Estático (Early Binding)**
+
+El polimorfismo estático, también conocido como **ligadura temprana**, ocurre cuando el compilador decide cuál versión de un método o función se ejecutará en tiempo de compilación. Este tipo de polimorfismo se logra principalmente a través de:
+
+1. **Sobrecarga de métodos**: Permite que varias versiones de un método tengan el mismo nombre, pero con diferentes firmas (tipo o número de parámetros). 
+
+**Ejemplo de sobrecarga de métodos:**  
+```java  
+  
+public class Calculadora {
+
+    // Método suma con dos parámetros
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+
+    // Método suma con tres parámetros
+    public int sumar(int a, int b, int c) {
+        return a + b + c;
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
+        System.out.println(calc.sumar(3, 5));        // 8
+        System.out.println(calc.sumar(3, 5, 7));    // 15
+    }
+}
+```
+
+2. **Sobrecarga de operadores** (disponible en algunos lenguajes, como C++, pero no en Java). Permite redefinir el funcionamiento de operadores básicos, como el de asignación `=`, el de suma `+`, el de multiplicación `*`... En Java, el único operador sobrecargado de manera predeterminada es el `+`, para realizar la concatenación de cadenas, pero se trata de una sobrecarga interna del lenguaje.
+
+**Polimorfismo Dinámico (Late Binding)**
+
+El polimorfismo dinámico, o **ligadura tardía**, ocurre cuando la decisión sobre qué método invocar se toma en **tiempo de ejecución**. Este tipo de polimorfismo se logra mediante:
+
+**Sobreescritura de métodos**: Permite que una subclase proporcione su propia implementación de un método heredado de la clase padre.  
+**Ejemplo de sobreescritura de métodos:**  
+
+```java  
+class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+class Perro extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro ladra.");
+    }
+}
+
+class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato maúlla.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal miAnimal;  // Referencia polimórfica
+
+        miAnimal = new Perro();
+        miAnimal.hacerSonido(); // El perro ladra.
+
+        miAnimal = new Gato();
+        miAnimal.hacerSonido(); // El gato maúlla.
+    }
+}
+```
+
+**Relación con la herencia y las interfaces**:  
+   * En Java, las **interfaces** también son una herramienta clave para implementar el polimorfismo dinámico, ya que permiten definir un contrato común para múltiples clases, como veremos en apartados posteriores.
+
+### 1.5.3. Relación con Ligadura Dinámica
+
+La **ligadura dinámica** (dynamic binding) es un mecanismo mediante el cual la invocación de un método se resuelve en tiempo de ejecución. Esto está directamente relacionado con el polimorfismo dinámico.
+
+* Cuando un objeto de una clase derivada es tratado como si fuera de su clase base, el método que se ejecuta es el correspondiente a la clase del objeto real, no el de la referencia.
+
+**Ejemplo de ligadura dinámica:**
+
+```java
+class Vehiculo {
+    public void mover() {
+        System.out.println("El vehículo se está moviendo.");
+    }
+}
+
+class Bicicleta extends Vehiculo {
+    @Override
+    public void mover() {
+        System.out.println("La bicicleta pedalea.");
+    }
+}
+
+class Coche extends Vehiculo {
+    @Override
+    public void mover() {
+        System.out.println("El coche está conduciendo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehiculo vehiculo1 = new Bicicleta();
+        Vehiculo vehiculo2 = new Coche();
+
+        vehiculo1.mover(); // La bicicleta pedalea.
+        vehiculo2.mover(); // El coche está conduciendo.
+    }
+}
+```
+
+
+
+### 1.5.4. Más ejemplos Prácticos
+
+**Uso con colecciones genéricas:** Polimorfismo dinámico es esencial en el manejo de colecciones genéricas en Java.  
+java  
+Copiar código  
+`List<Animal> animales = new ArrayList<>();`
+
+`animales.add(new Perro());`
+
+`animales.add(new Gato());`
+
+`for (Animal animal : animales) {`
+
+    `animal.hacerSonido(); // Llama a la implementación específica de cada animal`
+
+`}`
+
+1.   
+2. **Diseño de aplicaciones modulares:** El polimorfismo permite desarrollar sistemas modulares, donde las clases derivadas pueden reemplazar o extender funcionalidades sin modificar el código base.
+
+---
+
+### 1.5.5. Ventajas del Polimorfismo
+
+1. **Flexibilidad**: Permite escribir código más genérico y adaptable.  
+2. **Extensibilidad**: Facilita la extensión de aplicaciones al permitir añadir nuevas clases con comportamientos específicos.  
+3. **Reutilización**: Reduce la duplicación de código al centralizar funcionalidades en clases base.
+
+---
+
+### 1.5.6. Desventajas y Consideraciones
+
+1. **Mayor complejidad**: Puede dificultar la comprensión del flujo del programa para desarrolladores novatos.  
+2. **Impacto en el rendimiento**: La resolución de métodos en tiempo de ejecución (ligadura dinámica) puede ser ligeramente más lenta que en tiempo de compilación.
+
+
+### 1.5.7. Comparativa entre encapsulamiento, herencia y polimorfismo
+
+| Aspecto              | Encapsulamiento                                                               | Herencia                                                                  | Polimorfismo                                                                       |
+| -------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Propósito            | Ocultar la implementación interna.                                            | Reutilizar y extender comportamientos.                                    | Cambiar el comportamiento dinámicamente.                                           |
+| Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
+| Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
+
+## 1.6. Clases abstractas
 
 Las **clases abstractas** son un concepto clave en la programación orientada a objetos (POO). Se utilizan para definir **comportamientos generales** que serán compartidos por diferentes clases derivadas, mientras dejan ciertos detalles específicos para ser implementados en esas clases hijas. En esencia, una clase abstracta actúa como una **plantilla** o un **modelo**.
 
-### 1.5.1. Características
+### 1.6.1. Características
 
 - No se pueden instanciar: una clase abstracta no puede ser utilizada directamente para crear objetos. Debe ser heredada por otras clases que implementen sus métodos abstractos.
 
@@ -1028,7 +1215,7 @@ public class Main {
 }
 ```
 
-### 1.5.2. Métodos abstractos
+### 1.6.2. Métodos abstractos
 
 Un método abstracto es un **método declarado sin cuerpo** en una clase abstracta. Las **subclases deben proporcionar su propia implementación**.
 
@@ -1051,18 +1238,18 @@ class Circulo extends Figura {
 }
 ```
 
-### 1.5.3. Ventajas de las Clases Abstractas
+### 1.6.3. Ventajas de las Clases Abstractas
 
 - **Estandarización**: Proveen una estructura común que todas las clases derivadas deben seguir.
 - **Promueven la reutilización**: Los métodos concretos y los atributos compartidos se implementan una vez y se reutilizan en todas las subclases.
 - **Flexibilidad**: Permiten implementar métodos concretos que las subclases pueden sobrescribir si es necesario.
 - **Facilitan la extensión**: Las clases abstractas son ideales para modelar jerarquías donde se espera que las clases concretas amplíen y personalicen el comportamiento.
 
-## 1.6. Interfaces
+## 1.7. Interfaces
 
 En programación orientada a objetos, una interfaz es un **contrato** que define un **conjunto de métodos** que una clase **debe implementar**. A diferencia de las clases abstractas, las interfaces no proporcionan implementación (salvo desde Java 8, donde se pueden usar métodos predeterminados y estáticos). Las interfaces son una herramienta poderosa para garantizar la **uniformidad de comportamiento** en las clases que las implementan.
 
-### 1.6.1. Características de las Interfaces
+### 1.7.1. Características de las Interfaces
 
 - **Definición de métodos abstractos**: Todos los métodos definidos en una interfaz son **implícitamente** abstractos y públicos (hasta Java 8, cuando no tenían implementación predeterminada).
 
@@ -1125,7 +1312,7 @@ interface Saludo {
 Animal a = new Animal(); // Error: no se puede instanciar una interfaz
 ```
 
-### 1.6.2. Diferencia entre clases abstractas e interfaces
+### 1.7.2. Diferencia entre clases abstractas e interfaces
 
 Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 
@@ -1136,27 +1323,136 @@ Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 | **Herencia múltiple** | Una clase solo puede extender una clase abstracta | Una clase puede implementar múltiples interfaces |
 | **Atributos** | Pueden tener atributos con estado | Solo pueden tener constantes |
 
-## 1.7. Clases anidadas y clases internas
+## 1.8. Clases Anidadas y Clases Internas
 
-### 1.7.1. **Clases internas**: Inner classes, Local inner classes y Anonymous classes
+En Java, las clases pueden ser definidas dentro de otras clases. Este enfoque puede ser útil para agrupar clases relacionadas, reducir la complejidad del código y mejorar su encapsulación. Estas se clasifican principalmente en **clases internas** y **clases estáticas anidadas**.
 
-### 1.7.2. **Clases estáticas anidadas** (Static nested classes)
+### 1.8.1. Clases Internas
 
-### 1.7.3. Ventajas y desventajas de las clases anidadas
+Las **clases internas** son aquellas definidas dentro de otra clase, y están asociadas a una instancia de la clase externa. Tienen acceso a los miembros (incluso privados) de la clase que las contiene.
 
-## 1.8. Polimorfismo
+**Tipos de Clases Internas:**
 
-### 1.8.1. Definición y tipos: polimorfismo estático y dinámico
+1. **Inner Classes**  
+   Son clases **no estáticas** definidas dentro de otra clase.  
+   * Tienen acceso directo a los atributos y métodos de la clase externa.  
+   * Se crean siempre en relación con una instancia de la clase externa.
 
-### 1.8.2. Ejemplos prácticos usando herencia, clases abstractas e interfaces
+**Ejemplo:** 
 
-### 1.8.3. Comparativa entre encapsulamiento, herencia y polimorfismo
+```java  
+public class Externa {
+    private String mensaje = "Hola desde la clase externa";
 
-| Aspecto              | Encapsulamiento                                                               | Herencia                                                                  | Polimorfismo                                                                       |
-| -------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Propósito            | Ocultar la implementación interna.                                            | Reutilizar y extender comportamientos.                                    | Cambiar el comportamiento dinámicamente.                                           |
-| Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
-| Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
+    public class Interna {
+        public void imprimir() {
+            System.out.println(mensaje); // Accede al atributo de la clase externa
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Externa externa = new Externa();
+        Externa.Interna interna = externa.new Interna(); // Crear instancia de la clase interna
+        interna.imprimir(); // Hola desde la clase externa
+    }
+}
+```
+
+
+2. **Local Inner Classes**  
+Son clases internas declaradas dentro de un bloque, generalmente un método o un constructor. Estas tienen acceso a las variables locales del bloque, siempre que sean **final** o **efectivamente final**.  
+
+**Ejemplo:**  
+```java  
+
+public class Externa {
+
+    public void metodo() {
+        String local = "Variable local";
+
+        class LocalInterna {
+            public void imprimir() {
+                System.out.println(local); // Accede a la variable local
+            }
+        }
+
+        LocalInterna interna = new LocalInterna();
+        interna.imprimir(); // Variable local
+    }
+}
+```
+
+3. **Anonymous Classes**  
+Son clases internas sin nombre que se declaran e instancian en una única línea. Se usan comúnmente para implementar interfaces o extender clases de forma breve.  
+
+**Ejemplo:**  
+
+```java  
+ 
+interface Saludo {
+    void decirHola();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Saludo saludo = new Saludo() { // Clase anónima que implementa la interfaz
+            @Override
+            public void decirHola() {
+                System.out.println("Hola desde una clase anónima");
+            }
+        };
+
+        saludo.decirHola(); // Hola desde una clase anónima
+    }
+}
+
+```
+
+### 1.8.2. Clases Estáticas Anidadas
+
+Las clases estáticas anidadas son clases definidas dentro de otra clase pero con el modificador **static**. A diferencia de las clases internas, no están asociadas a una instancia de la clase externa y solo pueden acceder a miembros estáticos de esta.
+
+* Se comportan como clases independientes pero están agrupadas dentro de otra clase por motivos lógicos.  
+* No tienen acceso implícito a los atributos o métodos de instancia de la clase externa.
+
+**Ejemplo:**
+```java
+
+public class Externa {
+    private static String mensaje = "Hola desde la clase externa";
+
+    public static class EstaticaAnidada {
+        public void imprimir() {
+            System.out.println(mensaje); // Accede solo a miembros estáticos
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Externa.EstaticaAnidada anidada = new Externa.EstaticaAnidada(); // No requiere instancia de la clase externa
+        anidada.imprimir(); // Hola desde la clase externa
+    }
+}
+```
+
+
+### 1.8.3. Ventajas y Desventajas de las Clases Anidadas
+
+**Ventajas:**
+
+1. **Organización lógica del código**: Permite agrupar clases relacionadas, facilitando la lectura y el mantenimiento.  
+2. **Encapsulación mejorada**: Las clases internas pueden acceder a los miembros privados de la clase externa, promoviendo un diseño más encapsulado.  
+3. **Reducción de complejidad**: Ayuda a evitar la creación de múltiples clases a nivel superior (top-level).  
+4. **Flexibilidad**: Las clases anidadas (en particular las anónimas) son ideales para implementar comportamientos simples y específicos de manera concisa.
+
+**Desventajas:**
+
+1. **Mayor acoplamiento**: Las clases internas dependen fuertemente de la clase externa, lo que puede dificultar el testeo y la reutilización.  
+2. **Complejidad del código**: Si se abusa de las clases internas, el código puede volverse menos legible.  
+3. **Sobrecarga en la memoria**: Las clases internas no estáticas llevan una referencia implícita a la instancia de la clase externa, lo que puede impactar en el rendimiento.
 
 ## 1.9. Métodos y Clases Genéricas
 
