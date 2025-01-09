@@ -1,78 +1,63 @@
-# 1. Conceptos avanzados de programación orientada a objetos
+# Conceptos avanzados de programación orientada a objetos
 
-- [1. Conceptos avanzados de programación orientada a objetos](#1-conceptos-avanzados-de-programación-orientada-a-objetos)
-  - [1.1. Relaciones entre clases](#11-relaciones-entre-clases)
-    - [1.1.1. Composición](#111-composición)
-    - [1.1.2. Agregación](#112-agregación)
-    - [1.1.3. Herencia](#113-herencia)
-    - [1.1.4. Clientela](#114-clientela)
-    - [1.1.5. Anidamiento](#115-anidamiento)
-    - [1.1.6. Resumen de Relaciones](#116-resumen-de-relaciones)
-  - [1.2. Concepto de encapsulamiento](#12-concepto-de-encapsulamiento)
-    - [1.2.1. Definición y beneficios del encapsulamiento](#121-definición-y-beneficios-del-encapsulamiento)
-    - [1.2.2. Implementación del Encapsulamiento](#122-implementación-del-encapsulamiento)
-    - [1.2.3. Relación con herencia y acoplamiento](#123-relación-con-herencia-y-acoplamiento)
-      - [1.2.3.1. Encapsulamiento y Herencia](#1231-encapsulamiento-y-herencia)
-      - [1.2.3.2. Encapsulamiento y Acoplamiento](#1232-encapsulamiento-y-acoplamiento)
-    - [1.2.4. Beneficios del encapsulamiento](#124-beneficios-del-encapsulamiento)
-    - [1.2.5. Buenas prácticas del encapsulamiento](#125-buenas-prácticas-del-encapsulamiento)
+- [1. Relaciones entre clases](#1-relaciones-entre-clases)
+  - [1.1. Composición](#11-composición)
+  - [1.2. Agregación](#12-agregación)
   - [1.3. Herencia](#13-herencia)
-    - [1.3.1. Concepto de Herencia](#131-concepto-de-herencia)
-    - [1.3.2. Jerarquías de herencia](#132-jerarquías-de-herencia)
-    - [1.3.3. Tipos de Herencia](#133-tipos-de-herencia)
-    - [1.3.4. Modificadores de acceso en la herencia](#134-modificadores-de-acceso-en-la-herencia)
-    - [1.3.5. Sobreescritura de métodos (Override)](#135-sobreescritura-de-métodos-override)
-    - [1.3.6. Uso del operador `super`](#136-uso-del-operador-super)
-    - [1.3.7. Constructores en la herencia](#137-constructores-en-la-herencia)
-    - [1.3.8. Palabra clave `final` en herencia](#138-palabra-clave-final-en-herencia)
-    - [1.3.9. Problemas y limitaciones de la herencia](#139-problemas-y-limitaciones-de-la-herencia)
-    - [1.3.10. Buenas prácticas en el uso de la herencia](#1310-buenas-prácticas-en-el-uso-de-la-herencia)
-  - [1.4. Sobrecarga y sobrescritura](#14-sobrecarga-y-sobrescritura)
-    - [1.4.1. Sobrecarga de métodos](#141-sobrecarga-de-métodos)
-    - [1.4.2. Sobreescritura de Métodos](#142-sobreescritura-de-métodos)
-    - [1.4.3. Uso de la anotación `@override`](#143-uso-de-la-anotación-override)
-    - [1.4.4. Diferencias entre Sobrecarga y Sobreescritura](#144-diferencias-entre-sobrecarga-y-sobreescritura)
-    - [1.4.5. Aplicación Práctica Combinada](#145-aplicación-práctica-combinada)
-  - [1.5. Polimorfismo en Programación Orientada a Objetos](#15-polimorfismo-en-programación-orientada-a-objetos)
-    - [1.5.1. Definición](#151-definición)
-    - [1.5.2. Tipos de Polimorfismo](#152-tipos-de-polimorfismo)
-    - [1.5.3. Relación con Ligadura Dinámica](#153-relación-con-ligadura-dinámica)
-    - [1.5.4. Más ejemplos Prácticos](#154-más-ejemplos-prácticos)
-    - [1.5.5. Ventajas del Polimorfismo](#155-ventajas-del-polimorfismo)
-    - [1.5.6. Desventajas y Consideraciones](#156-desventajas-y-consideraciones)
-    - [1.5.7. Comparativa entre encapsulamiento, herencia y polimorfismo](#157-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
-  - [1.6. Clases abstractas](#16-clases-abstractas)
-    - [1.6.1. Características](#161-características)
-    - [1.6.2. Métodos abstractos](#162-métodos-abstractos)
-    - [1.6.3. Ventajas de las Clases Abstractas](#163-ventajas-de-las-clases-abstractas)
-  - [1.7. Interfaces](#17-interfaces)
-    - [1.7.1. Características de las Interfaces](#171-características-de-las-interfaces)
-    - [1.7.2. Diferencia entre clases abstractas e interfaces](#172-diferencia-entre-clases-abstractas-e-interfaces)
-  - [1.8. Clases Anidadas y Clases Internas](#18-clases-anidadas-y-clases-internas)
-    - [1.8.1. Clases Internas](#181-clases-internas)
-    - [1.8.2. Clases Estáticas Anidadas](#182-clases-estáticas-anidadas)
-    - [1.8.3. Ventajas y Desventajas de las Clases Anidadas](#183-ventajas-y-desventajas-de-las-clases-anidadas)
-  - [1.9. Métodos y Clases Genéricas](#19-métodos-y-clases-genéricas)
-    - [1.9.1. Concepto de Generics](#191-concepto-de-generics)
-    - [1.9.2. Clases y Métodos Parametrizados](#192-clases-y-métodos-parametrizados)
-    - [1.9.3. Ventajas de Generics](#193-ventajas-de-generics)
-    - [1.9.4. Ejemplo Práctico: Uso en Estructuras de Datos](#194-ejemplo-práctico-uso-en-estructuras-de-datos)
-  - [1.10. Interfaces funcionales y expresiones Lambda](#110-interfaces-funcionales-y-expresiones-lambda)
-    - [1.10.1. Introducción a las Interfaces Funcionales](#1101-introducción-a-las-interfaces-funcionales)
-    - [1.10.2. Interfaces Funcionales Predefinidas en Java](#1102-interfaces-funcionales-predefinidas-en-java)
-    - [1.10.3. Uso de Expresiones Lambda para Simplificar Código](#1103-uso-de-expresiones-lambda-para-simplificar-código)
-      - [1.10.3.1. Sintaxis de las Expresiones Lambda](#11031-sintaxis-de-las-expresiones-lambda)
-      - [1.10.3.2. Ejemplo Simple](#11032-ejemplo-simple)
-    - [1.10.4. Ventajas de las Expresiones Lambda](#1104-ventajas-de-las-expresiones-lambda)
-    - [1.10.5. Ejemplos y Aplicaciones Prácticas](#1105-ejemplos-y-aplicaciones-prácticas)
-      - [1.10.5.1. Filtrado de Elementos con `Predicate`](#11051-filtrado-de-elementos-con-predicate)
-      - [1.10.5.2. Transformación con `Function`](#11052-transformación-con-function)
-      - [1.10.5.3. Iteración con `Consumer`](#11053-iteración-con-consumer)
-      - [1.10.5.4. Suministrar Datos con `Supplier`](#11054-suministrar-datos-con-supplier)
-      - [1.10.5.5. Composición de Funciones](#11055-composición-de-funciones)
-    - [1.10.6. Conclusión](#1106-conclusión)
+  - [1.4. Clientela](#14-clientela)
+  - [1.5. Anidamiento](#15-anidamiento)
+  - [1.6. Resumen de Relaciones](#16-resumen-de-relaciones)
+  - [1.7. Preservación de la ocultación en composición y agregación](#17-preservación-de-la-ocultación-en-composición-y-agregación)
+  - [1.8. Composición y agregación: invocación a constructores de clases contenidas](#18-composición-y-agregación-invocación-a-constructores-de-clases-contenidas)
+- [2. Concepto de encapsulamiento](#2-concepto-de-encapsulamiento)
+  - [2.1. Definición y beneficios del encapsulamiento](#21-definición-y-beneficios-del-encapsulamiento)
+  - [2.2. Implementación del Encapsulamiento](#22-implementación-del-encapsulamiento)
+  - [2.3. Relación con herencia y acoplamiento](#23-relación-con-herencia-y-acoplamiento)
+  - [2.4. Beneficios del encapsulamiento](#24-beneficios-del-encapsulamiento)
+  - [2.5. Buenas prácticas del encapsulamiento](#25-buenas-prácticas-del-encapsulamiento)
+- [3. Herencia](#3-herencia)
+  - [3.1. Concepto de Herencia](#31-concepto-de-herencia)
+  - [3.2. Jerarquías de herencia](#32-jerarquías-de-herencia)
+  - [3.3. Tipos de Herencia](#33-tipos-de-herencia)
+  - [3.4. Modificadores de acceso en la herencia](#34-modificadores-de-acceso-en-la-herencia)
+  - [3.5. Sobreescritura de métodos (Override)](#35-sobreescritura-de-métodos-override)
+  - [3.6. Uso del operador superr\`](#36-uso-del-operador-superr)
+  - [3.7. Constructores en la herencia](#37-constructores-en-la-herencia)
+  - [3.8. La Clase Object en Javava\*\*](#38-la-clase-object-en-javava)
+  - [3.9. Palabra clave final en herenciaia](#39-palabra-clave-final-en-herenciaia)
+  - [3.10. Problemas y limitaciones de la herencia](#310-problemas-y-limitaciones-de-la-herencia)
+  - [3.11. Buenas prácticas en el uso de la herencia](#311-buenas-prácticas-en-el-uso-de-la-herencia)
+- [4. Sobrecarga y sobrescritura](#4-sobrecarga-y-sobrescritura)
+  - [4.1. Sobrecarga de métodos](#41-sobrecarga-de-métodos)
+  - [4.2. Sobreescritura de Métodos](#42-sobreescritura-de-métodos)
+  - [4.3. Uso de la anotación @overridee\`](#43-uso-de-la-anotación-overridee)
+  - [4.4. Diferencias entre Sobrecarga y Sobreescritura](#44-diferencias-entre-sobrecarga-y-sobreescritura)
+  - [4.5. Aplicación Práctica Combinada](#45-aplicación-práctica-combinada)
+- [5. Polimorfismo en Programación Orientada a Objetos](#5-polimorfismo-en-programación-orientada-a-objetos)
+  - [5.1. Definición](#51-definición)
+  - [5.2. Tipos de Polimorfismo](#52-tipos-de-polimorfismo)
+  - [5.3. Relación con Ligadura Dinámica](#53-relación-con-ligadura-dinámica)
+  - [5.4. Ventajas del Polimorfismo](#54-ventajas-del-polimorfismo)
+  - [5.5. Desventajas y Consideraciones](#55-desventajas-y-consideraciones)
+  - [5.6. Comparativa entre encapsulamiento, herencia y polimorfismo](#56-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
+- [6. Clases abstractas](#6-clases-abstractas)
+  - [6.1. Características](#61-características)
+  - [6.2. Métodos abstractos](#62-métodos-abstractos)
+  - [6.3. Ventajas de las Clases Abstractas](#63-ventajas-de-las-clases-abstractas)
+- [7. Interfaces](#7-interfaces)
+  - [7.1. Características de las Interfaces](#71-características-de-las-interfaces)
+  - [7.2. Diferencia entre clases abstractas e interfaces](#72-diferencia-entre-clases-abstractas-e-interfaces)
+- [8. Clases Anidadas y Clases Internas](#8-clases-anidadas-y-clases-internas)
+  - [8.1. Clases Internas](#81-clases-internas)
+  - [8.2. Clases Estáticas Anidadas](#82-clases-estáticas-anidadas)
+  - [8.3. Ventajas y Desventajas de las Clases Anidadas](#83-ventajas-y-desventajas-de-las-clases-anidadas)
+- [9. Métodos y Clases Genéricas](#9-métodos-y-clases-genéricas)
+  - [9.1. Concepto de Generics](#91-concepto-de-generics)
+  - [9.2. Clases y Métodos Parametrizados](#92-clases-y-métodos-parametrizados)
+  - [9.3. Ventajas de Generics](#93-ventajas-de-generics)
+  - [9.4. Ejemplo Práctico: Uso en Estructuras de Datos](#94-ejemplo-práctico-uso-en-estructuras-de-datos)
 
-## 1.1. Relaciones entre clases
+## 1. Relaciones entre clases
 
 Las relaciones entre clases son fundamentales en la programación orientada a objetos (POO) porque permiten organizar, estructurar y modelar el comportamiento y las interacciones entre diferentes entidades en un programa. Una correcta comprensión y uso de estas relaciones mejora la reutilización de código, la modularidad y la flexibilidad del diseño.
 
@@ -84,7 +69,7 @@ En este apartado, analizaremos cinco tipos de relaciones entre clases:
 - Clientela  
 - Anidamiento
 
-### 1.1.1. Composición
+### 1.1. Composición
 
 La **composición** es una relación **"todo-parte"** donde una clase contiene una o más instancias de otras clases como atributos. Se caracteriza porque el ciclo de vida de las partes depende del objeto que las contiene: si el "todo" se destruye, las partes también se destruyen. Estas son sus **características**:
 
@@ -135,29 +120,20 @@ En este ejemplo, la clase `Coche` tiene una relación de composición con la cla
 ```mermaid
 classDiagram
     class Motor {
-
-        \- String tipo
-
-        \+ Motor(tipo: String)
-
-        \+ encender()
-
+        - String tipo
+        + Motor(tipo: String)
+        + encender()
     }
 
     class Coche {
-
-        \- Motor motor
-
-        \+ Coche(tipoMotor: String)
-
-        \+ arrancar()
-
+        + Coche(tipoMotor: String)
+        + arrancar()
     }
 
     Coche "1" *-- "1" Motor : tiene
 ```
 
-### 1.1.2. Agregación
+### 1.2. Agregación
 
 La **agregación** es otra relación "todo-parte", pero con una diferencia importante respecto a la composición: las partes pueden existir independientemente del "todo". Es una relación **débil** donde el objeto contenedor y las partes tienen ciclos de vida independientes. Estas son sus **características**:
 
@@ -206,11 +182,11 @@ public class Main {
 
 En este ejemplo, la clase `Departamento` tiene una relación de agregación con la clase `Profesor`. El profesor no forma parte integral del departamento y puede existir independientemente.
 
-### 1.1.3. Herencia
+### 1.3. Herencia
 
 La herencia es una relación "es un" entre clases, donde una clase (la clase hija o subclase) hereda atributos y métodos de otra clase (la clase padre o superclase). Permite la reutilización de código y facilita la creación de jerarquías de clases. Se expondrá con detalle más adelante.
 
-### 1.1.4. Clientela
+### 1.4. Clientela
 
 La clientela (o asociación de uso) es una relación donde una clase utiliza los servicios o métodos de otra clase. Es una relación muy flexible y frecuente.
 
@@ -246,9 +222,9 @@ public class Main {
 
 La clase `Usuario` es cliente de la clase `Impresora`. El `Usuario` utiliza el método `imprimir` sin ser "dueño" de la impresora.
 
-### 1.1.5. Anidamiento
+### 1.5. Anidamiento
 
-El anidamiento es una relación en la que una clase está contenida dentro de otra clase. Se implementa usando **clases anidadas** o **clases internas**.
+El anidamiento es una relación en la que una clase está contenida dentro de otra clase. Se implementa usando **clases anidadas** o **clases internas**. Las veremos con más detalle en siguientes apartados.
 
 Características:
 
@@ -284,7 +260,7 @@ public class Main {
 
 En este caso, la clase `Procesador` está anidada dentro de `Ordenador`, y puede acceder a los atributos de la clase contenedora.
 
-### 1.1.6. Resumen de Relaciones
+### 1.6. Resumen de Relaciones
 
 | Tipo de Relación | Característica principal     | Ejemplo clave           |
 | ---------------- | ---------------------------- | ----------------------- |
@@ -294,11 +270,138 @@ En este caso, la clase `Procesador` está anidada dentro de `Ordenador`, y puede
 | Clientela        | Uso temporal de servicios    | Usuario e Impresora     |
 | Anidamiento      | Una clase dentro de otra     | Procesador y Ordenador  |
 
-## 1.2. Concepto de encapsulamiento
+### 1.7. Preservación de la ocultación en composición y agregación
+
+En las relaciones de composición y agregación, la implementación en código no implica complejidad adicional más allá de declarar atributos de las clases necesarias dentro de la clase que se está diseñando. Sin embargo, es crucial prestar atención a cómo se gestionan y exponen estos atributos, especialmente cuando se implementan métodos "obtenedores" (también conocidos como métodos `get`).
+
+**Principios de Encapsulamiento**:
+
+Por lo general, los atributos de una clase se declaran como **privados** para garantizar su encapsulación y protegerlos de accesos no deseados desde otros objetos que interactúan con la clase. Para permitir que otros objetos accedan a los datos almacenados en estos atributos, se utilizan métodos `get`, que actúan como una interfaz controlada entre el objeto y el exterior. Esto asegura que solo se pueda acceder a la información que el diseñador de la clase considere relevante, manteniendo los atributos protegidos frente a modificaciones directas.
+
+Tradicionalmente, los métodos `get` devuelven **tipos primitivos** (por ejemplo, `int`, `double`, `boolean`), lo que implica que el cliente recibe una copia del valor almacenado en el atributo. De esta manera, los datos internos permanecen aislados, y cualquier manipulación del valor devuelto no afecta directamente al atributo original.
+
+**Nuevos Desafíos: Atributos como Objetos**
+
+Cuando los atributos de una clase son objetos en lugar de tipos primitivos, pueden surgir situaciones donde interese devolver un objeto completo desde un método `get`. Sin embargo, esta práctica puede ser problemática, ya que al devolver directamente un atributo que es un objeto, se está proporcionando una **referencia** al objeto original. Esto puede romper el principio de encapsulación, ya que un atributo privado podría quedar accesible y manipulable desde el exterior.
+
+**Buenas Prácticas para Devolver Objetos**
+
+Para evitar comprometer la integridad de los atributos privados, se recomienda seguir las siguientes estrategias al devolver objetos:
+
+1. **Evitar devolver atributos directamente**: Siempre que sea posible, opta por devolver tipos primitivos o datos derivados de los atributos, en lugar de los objetos originales.
+2. **Crear copias del objeto**: Una solución común es devolver una **copia del objeto** en lugar del objeto original. De este modo, el cliente del método puede trabajar con la copia sin afectar al atributo privado. Esto es especialmente útil cuando se necesita garantizar la inmutabilidad del estado interno de la clase.  
+```java  
+public class Persona {
+    private Direccion direccion; // Atributo como objeto
+    public Direccion getDireccion() {
+        // Crear y devolver una copia del objeto
+        return new Direccion(direccion.getCalle(), direccion.getCiudad());
+    }
+}
+```
+
+3. **Devolver referencias solo cuando sea necesario**: En casos específicos, como con atributos estáticos o cuando el cliente necesita modificar directamente el objeto, se puede devolver la referencia original. No obstante, esta práctica debe limitarse a situaciones controladas donde el impacto sea conocido.
+
+**Conclusión**
+
+En las relaciones de composición y agregación, es fundamental ser cauteloso al exponer objetos internos a través de métodos `get`. El uso adecuado de las estrategias descritas asegura que los atributos privados mantengan su encapsulación, evitando errores no intencionados y promoviendo un diseño robusto y seguro. Estas buenas prácticas refuerzan el principio de separación entre la manipulación interna de la clase y la interacción con el exterior.
+
+### 1.8. Composición y agregación: invocación a constructores de clases contenidas
+
+En la programación orientada a objetos, cuando una clase contiene como atributos objetos de otras clases, se deben considerar aspectos importantes durante la instanciación de dichos objetos. Específicamente, el constructor de la clase contenedora debe gestionar correctamente la creación de los objetos que serán sus atributos. Esto incluye invocar a los constructores de las clases contenidas y manejar de manera adecuada las referencias para evitar efectos colaterales no deseados.
+
+**Invocación a Constructores de Clases Contenidas**
+
+Cuando se crea una instancia de la clase contenedora, el constructor de esta debe asegurarse de inicializar todos sus atributos, incluidos los objetos contenidos. Esto puede lograrse mediante:
+
+- La creación directa de nuevas instancias de los objetos contenidos dentro del constructor.  
+- La recepción de objetos como parámetros y su posterior copia para garantizar el encapsulamiento.
+
+**Evitar la Exposición de Referencias**
+
+Cuando se utilizan objetos como parámetros en un constructor, es importante evitar asignar directamente dichas referencias a los atributos de la clase contenedora. Esto se debe a que compartir referencias puede comprometer el encapsulamiento, ya que cualquier modificación realizada al objeto desde otra parte del programa afectará al atributo de la clase contenedora.
+
+**Ejemplo de Efectos Colaterales**
+
+Imagina que una clase `Rectangulo` contiene dos objetos de la clase `Punto` como atributos:
+
+```java
+
+public class Punto {
+    private int x, y;
+
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+}
+```
+
+Si el constructor de `Rectangulo` asigna directamente los parámetros al atributo, surgirían problemas de encapsulamiento:
+
+```java
+public class Rectangulo {
+    private Punto esquina1;
+    private Punto esquina2;
+
+    public Rectangulo(Punto esquina1, Punto esquina2) {
+        this.esquina1 = esquina1; // Mala práctica
+        this.esquina2 = esquina2; // Mala práctica
+    }
+}
+```
+
+Si los puntos utilizados ya pertenecen a otro objeto o se comparten entre varias partes del código, cualquier modificación sobre uno de ellos afectará a todos los objetos que compartan la misma referencia.
+
+**Solución: Realizar Copias de los Objetos**
+
+Para evitar compartir referencias, es preferible crear copias de los objetos recibidos como parámetros antes de asignarlos a los atributos:
+
+```java
+public class Rectangulo {
+    private Punto esquina1;
+    private Punto esquina2;
+
+    public Rectangulo(Punto esquina1, Punto esquina2) {
+        // Se crean copias de los puntos recibidos
+        this.esquina1 = new Punto(esquina1.getX(), esquina1.getY());
+        this.esquina2 = new Punto(esquina2.getX(), esquina2.getY());
+    }
+}
+```
+
+De esta manera, cualquier cambio en los objetos `Punto` originales no afectará a los atributos de la clase `Rectangulo`, ya que estos estarán utilizando copias independientes.
+
+**Consideraciones sobre Referencias**
+
+En Java, los objetos son variables de tipo referencia, lo que significa que múltiples referencias pueden apuntar al mismo objeto en memoria. Por ello:
+
+* **Asignaciones directas** o **pasos de parámetros** no generan copias del objeto, solo de la referencia.  
+* Los cambios realizados a través de una referencia afectarán al mismo objeto, sin importar desde qué parte del programa se realicen.
+
+Para evitar problemas relacionados con referencias compartidas:
+
+1. **Crea siempre nuevas instancias** para inicializar atributos de tipo objeto, en lugar de reutilizar referencias externas.  
+2. **Diseña constructores que prioricen el encapsulamiento**, asegurándote de que cada objeto contenido sea independiente de su contexto original.
+
+**Conclusión**
+
+La composición es una herramienta poderosa en programación orientada a objetos, pero su uso correcto requiere especial cuidado al gestionar referencias y constructores. Al evitar compartir referencias y optar por realizar copias de los objetos recibidos como parámetros, puedes garantizar la encapsulación y minimizar riesgos de efectos colaterales, promoviendo un diseño de software más seguro y robusto.
+
+
+## 2. Concepto de encapsulamiento
 
 El encapsulamiento es un principio fundamental de la Programación Orientada a Objetos (POO). Se basa en ocultar los detalles internos de una clase (su implementación) y exponer únicamente aquello que es relevante para los usuarios de la clase (su interfaz pública). Este mecanismo permite controlar el acceso a los datos, protegiéndolos de modificaciones indebidas y asegurando la consistencia del estado del objeto.
 
-### 1.2.1. Definición y beneficios del encapsulamiento
+### 2.1. Definición y beneficios del encapsulamiento
 
 El encapsulamiento puede resumirse en dos aspectos principales:
 
@@ -307,7 +410,7 @@ El encapsulamiento puede resumirse en dos aspectos principales:
 
 El objetivo principal es lograr un **bajo acoplamiento** entre las partes del programa y evitar dependencias innecesarias.
 
-### 1.2.2. Implementación del Encapsulamiento
+### 2.2. Implementación del Encapsulamiento
 
 En lenguajes como Java, el encapsulamiento se logra utilizando modificadores de acceso para controlar la visibilidad de los atributos y métodos. Estos son los modificadores de acceso:
 
@@ -351,11 +454,11 @@ class Persona {
 }
 ```
 
-### 1.2.3. Relación con herencia y acoplamiento
+### 2.3. Relación con herencia y acoplamiento
 
 El encapsulamiento interactúa estrechamente con otros principios de POO, como la herencia y el acoplamiento:
 
-#### 1.2.3.1. Encapsulamiento y Herencia
+#### Encapsulamiento y Herencia
 
 Los atributos privados de una clase base no son accesibles directamente por las clases derivadas.
 Sin embargo, los atributos protegidos (protected) y los métodos públicos sí son accesibles.
@@ -377,20 +480,20 @@ class Perro extends Animal {
 }
 ```
 
-#### 1.2.3.2. Encapsulamiento y Acoplamiento
+#### Encapsulamiento y Acoplamiento
 
 El encapsulamiento reduce el acoplamiento, ya que los detalles internos de una clase están ocultos.
 Esto permite que las clases dependan solo de las interfaces públicas y no de las implementaciones concretas.
 
-### 1.2.4. Beneficios del encapsulamiento
+### 2.4. Beneficios del encapsulamiento
 
-- Control de acceso: Protege los datos internos de accesos no deseados o modificaciones indebidas.
-- Facilidad de mantenimiento: Permite cambiar la implementación interna de una clase sin afectar a quienes la usan, siempre que la interfaz pública se mantenga.
-- Validación de datos: Los métodos setters permiten validar datos antes de asignarlos a los atributos.
-- Modularidad: Ayuda a dividir un programa en componentes más manejables y desacoplados.
-- Reutilización: Las clases encapsuladas son más fáciles de entender y reutilizar
+- **Control de acceso**: Protege los datos internos de accesos no deseados o modificaciones indebidas.
+- **Facilidad de mantenimiento**: Permite cambiar la implementación interna de una clase sin afectar a quienes la usan, siempre que la interfaz pública se mantenga.
+- **Validación de datos**: Los métodos setters permiten validar datos antes de asignarlos a los atributos.
+- **Modularidad**: Ayuda a dividir un programa en componentes más manejables y desacoplados.
+- **Reutilización**: Las clases encapsuladas son más fáciles de entender y reutilizar
 
-### 1.2.5. Buenas prácticas del encapsulamiento
+### 2.5. Buenas prácticas del encapsulamiento
 
 - Haz privados los atributos siempre que sea posible.
   - Proporciona acceso solo mediante métodos getters y setters.
@@ -425,11 +528,11 @@ class BuenaPractica {
 - Expón solo lo necesario.
   - No todos los atributos de una clase necesitan getters y setters. Considera cuidadosamente qué necesita ser accesible desde el exterior.
 
-## 1.3. Herencia
+## 3. Herencia
 
 La herencia es uno de los pilares fundamentales de la Programación Orientada a Objetos (POO). Permite que una clase (clase derivada o hija) reutilice las propiedades y métodos de otra clase (clase base o padre), extendiendo o especializando su comportamiento.
 
-### 1.3.1. Concepto de Herencia
+### 3.1. Concepto de Herencia
 
 La herencia es una relación "es-un" (is-a) entre dos clases. En esta relación:
 
@@ -468,7 +571,7 @@ public class Main {
 }
 ```
 
-### 1.3.2. Jerarquías de herencia
+### 3.2. Jerarquías de herencia
 
 Clase Base Única: Una clase derivada tiene una única clase base.
 Herencia Múltiple (no soportada directamente en Java): Una clase puede tener varias clases base. Esto se puede simular mediante interfaces.
@@ -480,7 +583,7 @@ Animal
   └── Gato
 ```
 
-### 1.3.3. Tipos de Herencia
+### 3.3. Tipos de Herencia
 
 - Simple: Una clase derivada hereda de una única clase base.
 - Jerárquica: Varias clases derivadas heredan de una clase base común.
@@ -488,7 +591,7 @@ Animal
 - Múltiple (indirecta en Java): Se logra combinando interfaces.
 - Híbrida: Mezcla de los tipos anteriores.
 
-### 1.3.4. Modificadores de acceso en la herencia
+### 3.4. Modificadores de acceso en la herencia
 
 Los modificadores de acceso determinan qué miembros se heredan y cómo se accede a ellos:
 
@@ -509,7 +612,7 @@ class Animal {
 }
 ```
 
-### 1.3.5. Sobreescritura de métodos (Override)
+### 3.5. Sobreescritura de métodos (Override)
 
 La clase derivada puede redefinir métodos de la clase base para adaptar su comportamiento. Esto se realiza usando la anotación @Override:
 
@@ -536,7 +639,7 @@ Reglas:
 - El nivel de acceso no puede ser más restrictivo que en la clase base.
 - Si el método de la clase base es final, no puede sobreescribirse.
 
-### 1.3.6. Uso del operador `super`
+### 3.6. Uso del operador superr`
 
 El operador `super` se utiliza para:
 
@@ -571,7 +674,7 @@ class Perro extends Animal {
 }
 ```
 
-### 1.3.7. Constructores en la herencia
+### 3.7. Constructores en la herencia
 
 En Java, los constructores de una clase base no se heredan, pero se pueden invocar desde la clase derivada usando `super`.
 
@@ -596,7 +699,59 @@ class Perro extends Animal {
 }
 ```
 
-### 1.3.8. Palabra clave `final` en herencia
+### 3.8. La Clase Object en Javava**
+
+En Java, **`Object`** es la superclase principal de todas las clases. Esto significa que cualquier clase que declares hereda implícitamente de `Object`, ya sea de manera directa o indirecta. La clase `Object` proporciona un conjunto de métodos básicos que están disponibles para todos los objetos en Java, como:
+
+- **`toString()`**: Devuelve una representación en forma de cadena del objeto. Este método es frecuentemente sobrescrito para proporcionar descripciones más significativas.  
+- **`equals(Object obj)`**: Compara el objeto actual con otro objeto para determinar si son iguales. Por defecto, compara referencias, pero suele sobrescribirse para realizar comparaciones de contenido.  
+- **`hashCode()`**: Devuelve un código hash para el objeto, utilizado principalmente en colecciones como `HashMap` o `HashSet`.  
+- **`clone()`**: Crea y devuelve una copia exacta del objeto actual, siempre que la clase implemente la interfaz `Cloneable`.  
+- **`finalize()`**: Se llama cuando el recolector de basura elimina un objeto, aunque su uso es desaconsejado en versiones recientes.  
+- **`getClass()`**: Devuelve un objeto `Class` que representa la clase en tiempo de ejecución del objeto.
+
+**Importancia en la Herencia**
+
+La clase `Object` actúa como un punto común en la jerarquía de clases, lo que asegura que todas las clases en Java compartan un conjunto mínimo de funcionalidades. Esto facilita el manejo genérico de objetos y permite construir estructuras de datos o implementar mecanismos como el polimorfismo de manera uniforme.
+
+Por ejemplo, puedes almacenar cualquier objeto en una lista genérica, como `ArrayList<Object>`, gracias a que todos los objetos comparten `Object` como ancestro.
+
+**Sobrescritura de Métodos de Object**
+
+Es común sobrescribir métodos como `toString()`, `equals()`, y `hashCode()` para adaptar su comportamiento a las necesidades específicas de la clase. A continuación, un ejemplo:
+
+```java
+public class Persona {
+    private String nombre;
+    private int edad;
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{nombre='" + nombre + "', edad=" + edad + "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Persona persona = (Persona) obj;
+        return edad == persona.edad && nombre.equals(persona.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, edad);
+    }
+}
+
+```
+
+### 3.9. Palabra clave final en herenciaia
 
 La palabra reservada `final` puede ser empleada sobre las clases o sus métodos, con comportamientos diferentes a su habitual aplicación sobre los atributos (que implica que su valor no puede ser modificado en el programa, es decir, que es constante).
 
@@ -660,25 +815,25 @@ public class Main {
 }
 ```
 
-### 1.3.9. Problemas y limitaciones de la herencia
+### 3.10. Problemas y limitaciones de la herencia
 
 - Acoplamiento: Las clases derivadas dependen fuertemente de la clase base. Cambios en la clase base pueden romper el comportamiento de las derivadas.
 - Herencia innecesaria: Puede generar una jerarquía compleja si no se utiliza correctamente.
 - Herencia múltiple (no soportada en Java): Restringe el uso directo de múltiples clases base, pero se soluciona con interfaces.
 
-### 1.3.10. Buenas prácticas en el uso de la herencia
+### 3.11. Buenas prácticas en el uso de la herencia
 
-Usa herencia solo cuando exista una relación clara "es-un" entre las clases.
-Prefiere composición sobre herencia cuando sea posible.
-Mantén las clases base lo más simples posible.
-Utiliza @Override para evitar errores al redefinir métodos.
-Evalúa si una clase debe ser final para evitar su extensión indebida.
+- Usa herencia solo cuando exista una relación clara "es-un" entre las clases.
+- Prefiere composición sobre herencia cuando sea posible.
+- Mantén las clases base lo más simples posible.
+- Utiliza `@Override` para evitar errores al redefinir métodos.
+- Evalúa si una clase debe ser final para evitar su extensión indebida.
 
-## 1.4. Sobrecarga y sobrescritura
+## 4. Sobrecarga y sobrescritura
 
 La sobrecarga y la sobreescritura son conceptos fundamentales en la programación orientada a objetos que permiten la flexibilidad y reutilización del código. Aunque ambos conceptos están relacionados con el manejo de métodos, tienen diferencias significativas en su propósito y aplicación.
 
-### 1.4.1. Sobrecarga de métodos
+### 4.1. Sobrecarga de métodos
 
 La sobrecarga ocurre cuando varios métodos en una clase tienen el mismo nombre pero diferentes firmas. Esto significa que los métodos deben diferir en el **número** o **tipo de parámetros**.
 
@@ -725,7 +880,7 @@ public class Main {
 }
 ```
 
-### 1.4.2. Sobreescritura de Métodos
+### 4.2. Sobreescritura de Métodos
 
 La sobreescritura ocurre cuando una subclase proporciona una implementación específica de un método que ya está definido en su clase base.
 
@@ -773,7 +928,7 @@ public class Main {
 } 
 ```
 
-### 1.4.3. Uso de la anotación `@override`
+### 4.3. Uso de la anotación @overridee`
 
 La etiqueta `@Override` es una anotación en Java que indica que un método en una subclase sobrescribe un método en su clase base. Es una herramienta importante que mejora la legibilidad y la seguridad del código, ya que permite al compilador verificar que la firma del método sobrescrito coincide exactamente con la del método en la clase padre. Si la anotación se usa incorrectamente (por ejemplo, si el método no sobrescribe realmente uno en la clase base), el compilador **generará un error**, lo que ayuda a evitar errores sutiles como diferencias en nombres de métodos o tipos de parámetros. Aunque **no es obligatoria**, su uso es altamente recomendado para mejorar la claridad y garantizar que el propósito de sobrescritura sea explícito.
 
@@ -846,7 +1001,7 @@ Ejemplo de uso de anotaciones:
 - `@Deprecated`: Señala que un elemento (método, clase, etc.) está en desuso.
 - `@SuppressWarnings`: Instruye al compilador para ignorar ciertas advertencias.
 
-### 1.4.4. Diferencias entre Sobrecarga y Sobreescritura
+### 4.4. Diferencias entre Sobrecarga y Sobreescritura
 
 | Aspecto                | Sobrecarga                                                      | Sobreescritura                                               |
 | ---------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
@@ -856,7 +1011,7 @@ Ejemplo de uso de anotaciones:
 | **Propósito**          | Proporcionar múltiples formas de un método con el mismo nombre. | Redefinir el comportamiento de un método heredado.           |
 | **Tiempo de decisión** | Resuelto en tiempo de compilación.                              | Resuelto en tiempo de ejecución.                             |
 
-### 1.4.5. Aplicación Práctica Combinada
+### 4.5. Aplicación Práctica Combinada
 
 La combinación de sobrecarga y sobreescritura puede ser útil en jerarquías de clases complejas.
 
@@ -914,11 +1069,11 @@ public class Main {
 ```
 
 
-## 1.5. Polimorfismo en Programación Orientada a Objetos
+## 5. Polimorfismo en Programación Orientada a Objetos
 
 El **polimorfismo** es uno de los pilares fundamentales de la programación orientada a objetos (POO), junto con la encapsulación y la herencia. Este concepto describe la capacidad de un objeto para adoptar múltiples formas, lo que permite a diferentes clases responder de manera única a la misma operación o mensaje.
 
-### 1.5.1. Definición
+### 5.1. Definición
 
 El término "polimorfismo" proviene del griego, que significa "muchas formas". En POO, el polimorfismo permite que un método, una interfaz o un operador tenga diferentes implementaciones o comportamientos según el contexto.
 
@@ -928,7 +1083,7 @@ El término "polimorfismo" proviene del griego, que significa "muchas formas". E
 2. **Reutilización del código**: Facilita extender o modificar programas sin cambiar el código existente.  
 3. **Mantenibilidad**: Reduce la necesidad de duplicar código y centraliza las operaciones comunes.
 
-### 1.5.2. Tipos de Polimorfismo
+### 5.2. Tipos de Polimorfismo
 
 Existen dos tipos principales de polimorfismo en POO: **polimorfismo estático** y **polimorfismo dinámico**.
 
@@ -936,42 +1091,14 @@ Existen dos tipos principales de polimorfismo en POO: **polimorfismo estático**
 
 El polimorfismo estático, también conocido como **ligadura temprana**, ocurre cuando el compilador decide cuál versión de un método o función se ejecutará en tiempo de compilación. Este tipo de polimorfismo se logra principalmente a través de:
 
-1. **Sobrecarga de métodos**: Permite que varias versiones de un método tengan el mismo nombre, pero con diferentes firmas (tipo o número de parámetros). 
-
-**Ejemplo de sobrecarga de métodos:**  
-```java  
-  
-public class Calculadora {
-
-    // Método suma con dos parámetros
-    public int sumar(int a, int b) {
-        return a + b;
-    }
-
-    // Método suma con tres parámetros
-    public int sumar(int a, int b, int c) {
-        return a + b + c;
-    }
-
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Calculadora calc = new Calculadora();
-        System.out.println(calc.sumar(3, 5));        // 8
-        System.out.println(calc.sumar(3, 5, 7));    // 15
-    }
-}
-```
+1. **Sobrecarga de métodos**: Permite que varias versiones de un método tengan el mismo nombre, pero con diferentes firmas (tipo o número de parámetros). Ver [Sobrecarga de métodos](#141-sobrecarga-de-métodos)
 
 2. **Sobrecarga de operadores** (disponible en algunos lenguajes, como C++, pero no en Java). Permite redefinir el funcionamiento de operadores básicos, como el de asignación `=`, el de suma `+`, el de multiplicación `*`... En Java, el único operador sobrecargado de manera predeterminada es el `+`, para realizar la concatenación de cadenas, pero se trata de una sobrecarga interna del lenguaje.
 
 **Polimorfismo Dinámico (Late Binding)**
 
-El polimorfismo dinámico, o **ligadura tardía**, ocurre cuando la decisión sobre qué método invocar se toma en **tiempo de ejecución**. Este tipo de polimorfismo se logra mediante:
-
-**Sobreescritura de métodos**: Permite que una subclase proporcione su propia implementación de un método heredado de la clase padre.  
-**Ejemplo de sobreescritura de métodos:**  
+El polimorfismo dinámico, o **ligadura tardía**, ocurre cuando la decisión sobre qué método invocar se toma en **tiempo de ejecución**. Este tipo de polimorfismo se logra mediante la **sobreescritura de métodos**: Permite que una subclase proporcione su propia implementación de un método heredado de la clase padre.  
+**Ejemplo de sobreescritura de métodos para polimorfismo dinámico:**  
 
 ```java  
 class Animal {
@@ -1010,7 +1137,7 @@ public class Main {
 **Relación con la herencia y las interfaces**:  
    * En Java, las **interfaces** también son una herramienta clave para implementar el polimorfismo dinámico, ya que permiten definir un contrato común para múltiples clases, como veremos en apartados posteriores.
 
-### 1.5.3. Relación con Ligadura Dinámica
+### 5.3. Relación con Ligadura Dinámica
 
 La **ligadura dinámica** (dynamic binding) es un mecanismo mediante el cual la invocación de un método se resuelve en tiempo de ejecución. Esto está directamente relacionado con el polimorfismo dinámico.
 
@@ -1050,31 +1177,7 @@ public class Main {
 }
 ```
 
-
-
-### 1.5.4. Más ejemplos Prácticos
-
-**Uso con colecciones genéricas:** Polimorfismo dinámico es esencial en el manejo de colecciones genéricas en Java.  
-java  
-Copiar código  
-`List<Animal> animales = new ArrayList<>();`
-
-`animales.add(new Perro());`
-
-`animales.add(new Gato());`
-
-`for (Animal animal : animales) {`
-
-    `animal.hacerSonido(); // Llama a la implementación específica de cada animal`
-
-`}`
-
-1.   
-2. **Diseño de aplicaciones modulares:** El polimorfismo permite desarrollar sistemas modulares, donde las clases derivadas pueden reemplazar o extender funcionalidades sin modificar el código base.
-
----
-
-### 1.5.5. Ventajas del Polimorfismo
+### 5.4. Ventajas del Polimorfismo
 
 1. **Flexibilidad**: Permite escribir código más genérico y adaptable.  
 2. **Extensibilidad**: Facilita la extensión de aplicaciones al permitir añadir nuevas clases con comportamientos específicos.  
@@ -1082,13 +1185,13 @@ Copiar código
 
 ---
 
-### 1.5.6. Desventajas y Consideraciones
+### 5.5. Desventajas y Consideraciones
 
 1. **Mayor complejidad**: Puede dificultar la comprensión del flujo del programa para desarrolladores novatos.  
 2. **Impacto en el rendimiento**: La resolución de métodos en tiempo de ejecución (ligadura dinámica) puede ser ligeramente más lenta que en tiempo de compilación.
 
 
-### 1.5.7. Comparativa entre encapsulamiento, herencia y polimorfismo
+### 5.6. Comparativa entre encapsulamiento, herencia y polimorfismo
 
 | Aspecto              | Encapsulamiento                                                               | Herencia                                                                  | Polimorfismo                                                                       |
 | -------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -1096,13 +1199,13 @@ Copiar código
 | Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
 | Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
 
-## 1.6. Clases abstractas
+## 6. Clases abstractas
 
 Las **clases abstractas** son un concepto clave en la programación orientada a objetos (POO). Se utilizan para definir **comportamientos generales** que serán compartidos por diferentes clases derivadas, mientras dejan ciertos detalles específicos para ser implementados en esas clases hijas. En esencia, una clase abstracta actúa como una **plantilla** o un **modelo**.
 
-### 1.6.1. Características
+### 6.1. Características
 
-- No se pueden instanciar: una clase abstracta no puede ser utilizada directamente para crear objetos. Debe ser heredada por otras clases que implementen sus métodos abstractos.
+- **No se pueden instanciar**: una clase abstracta no puede ser utilizada directamente para crear objetos. Debe ser heredada por otras clases que implementen sus métodos abstractos.
 
 ```java
 abstract class Figura {
@@ -1112,7 +1215,7 @@ abstract class Figura {
 Figura figura = new Figura(); // Error: no se puede instanciar una clase abstracta
 ```
 
-- Pueden contener métodos abstractos y concretos: los métodos abstractos no tienen implementación en la clase abstracta; las clases derivadas están obligadas a implementarlos; mientras tanto, los métodos concretos tienen una implementación por defecto que las clases derivadas pueden usar o sobrescribir si lo necesitan.
+- **Pueden contener métodos abstractos y concretos**: los métodos abstractos no tienen implementación en la clase abstracta; las clases derivadas están obligadas a implementarlos; mientras tanto, los métodos concretos tienen una implementación por defecto que las clases derivadas pueden usar o sobrescribir si lo necesitan.
 
 ```java
 
@@ -1125,7 +1228,7 @@ abstract class Figura {
 }
 ```
 
-- Pueden tener atributos y constructores: aunque no se puedan instanciar, las clases abstractas pueden tener atributos y constructores que serán utilizados por sus subclases.
+- **Pueden tener atributos y constructores**: aunque no se puedan instanciar, las clases abstractas pueden tener atributos y constructores que serán utilizados por sus subclases.
   
 ```java
 
@@ -1142,7 +1245,7 @@ abstract class Figura {
 }
 ```
 
-- Sirven como punto común para la herencia: permiten crear una jerarquía de clases que comparten una estructura común, promoviendo el concepto de reutilización de código.
+- **Sirven como punto común para la herencia**: permiten crear una jerarquía de clases que comparten una estructura común, promoviendo el concepto de reutilización de código.
 
 ```java
 // Clase abstracta Empleado
@@ -1215,7 +1318,7 @@ public class Main {
 }
 ```
 
-### 1.6.2. Métodos abstractos
+### 6.2. Métodos abstractos
 
 Un método abstracto es un **método declarado sin cuerpo** en una clase abstracta. Las **subclases deben proporcionar su propia implementación**.
 
@@ -1238,18 +1341,18 @@ class Circulo extends Figura {
 }
 ```
 
-### 1.6.3. Ventajas de las Clases Abstractas
+### 6.3. Ventajas de las Clases Abstractas
 
 - **Estandarización**: Proveen una estructura común que todas las clases derivadas deben seguir.
 - **Promueven la reutilización**: Los métodos concretos y los atributos compartidos se implementan una vez y se reutilizan en todas las subclases.
 - **Flexibilidad**: Permiten implementar métodos concretos que las subclases pueden sobrescribir si es necesario.
 - **Facilitan la extensión**: Las clases abstractas son ideales para modelar jerarquías donde se espera que las clases concretas amplíen y personalicen el comportamiento.
 
-## 1.7. Interfaces
+## 7. Interfaces
 
 En programación orientada a objetos, una interfaz es un **contrato** que define un **conjunto de métodos** que una clase **debe implementar**. A diferencia de las clases abstractas, las interfaces no proporcionan implementación (salvo desde Java 8, donde se pueden usar métodos predeterminados y estáticos). Las interfaces son una herramienta poderosa para garantizar la **uniformidad de comportamiento** en las clases que las implementan.
 
-### 1.7.1. Características de las Interfaces
+### 7.1. Características de las Interfaces
 
 - **Definición de métodos abstractos**: Todos los métodos definidos en una interfaz son **implícitamente** abstractos y públicos (hasta Java 8, cuando no tenían implementación predeterminada).
 
@@ -1267,7 +1370,7 @@ interface Configuracion {
 }
 ```
 
-- Implementación múltiple: una clase puede implementar múltiples interfaces, lo que permite una forma de herencia múltiple, algo que no es posible con clases.
+- **Implementación múltiple**: una clase puede implementar múltiples interfaces, lo que permite una forma de herencia múltiple, algo que no es posible con clases.
 
 ```java
 interface Volador {
@@ -1312,7 +1415,7 @@ interface Saludo {
 Animal a = new Animal(); // Error: no se puede instanciar una interfaz
 ```
 
-### 1.7.2. Diferencia entre clases abstractas e interfaces
+### 7.2. Diferencia entre clases abstractas e interfaces
 
 Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 
@@ -1323,11 +1426,11 @@ Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 | **Herencia múltiple** | Una clase solo puede extender una clase abstracta | Una clase puede implementar múltiples interfaces |
 | **Atributos** | Pueden tener atributos con estado | Solo pueden tener constantes |
 
-## 1.8. Clases Anidadas y Clases Internas
+## 8. Clases Anidadas y Clases Internas
 
 En Java, las clases pueden ser definidas dentro de otras clases. Este enfoque puede ser útil para agrupar clases relacionadas, reducir la complejidad del código y mejorar su encapsulación. Estas se clasifican principalmente en **clases internas** y **clases estáticas anidadas**.
 
-### 1.8.1. Clases Internas
+### 8.1. Clases Internas
 
 Las **clases internas** son aquellas definidas dentro de otra clase, y están asociadas a una instancia de la clase externa. Tienen acceso a los miembros (incluso privados) de la clase que las contiene.
 
@@ -1410,7 +1513,7 @@ public class Main {
 
 ```
 
-### 1.8.2. Clases Estáticas Anidadas
+### 8.2. Clases Estáticas Anidadas
 
 Las clases estáticas anidadas son clases definidas dentro de otra clase pero con el modificador **static**. A diferencia de las clases internas, no están asociadas a una instancia de la clase externa y solo pueden acceder a miembros estáticos de esta.
 
@@ -1439,7 +1542,7 @@ public class Main {
 ```
 
 
-### 1.8.3. Ventajas y Desventajas de las Clases Anidadas
+### 8.3. Ventajas y Desventajas de las Clases Anidadas
 
 **Ventajas:**
 
@@ -1454,11 +1557,11 @@ public class Main {
 2. **Complejidad del código**: Si se abusa de las clases internas, el código puede volverse menos legible.  
 3. **Sobrecarga en la memoria**: Las clases internas no estáticas llevan una referencia implícita a la instancia de la clase externa, lo que puede impactar en el rendimiento.
 
-## 1.9. Métodos y Clases Genéricas
+## 9. Métodos y Clases Genéricas
 
 Los métodos y clases genéricas son un mecanismo en Java que permite definir estructuras de datos y algoritmos que pueden operar con cualquier tipo de objeto, garantizando al mismo tiempo seguridad en el tipo durante el tiempo de compilación.
 
-### 1.9.1. Concepto de Generics
+### 9.1. Concepto de Generics
 
 Los **generics** introducen el concepto de parametrización de tipos en Java. Esto significa que, en lugar de especificar un tipo concreto al declarar una clase o un método, puedes definirlos con un parámetro de tipo. Este parámetro es sustituido por un tipo real en el momento de la ejecución, asegurando flexibilidad y seguridad de tipo.
 
@@ -1479,7 +1582,7 @@ public class Caja<T> {
 }
 ```
 
-### 1.9.2. Clases y Métodos Parametrizados
+### 9.2. Clases y Métodos Parametrizados
 
 **Clases Genéricas**: Una clase genérica permite definir una plantilla que puede operar con diferentes tipos de datos. Esto evita la necesidad de crear múltiples clases para manejar distintos tipos.
 
@@ -1552,14 +1655,14 @@ Mayor entre 'gato' y 'perro': perro
 
 En este ejemplo, `maximo` puede trabajar con cualquier tipo que implemente la interfaz `Comparable`.
 
-### 1.9.3. Ventajas de Generics
+### 9.3. Ventajas de Generics
 
 1. **Reutilización del código**: Permiten diseñar clases y métodos más versátiles que pueden manejar múltiples tipos sin necesidad de duplicar código.  
 2. **Seguridad de tipo**: Detectan errores de tipo en tiempo de compilación, reduciendo posibles fallos en tiempo de ejecución.  
 3. **Legibilidad y mantenimiento**: El código genérico es más fácil de entender y mantener porque evita la proliferación de clases específicas para cada tipo.  
 4. **Eliminación de conversiones explícitas**: Reducen la necesidad de realizar conversiones (`casting`) manuales al trabajar con tipos genéricos.
 
-### 1.9.4. Ejemplo Práctico: Uso en Estructuras de Datos
+### 9.4. Ejemplo Práctico: Uso en Estructuras de Datos
 
 Un ejemplo clásico del uso de generics es la clase `ArrayList`, que permite almacenar cualquier tipo de objeto:
 
@@ -1582,225 +1685,4 @@ public class Main {
 
 Sin **generics**, tendríamos que utilizar una lista sin tipo y realizar conversiones manuales, lo cual es propenso a errores.
 
-Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas
-
-## 1.10. Interfaces funcionales y expresiones Lambda
-
-Las expresiones lambda, introducidas en **Java 8**, representan un cambio importante en el paradigma de programación del lenguaje, permitiendo escribir código más conciso y funcional. Se utilizan principalmente para implementar interfaces funcionales de forma clara y simplificada.
-
-### 1.10.1. Introducción a las Interfaces Funcionales
-
-Una **interfaz funcional** es una interfaz que tiene exactamente **un único método abstracto**. Este método abstracto representa la funcionalidad que implementará la expresión lambda.  
-Las interfaces funcionales pueden tener:
-
-* Métodos abstractos (uno obligatorio).  
-* Métodos por defecto y estáticos adicionales (sin restricciones en su cantidad).
-
-Se identifican con la anotación `@FunctionalInterface` (opcional, pero recomendada).
-
-**Ejemplo de una Interfaz Funcional:**
-
-```java
-@FunctionalInterface
-public interface Operacion {
-    int ejecutar(int a, int b); // Un único método abstracto
-}
-```
-
-### 1.10.2. Interfaces Funcionales Predefinidas en Java
-
-Java 8 incluye muchas interfaces funcionales en el paquete `java.util.function`. Algunas de las más comunes son:
-
-- **Predicate\<T\>:** Devuelve un valor booleano basado en una condición.  
-  
-```java
-boolean test(T t);
-```
-
-- **Function\<T, R\>:** Aplica una transformación y devuelve un resultado.  
-  
-```java  
-R apply(T t);
-```
-
-- **Consumer\<T\>:** Ejecuta una operación sobre un objeto recibido.  
-
-```java
-void accept(T t);
-```
-
-- **Supplier\<T\>:** Proporciona un resultado sin entrada.  
-
-```java
-T get();
-```
-
-**BiFunction\<T, U, R\>:** Aplica una función que toma dos argumentos y devuelve un resultado.  
-
-```java  
-R apply(T t, U u);
-```
-
-### 1.10.3. Uso de Expresiones Lambda para Simplificar Código
-
-#### 1.10.3.1. Sintaxis de las Expresiones Lambda
-
-La expresión lambda permite definir un comportamiento en una única línea o bloque compacto. Su estructura es:
-
-```java
-(parametros) -> { cuerpo };
-```
-
-- **Parámetros:** La lista de argumentos que recibe el método. Pueden omitirse los tipos si son inferibles.  
-- **Operador `->`:** Separa los parámetros del cuerpo de la función.  
-- **Cuerpo:** El bloque de código que implementa la funcionalidad.
-
-#### 1.10.3.2. Ejemplo Simple
-
-```java
-Operacion suma = (a, b) -> a + b;
-System.out.println(suma.ejecutar(5, 3)); // Salida: 8
-```
-
-En este caso:
-
-* `(a, b)` son los parámetros.  
-* `a + b` es la implementación del método `ejecutar`.
-
-### 1.10.4. Ventajas de las Expresiones Lambda
-
-1. **Concisión:** Eliminan la necesidad de clases anónimas para implementar interfaces funcionales.  
-2. **Legibilidad:** Reducen el código ceremonial y facilitan la comprensión.  
-3. **Flexibilidad:** Permiten combinar programación funcional y orientación a objetos.
-
-**Sin Lambda (Clase Anónima):**
-
-```java
-
-Operacion suma = new Operacion() {
-    @Override
-    public int ejecutar(int a, int b) {
-        return a + b;
-    }
-};
-```
-
-**Con Lambda:**
-
-```java
-Operacion suma = (a, b) -> a + b;
-```
-
-
-### 1.10.5. Ejemplos y Aplicaciones Prácticas
-
-#### 1.10.5.1. Filtrado de Elementos con `Predicate`
-
-Las expresiones lambda son ideales para filtrar colecciones.
-
-**Ejemplo:**
-
-```java
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class Main {
-    public static void main(String[] args) {
-        List<String> nombres = Arrays.asList("Ana", "Pedro", "Luis", "Marta");
-
-        // Filtrar nombres que comienzan con "M"
-        Predicate<String> empiezaConM = nombre -> nombre.startsWith("M");
-        nombres.stream().filter(empiezaConM).forEach(System.out::println); 
-        // Salida: Marta
-    }
-}
-```
-
-#### 1.10.5.2. Transformación con `Function`
-
-Permiten transformar datos fácilmente.
-
-**Ejemplo:**
-
-```java
-import java.util.function.Function;
-
-public class Main {
-    public static void main(String[] args) {
-        Function<Integer, String> convertir = num -> "Número: " + num;
-
-        System.out.println(convertir.apply(5)); // Salida: Número: 5
-    }
-}
-
-```
-
-#### 1.10.5.3. Iteración con `Consumer`
-
-Ideal para realizar operaciones sobre cada elemento de una colección.
-
-**Ejemplo:**
-
-```java
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-
-public class Main {
-    public static void main(String[] args) {
-        List<String> frutas = Arrays.asList("Manzana", "Pera", "Uva");
-
-        Consumer<String> imprimir = fruta -> System.out.println("Fruta: " + fruta);
-        frutas.forEach(imprimir);
-        // Salida:
-        // Fruta: Manzana
-        // Fruta: Pera
-        // Fruta: Uva
-    }
-}
-```
-
-#### 1.10.5.4. Suministrar Datos con `Supplier`
-
-Se utilizan para generar datos dinámicamente.
-
-**Ejemplo:**
-
-```java
-import java.util.function.Supplier;
-
-public class Main {
-    public static void main(String[] args) {
-        Supplier<Double> generarAleatorio = () -> Math.random();
-
-        System.out.println("Número aleatorio: " + generarAleatorio.get());
-    }
-}
-```
-
-
-#### 1.10.5.5. Composición de Funciones
-
-Las expresiones lambda permiten la composición de múltiples operaciones.
-
-**Ejemplo:**
-
-```java
-import java.util.function.Function;
-
-public class Main {
-    public static void main(String[] args) {
-        Function<Integer, Integer> duplicar = x -> x * 2;
-        Function<Integer, Integer> sumarTres = x -> x + 3;
-
-        Function<Integer, Integer> combinar = duplicar.andThen(sumarTres);
-
-        System.out.println(combinar.apply(4)); // Salida: 11 (4 * 2 + 3)
-    }
-}
-```
-
-### 1.10.6. Conclusión
-
-Las expresiones lambda son una herramienta poderosa para escribir código funcional y conciso en Java. Junto con las interfaces funcionales y las herramientas de la API de streams, permiten manejar colecciones y funciones de una manera más declarativa y legible, mejorando la productividad del desarrollo.
+Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas.
