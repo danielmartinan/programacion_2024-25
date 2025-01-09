@@ -40,22 +40,29 @@
   - [5.4. Ventajas del Polimorfismo](#54-ventajas-del-polimorfismo)
   - [5.5. Desventajas y Consideraciones](#55-desventajas-y-consideraciones)
   - [5.6. Comparativa entre encapsulamiento, herencia y polimorfismo](#56-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
-- [6. Clases abstractas](#6-clases-abstractas)
-  - [6.1. Características](#61-características)
-  - [6.2. Métodos abstractos](#62-métodos-abstractos)
-  - [6.3. Ventajas de las Clases Abstractas](#63-ventajas-de-las-clases-abstractas)
-- [7. Interfaces](#7-interfaces)
-  - [7.1. Características de las Interfaces](#71-características-de-las-interfaces)
-  - [7.2. Diferencia entre clases abstractas e interfaces](#72-diferencia-entre-clases-abstractas-e-interfaces)
-- [8. Clases Anidadas y Clases Internas](#8-clases-anidadas-y-clases-internas)
-  - [8.1. Clases Internas](#81-clases-internas)
-  - [8.2. Clases Estáticas Anidadas](#82-clases-estáticas-anidadas)
-  - [8.3. Ventajas y Desventajas de las Clases Anidadas](#83-ventajas-y-desventajas-de-las-clases-anidadas)
-- [9. Métodos y Clases Genéricas](#9-métodos-y-clases-genéricas)
-  - [9.1. Concepto de Generics](#91-concepto-de-generics)
-  - [9.2. Clases y Métodos Parametrizados](#92-clases-y-métodos-parametrizados)
-  - [9.3. Ventajas de Generics](#93-ventajas-de-generics)
-  - [9.4. Ejemplo Práctico: Uso en Estructuras de Datos](#94-ejemplo-práctico-uso-en-estructuras-de-datos)
+- [6. **`instanceof` en Java**](#6-instanceof-en-java)
+  - [6.1. Sintaxis](#61-sintaxis)
+  - [6.2. Reglas Básicas](#62-reglas-básicas)
+  - [6.3. Uso en Polimorfismo](#63-uso-en-polimorfismo)
+  - [6.4. Aplicaciones Comunes](#64-aplicaciones-comunes)
+  - [6.5. **Limitaciones**](#65-limitaciones)
+  - [6.6. Resumen](#66-resumen)
+- [7. Clases abstractas](#7-clases-abstractas)
+  - [7.1. Características](#71-características)
+  - [7.2. Métodos abstractos](#72-métodos-abstractos)
+  - [7.3. Ventajas de las Clases Abstractas](#73-ventajas-de-las-clases-abstractas)
+- [8. Interfaces](#8-interfaces)
+  - [8.1. Características de las Interfaces](#81-características-de-las-interfaces)
+  - [8.2. Diferencia entre clases abstractas e interfaces](#82-diferencia-entre-clases-abstractas-e-interfaces)
+- [9. Clases Anidadas y Clases Internas](#9-clases-anidadas-y-clases-internas)
+  - [9.1. Clases Internas](#91-clases-internas)
+  - [9.2. Clases Estáticas Anidadas](#92-clases-estáticas-anidadas)
+  - [9.3. Ventajas y Desventajas de las Clases Anidadas](#93-ventajas-y-desventajas-de-las-clases-anidadas)
+- [10. Métodos y Clases Genéricas](#10-métodos-y-clases-genéricas)
+  - [10.1. Concepto de Generics](#101-concepto-de-generics)
+  - [10.2. Clases y Métodos Parametrizados](#102-clases-y-métodos-parametrizados)
+  - [10.3. Ventajas de Generics](#103-ventajas-de-generics)
+  - [10.4. Ejemplo Práctico: Uso en Estructuras de Datos](#104-ejemplo-práctico-uso-en-estructuras-de-datos)
 
 ## 1. Relaciones entre clases
 
@@ -1199,11 +1206,156 @@ public class Main {
 | Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
 | Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
 
-## 6. Clases abstractas
+## 6. **`instanceof` en Java**
+
+El operador `instanceof` en Java es una herramienta utilizada para verificar si un objeto pertenece a un tipo específico o si es una instancia de una clase o interfaz. Es particularmente útil cuando trabajamos con herencia o polimorfismo, ya que permite determinar dinámicamente el tipo real de un objeto.
+
+### 6.1. Sintaxis
+
+```java
+objeto instanceof Tipo
+```
+
+* **`objeto`**: Es el objeto que deseas verificar.  
+* **`Tipo`**: Es la clase o interfaz contra la que se está verificando.
+
+El resultado de la expresión es un valor booleano (`true` o `false`):
+
+* **`true`**: Si el objeto pertenece al tipo especificado o a una subclase de este tipo.  
+* **`false`**: Si el objeto no pertenece al tipo especificado.
+
+### 6.2. Reglas Básicas
+
+1. **Verifica relaciones de herencia**:  
+   * Si el tipo de `objeto` es una subclase o la misma clase que `Tipo`, `instanceof` devuelve `true`.  
+2. **Compatible con interfaces**:  
+   * Si el objeto implementa una interfaz específica, `instanceof` devuelve `true` al verificar contra esa interfaz.  
+3. **Objetos nulos**:  
+   * Si `objeto` es `null`, `instanceof` siempre devuelve `false`.  
+4. **Evita excepciones**:  
+   * No genera errores de tipo o de tiempo de ejecución, incluso si `objeto` no está relacionado con `Tipo`.
+
+**Ejemplo Básico**
+
+```java
+class Animal {}
+class Perro extends Animal {}
+class Gato extends Animal {}
+
+public class EjemploInstanceof {
+    public static void main(String[] args) {
+        Animal animal1 = new Perro();
+        Animal animal2 = new Gato();
+        Animal animal3 = null;
+
+        System.out.println(animal1 instanceof Perro); // true
+        System.out.println(animal2 instanceof Perro); // false
+        System.out.println(animal2 instanceof Gato);  // true
+        System.out.println(animal3 instanceof Animal); // false
+    }
+}
+```
+
+### 6.3. Uso en Polimorfismo
+
+Cuando trabajamos con referencias de una clase base, `instanceof` permite identificar el tipo específico del objeto y realizar conversiones seguras (`casting`).
+
+**Ejemplo:**
+
+```java
+class Publicacion {}
+class Libro extends Publicacion {}
+class Revista extends Publicacion {}
+
+public class Biblioteca {
+    public static void main(String[] args) {
+        Publicacion pub1 = new Libro();
+        Publicacion pub2 = new Revista();
+
+        if (pub1 instanceof Libro) {
+            Libro libro = (Libro) pub1; // Conversión segura
+            System.out.println("Es un libro");
+        }
+
+        if (pub2 instanceof Revista) {
+            Revista revista = (Revista) pub2; // Conversión segura
+            System.out.println("Es una revista");
+        }
+    }
+}
+```
+
+**Salida:**
+
+```
+Es un libro
+Es una revista
+```
+
+### 6.4. Aplicaciones Comunes
+
+1. **Filtrar objetos en colecciones o arrays**:  
+   - Determinar el tipo de objetos almacenados en estructuras como listas o arrays.  
+2. **Llamar a métodos específicos**:  
+   - Identificar el tipo de un objeto para ejecutar métodos exclusivos de ese tipo.  
+3. **Evitar errores de `ClassCastException`**:  
+   - Antes de realizar un `casting`, puedes usar `instanceof` para asegurarte de que la conversión es válida.
+
+### 6.5. **Limitaciones**
+
+1. **No sustituye un diseño sólido**:  
+   - Un uso excesivo de `instanceof` puede indicar que el diseño de tu programa necesita una revisión, ya que a menudo rompe con el principio de polimorfismo.  
+2. **Menor legibilidad**:  
+   - Si se abusa de `instanceof`, el código puede volverse menos legible y más difícil de mantener.
+
+**Alternativa:**
+
+Cuando sea posible, usa métodos polimórficos sobrescritos en lugar de `instanceof`.
+
+```java
+class Publicacion {
+    public void mostrarInfo() {
+        System.out.println("Soy una publicación genérica");
+    }
+}
+
+class Libro extends Publicacion {
+    @Override
+    public void mostrarInfo() {
+        System.out.println("Soy un libro");
+    }
+}
+
+class Revista extends Publicacion {
+    @Override
+    public void mostrarInfo() {
+        System.out.println("Soy una revista");
+    }
+}
+
+public class Biblioteca {
+    public static void main(String[] args) {
+        Publicacion pub1 = new Libro();
+        Publicacion pub2 = new Revista();
+
+        pub1.mostrarInfo(); // Salida: Soy un libro
+        pub2.mostrarInfo(); // Salida: Soy una revista
+    }
+}
+```
+
+### 6.6. Resumen
+
+* **`instanceof`** es una herramienta útil para verificar dinámicamente el tipo de un objeto.  
+* Es seguro de usar, ya que evita errores de tiempo de ejecución.  
+* Sin embargo, debe usarse con moderación, y siempre que sea posible, preferir un diseño polimórfico que sobrescriba métodos.
+
+
+## 7. Clases abstractas
 
 Las **clases abstractas** son un concepto clave en la programación orientada a objetos (POO). Se utilizan para definir **comportamientos generales** que serán compartidos por diferentes clases derivadas, mientras dejan ciertos detalles específicos para ser implementados en esas clases hijas. En esencia, una clase abstracta actúa como una **plantilla** o un **modelo**.
 
-### 6.1. Características
+### 7.1. Características
 
 - **No se pueden instanciar**: una clase abstracta no puede ser utilizada directamente para crear objetos. Debe ser heredada por otras clases que implementen sus métodos abstractos.
 
@@ -1318,7 +1470,7 @@ public class Main {
 }
 ```
 
-### 6.2. Métodos abstractos
+### 7.2. Métodos abstractos
 
 Un método abstracto es un **método declarado sin cuerpo** en una clase abstracta. Las **subclases deben proporcionar su propia implementación**.
 
@@ -1341,18 +1493,18 @@ class Circulo extends Figura {
 }
 ```
 
-### 6.3. Ventajas de las Clases Abstractas
+### 7.3. Ventajas de las Clases Abstractas
 
 - **Estandarización**: Proveen una estructura común que todas las clases derivadas deben seguir.
 - **Promueven la reutilización**: Los métodos concretos y los atributos compartidos se implementan una vez y se reutilizan en todas las subclases.
 - **Flexibilidad**: Permiten implementar métodos concretos que las subclases pueden sobrescribir si es necesario.
 - **Facilitan la extensión**: Las clases abstractas son ideales para modelar jerarquías donde se espera que las clases concretas amplíen y personalicen el comportamiento.
 
-## 7. Interfaces
+## 8. Interfaces
 
 En programación orientada a objetos, una interfaz es un **contrato** que define un **conjunto de métodos** que una clase **debe implementar**. A diferencia de las clases abstractas, las interfaces no proporcionan implementación (salvo desde Java 8, donde se pueden usar métodos predeterminados y estáticos). Las interfaces son una herramienta poderosa para garantizar la **uniformidad de comportamiento** en las clases que las implementan.
 
-### 7.1. Características de las Interfaces
+### 8.1. Características de las Interfaces
 
 - **Definición de métodos abstractos**: Todos los métodos definidos en una interfaz son **implícitamente** abstractos y públicos (hasta Java 8, cuando no tenían implementación predeterminada).
 
@@ -1415,7 +1567,7 @@ interface Saludo {
 Animal a = new Animal(); // Error: no se puede instanciar una interfaz
 ```
 
-### 7.2. Diferencia entre clases abstractas e interfaces
+### 8.2. Diferencia entre clases abstractas e interfaces
 
 Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 
@@ -1426,11 +1578,11 @@ Aunque ambas se usan para definir comportamientos, tienen diferencias clave:
 | **Herencia múltiple** | Una clase solo puede extender una clase abstracta | Una clase puede implementar múltiples interfaces |
 | **Atributos** | Pueden tener atributos con estado | Solo pueden tener constantes |
 
-## 8. Clases Anidadas y Clases Internas
+## 9. Clases Anidadas y Clases Internas
 
 En Java, las clases pueden ser definidas dentro de otras clases. Este enfoque puede ser útil para agrupar clases relacionadas, reducir la complejidad del código y mejorar su encapsulación. Estas se clasifican principalmente en **clases internas** y **clases estáticas anidadas**.
 
-### 8.1. Clases Internas
+### 9.1. Clases Internas
 
 Las **clases internas** son aquellas definidas dentro de otra clase, y están asociadas a una instancia de la clase externa. Tienen acceso a los miembros (incluso privados) de la clase que las contiene.
 
@@ -1513,7 +1665,7 @@ public class Main {
 
 ```
 
-### 8.2. Clases Estáticas Anidadas
+### 9.2. Clases Estáticas Anidadas
 
 Las clases estáticas anidadas son clases definidas dentro de otra clase pero con el modificador **static**. A diferencia de las clases internas, no están asociadas a una instancia de la clase externa y solo pueden acceder a miembros estáticos de esta.
 
@@ -1542,7 +1694,7 @@ public class Main {
 ```
 
 
-### 8.3. Ventajas y Desventajas de las Clases Anidadas
+### 9.3. Ventajas y Desventajas de las Clases Anidadas
 
 **Ventajas:**
 
@@ -1557,11 +1709,11 @@ public class Main {
 2. **Complejidad del código**: Si se abusa de las clases internas, el código puede volverse menos legible.  
 3. **Sobrecarga en la memoria**: Las clases internas no estáticas llevan una referencia implícita a la instancia de la clase externa, lo que puede impactar en el rendimiento.
 
-## 9. Métodos y Clases Genéricas
+## 10. Métodos y Clases Genéricas
 
 Los métodos y clases genéricas son un mecanismo en Java que permite definir estructuras de datos y algoritmos que pueden operar con cualquier tipo de objeto, garantizando al mismo tiempo seguridad en el tipo durante el tiempo de compilación.
 
-### 9.1. Concepto de Generics
+### 10.1. Concepto de Generics
 
 Los **generics** introducen el concepto de parametrización de tipos en Java. Esto significa que, en lugar de especificar un tipo concreto al declarar una clase o un método, puedes definirlos con un parámetro de tipo. Este parámetro es sustituido por un tipo real en el momento de la ejecución, asegurando flexibilidad y seguridad de tipo.
 
@@ -1582,7 +1734,7 @@ public class Caja<T> {
 }
 ```
 
-### 9.2. Clases y Métodos Parametrizados
+### 10.2. Clases y Métodos Parametrizados
 
 **Clases Genéricas**: Una clase genérica permite definir una plantilla que puede operar con diferentes tipos de datos. Esto evita la necesidad de crear múltiples clases para manejar distintos tipos.
 
@@ -1655,14 +1807,14 @@ Mayor entre 'gato' y 'perro': perro
 
 En este ejemplo, `maximo` puede trabajar con cualquier tipo que implemente la interfaz `Comparable`.
 
-### 9.3. Ventajas de Generics
+### 10.3. Ventajas de Generics
 
 1. **Reutilización del código**: Permiten diseñar clases y métodos más versátiles que pueden manejar múltiples tipos sin necesidad de duplicar código.  
 2. **Seguridad de tipo**: Detectan errores de tipo en tiempo de compilación, reduciendo posibles fallos en tiempo de ejecución.  
 3. **Legibilidad y mantenimiento**: El código genérico es más fácil de entender y mantener porque evita la proliferación de clases específicas para cada tipo.  
 4. **Eliminación de conversiones explícitas**: Reducen la necesidad de realizar conversiones (`casting`) manuales al trabajar con tipos genéricos.
 
-### 9.4. Ejemplo Práctico: Uso en Estructuras de Datos
+### 10.4. Ejemplo Práctico: Uso en Estructuras de Datos
 
 Un ejemplo clásico del uso de generics es la clase `ArrayList`, que permite almacenar cualquier tipo de objeto:
 
