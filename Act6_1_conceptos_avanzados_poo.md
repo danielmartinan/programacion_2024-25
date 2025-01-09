@@ -4,12 +4,11 @@
 
 En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca introduciendo jerarquías de clases con herencia, interfaces y relaciones avanzadas entre clases. Sustituiremos la clase `Libro` por una clase más general, `Publicacion`, y crearemos diferentes tipos de publicaciones. Además, aplicaremos encapsulamiento, validaciones y un diseño orientado a interfaces para mejorar la modularidad del proyecto.
 
-
 ## Relaciones entre Clases
 
 ### Herencia
 
-1. Sustituye la clase `Libro` por una clase abstracta `Publicacion`.  
+1. Crea una clase abstracta `Publicacion`, que será la clase base para todo tipo de publicaciones. Esta clase tendrá:  
    * **Atributos**:  
      * `titulo` (String)  
      * `autor` (String)  
@@ -18,7 +17,7 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
      * `mostrarInfo()` (abstracto): Método que será implementado por las subclases.  
      * Getters y setters con validaciones.  
 2. Crea las siguientes subclases:  
-   * **`Libro`**:  
+   * **`Libro`** (esta clase ya existe, pero tendrás que modificarla para que herede de `Publicacion`):  
      * Atributos adicionales:  
        * `ISBN` (String)  
        * `numeroPaginas` (int)  
@@ -34,21 +33,21 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
        * `narrador` (String)  
      * Implementa `mostrarInfo()`.
 
----
-
 ### Interfaces
 
-1. Crea una interfaz `Prestable` con los métodos:  
-   * `prestar()`  
-   * `devolver()`  
-   * `isPrestado()`: Devuelve un boolean indicando si la publicación está prestada.  
-2. Haz que **`Libro`** implemente `Prestable`.  
-   * Actualiza la clase para llevar un estado interno (`prestado`) que indique si el libro está prestado o disponible.  
-3. Añade una nueva interfaz `Multimedia` para publicaciones digitales o audiovisuales.  
-   * Métodos:  
-     * `descargar()`  
-     * `obtenerFormato()` (String)  
-   * Haz que **`Audiolibro`** implemente esta interfaz.
+1. Crea una interfaz `Prestable` 
+   1. Estas interfaz debe contar con los métodos:  
+      * `prestar()`  
+      * `devolver()`  
+      * `isPrestado()`: Devuelve un boolean indicando si la publicación está prestada.  
+    2. Haz que **`Libro`** implemente `Prestable`.  
+         * Actualiza la clase para llevar un estado interno (`prestado`) que indique si el libro está prestado o disponible. Es decir, añade un atributo booleano donde se almacene si el Libro está prestado o no.
+         * Añade también dos atributos de tipo `LocalDate` para registrar la fecha de préstamo y la de devolución, teniendo en cuenta que cuando se invoque el método `prestar()`, deberá registrarse la fecha actual como fecha de préstamo, y la fecha 14 días posterior a la actual como fecha de devolución. Cuando se invoque a `devolver()`, ambas fechas se pondran a ``null`. 
+2. Añade una nueva interfaz `Multimedia` para publicaciones digitales o audiovisuales.  
+     1. Métodos:  
+        * `descargar()`  
+        * `obtenerFormato()` (String)  
+     2. Haz que **`Audiolibro`** implemente esta interfaz.
 
 ### Encapsulamiento
 
@@ -58,6 +57,19 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
      * Validar que el título y el autor no estén vacíos.  
      * Validar que el año de publicación no sea mayor al año actual.  
      * Validar que valores como `ISBN`, `numeroPaginas` o `duracion` sean válidos (no vacíos o positivos).
+     * Haz uso de las Excepciones personalizadas creadas en la UD anterior para implementar dichas validaciones.
+
+## Modificaciones en la Clase Biblioteca
+
+- Sustituye el **array** de `Libro` por un **array** de `Publicacion` (no utilices colecciones como `List`, `ArrayList`...).
+- Ajusta los métodos existentes (`agregarLibro`, `listarLibros`, etc.) para que funcionen con `Publicacion`. Cambia los nombres de los métodos para reflejar el cambio general a publicaciones.
+- Agrega validaciones para asegurarte de que no se supere la capacidad del array.
+- Agrega métodos para listar tipos específicos de Publicaciones: `listarLibros`, `listarRevistas`... Haz uso del operador `instanceof` si es necesario.
+- Agrega métodos para buscar tipos específicos de Publicaciones: `buscarLibro`, `buscarRevista`... Haz uso del operador `instanceof` si es necesario.
+- Agrega los métodos necesarios para gestionar los préstamos y devoluciones de publicaciones prestables.
+- Agrega los metodos necesarios para gestionar las publicaciones multimedia
+
+Recuerda que, desde el menú principal, no se podrá instanciar ninguna otra clase que no sea la `Biblioteca`.
 
 ## Modificación del Menú Principal
 
@@ -69,7 +81,8 @@ Amplía el menú con opciones que reflejen las nuevas funcionalidades:
    * Crear una nueva publicación:  
      * Permitir al usuario elegir entre `Libro`, `Revista` y `Audiolibro`.  
      * Solicitar los datos específicos según el tipo de publicación.  
-   * Listar todas las publicaciones.  
+   * Listar todas las publicaciones.
+   * Listar por tipo de publicación.  
    * Buscar una publicación por título o autor.  
 2. **Préstamos**:  
    * Prestar una publicación (solo aplicable a publicaciones que implementen `Prestable`).  
@@ -80,30 +93,34 @@ Amplía el menú con opciones que reflejen las nuevas funcionalidades:
 
 **Ejemplo de Menú:**
 
-```plaintext
-
+```
 Menú de Biblioteca:
-1. Crear una publicación
+1. Agregar una publicación
 2. Listar todas las publicaciones
-3. Buscar una publicación
-4. Prestar una publicación
-5. Devolver una publicación
-6. Descargar un audiolibro
-7. Mostrar formato de un audiolibro
-8. Salir
+3. Listar libros
+4. Listar revistas
+5. Listar audiolibros
+6. Buscar un libro por ISBN
+7. Buscar una revista por número de edición
+8. Buscar un audiolibro por narrador
+9. Prestar un libro
+10. Devolver un Libro
+11. Descargar un audiolibro
+12. Comprobar formato de un audiolibro
+13. Salir
 Opción:
 ``` 
 
 ## Calificación
 
-- **Herencia e Interfaces (3 puntos)**
+- **Herencia e Interfaces (4 puntos)**
   - Implementación de la clase `Publicacion` y subclases: 2 puntos.  
   - Implementación de interfaces (`Prestable`, `Multimedia`): 1 punto 
-- **Encapsulamiento (2 puntos)**
+- **Encapsulamiento (1 puntos)**
   - Uso adecuado de getters/setters y validaciones.
-- **Menú Principal (3 puntos)**
+- **Menú Principal (4 puntos)**
   - Correcta actualización del menú y manejo de opciones nuevas.
-- **Memoria y Documentación (1 punto)**
+- **Memoria y Documentación (0.5 punto)**
   - Explicación clara de la implementación.
-- **Otros Aspectos (1 punto)**
+- **Otros Aspectos (0.5 punto)**
   - Calidad del código (nombres, indentado, comentarios).
