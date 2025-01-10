@@ -40,12 +40,12 @@
   - [5.4. Ventajas del Polimorfismo](#54-ventajas-del-polimorfismo)
   - [5.5. Desventajas y Consideraciones](#55-desventajas-y-consideraciones)
   - [5.6. Comparativa entre encapsulamiento, herencia y polimorfismo](#56-comparativa-entre-encapsulamiento-herencia-y-polimorfismo)
-- [6. **`instanceof` en Java**](#6-instanceof-en-java)
+- [6. `instanceof` en Java](#6-instanceof-en-java)
   - [6.1. Sintaxis](#61-sintaxis)
   - [6.2. Reglas Básicas](#62-reglas-básicas)
   - [6.3. Uso en Polimorfismo](#63-uso-en-polimorfismo)
   - [6.4. Aplicaciones Comunes](#64-aplicaciones-comunes)
-  - [6.5. **Limitaciones**](#65-limitaciones)
+  - [6.5. Limitaciones](#65-limitaciones)
   - [6.6. Resumen](#66-resumen)
 - [7. Clases abstractas](#7-clases-abstractas)
   - [7.1. Características](#71-características)
@@ -287,16 +287,17 @@ Por lo general, los atributos de una clase se declaran como **privados** para ga
 
 Tradicionalmente, los métodos `get` devuelven **tipos primitivos** (por ejemplo, `int`, `double`, `boolean`), lo que implica que el cliente recibe una copia del valor almacenado en el atributo. De esta manera, los datos internos permanecen aislados, y cualquier manipulación del valor devuelto no afecta directamente al atributo original.
 
-**Nuevos Desafíos: Atributos como Objetos**
+**Nuevos Desafíos: Atributos como Objetos.**
 
 Cuando los atributos de una clase son objetos en lugar de tipos primitivos, pueden surgir situaciones donde interese devolver un objeto completo desde un método `get`. Sin embargo, esta práctica puede ser problemática, ya que al devolver directamente un atributo que es un objeto, se está proporcionando una **referencia** al objeto original. Esto puede romper el principio de encapsulación, ya que un atributo privado podría quedar accesible y manipulable desde el exterior.
 
-**Buenas Prácticas para Devolver Objetos**
+**Buenas Prácticas para Devolver Objetos.**
 
 Para evitar comprometer la integridad de los atributos privados, se recomienda seguir las siguientes estrategias al devolver objetos:
 
 1. **Evitar devolver atributos directamente**: Siempre que sea posible, opta por devolver tipos primitivos o datos derivados de los atributos, en lugar de los objetos originales.
-2. **Crear copias del objeto**: Una solución común es devolver una **copia del objeto** en lugar del objeto original. De este modo, el cliente del método puede trabajar con la copia sin afectar al atributo privado. Esto es especialmente útil cuando se necesita garantizar la inmutabilidad del estado interno de la clase.  
+2. **Crear copias del objeto**: Una solución común es devolver una **copia del objeto** en lugar del objeto original. De este modo, el cliente del método puede trabajar con la copia sin afectar al atributo privado. Esto es especialmente útil cuando se necesita garantizar la inmutabilidad del estado interno de la clase.
+
 ```java  
 public class Persona {
     private Direccion direccion; // Atributo como objeto
@@ -307,28 +308,26 @@ public class Persona {
 }
 ```
 
-3. **Devolver referencias solo cuando sea necesario**: En casos específicos, como con atributos estáticos o cuando el cliente necesita modificar directamente el objeto, se puede devolver la referencia original. No obstante, esta práctica debe limitarse a situaciones controladas donde el impacto sea conocido.
+1. **Devolver referencias solo cuando sea necesario**: En casos específicos, como con atributos estáticos o cuando el cliente necesita modificar directamente el objeto, se puede devolver la referencia original. No obstante, esta práctica debe limitarse a situaciones controladas donde el impacto sea conocido.
 
-**Conclusión**
-
-En las relaciones de composición y agregación, es fundamental ser cauteloso al exponer objetos internos a través de métodos `get`. El uso adecuado de las estrategias descritas asegura que los atributos privados mantengan su encapsulación, evitando errores no intencionados y promoviendo un diseño robusto y seguro. Estas buenas prácticas refuerzan el principio de separación entre la manipulación interna de la clase y la interacción con el exterior.
+**Conclusión:** en las relaciones de composición y agregación, es fundamental ser cauteloso al exponer objetos internos a través de métodos `get`. El uso adecuado de las estrategias descritas asegura que los atributos privados mantengan su encapsulación, evitando errores no intencionados y promoviendo un diseño robusto y seguro. Estas buenas prácticas refuerzan el principio de separación entre la manipulación interna de la clase y la interacción con el exterior.
 
 ### 1.8. Composición y agregación: invocación a constructores de clases contenidas
 
 En la programación orientada a objetos, cuando una clase contiene como atributos objetos de otras clases, se deben considerar aspectos importantes durante la instanciación de dichos objetos. Específicamente, el constructor de la clase contenedora debe gestionar correctamente la creación de los objetos que serán sus atributos. Esto incluye invocar a los constructores de las clases contenidas y manejar de manera adecuada las referencias para evitar efectos colaterales no deseados.
 
-**Invocación a Constructores de Clases Contenidas**
+**Invocación a Constructores de Clases Contenidas:**
 
 Cuando se crea una instancia de la clase contenedora, el constructor de esta debe asegurarse de inicializar todos sus atributos, incluidos los objetos contenidos. Esto puede lograrse mediante:
 
 - La creación directa de nuevas instancias de los objetos contenidos dentro del constructor.  
 - La recepción de objetos como parámetros y su posterior copia para garantizar el encapsulamiento.
 
-**Evitar la Exposición de Referencias**
+**Evitar la Exposición de Referencias:**
 
 Cuando se utilizan objetos como parámetros en un constructor, es importante evitar asignar directamente dichas referencias a los atributos de la clase contenedora. Esto se debe a que compartir referencias puede comprometer el encapsulamiento, ya que cualquier modificación realizada al objeto desde otra parte del programa afectará al atributo de la clase contenedora.
 
-**Ejemplo de Efectos Colaterales**
+**Ejemplo de Efectos Colaterales:**
 
 Imagina que una clase `Rectangulo` contiene dos objetos de la clase `Punto` como atributos:
 
@@ -368,7 +367,7 @@ public class Rectangulo {
 
 Si los puntos utilizados ya pertenecen a otro objeto o se comparten entre varias partes del código, cualquier modificación sobre uno de ellos afectará a todos los objetos que compartan la misma referencia.
 
-**Solución: Realizar Copias de los Objetos**
+**Solución: realizar copias de los objetos.**
 
 Para evitar compartir referencias, es preferible crear copias de los objetos recibidos como parámetros antes de asignarlos a los atributos:
 
@@ -387,22 +386,19 @@ public class Rectangulo {
 
 De esta manera, cualquier cambio en los objetos `Punto` originales no afectará a los atributos de la clase `Rectangulo`, ya que estos estarán utilizando copias independientes.
 
-**Consideraciones sobre Referencias**
+**Consideraciones sobre referencias:**
 
 En Java, los objetos son variables de tipo referencia, lo que significa que múltiples referencias pueden apuntar al mismo objeto en memoria. Por ello:
 
-* **Asignaciones directas** o **pasos de parámetros** no generan copias del objeto, solo de la referencia.  
-* Los cambios realizados a través de una referencia afectarán al mismo objeto, sin importar desde qué parte del programa se realicen.
+- **Asignaciones directas** o **pasos de parámetros** no generan copias del objeto, solo de la referencia.  
+- Los cambios realizados a través de una referencia afectarán al mismo objeto, sin importar desde qué parte del programa se realicen.
 
 Para evitar problemas relacionados con referencias compartidas:
 
 1. **Crea siempre nuevas instancias** para inicializar atributos de tipo objeto, en lugar de reutilizar referencias externas.  
 2. **Diseña constructores que prioricen el encapsulamiento**, asegurándote de que cada objeto contenido sea independiente de su contexto original.
 
-**Conclusión**
-
-La composición es una herramienta poderosa en programación orientada a objetos, pero su uso correcto requiere especial cuidado al gestionar referencias y constructores. Al evitar compartir referencias y optar por realizar copias de los objetos recibidos como parámetros, puedes garantizar la encapsulación y minimizar riesgos de efectos colaterales, promoviendo un diseño de software más seguro y robusto.
-
+**Conclusión:** la composición es una herramienta poderosa en programación orientada a objetos, pero su uso correcto requiere especial cuidado al gestionar referencias y constructores. Al evitar compartir referencias y optar por realizar copias de los objetos recibidos como parámetros, puedes garantizar la encapsulación y minimizar riesgos de efectos colaterales, promoviendo un diseño de software más seguro y robusto.
 
 ## 2. Concepto de encapsulamiento
 
@@ -584,7 +580,7 @@ Clase Base Única: Una clase derivada tiene una única clase base.
 Herencia Múltiple (no soportada directamente en Java): Una clase puede tener varias clases base. Esto se puede simular mediante interfaces.
 Ejemplo de jerarquía de herencia:
 
-```
+```plaintext
 Animal
   ├── Perro
   └── Gato
@@ -717,13 +713,13 @@ En Java, **`Object`** es la superclase principal de todas las clases. Esto signi
 - **`finalize()`**: Se llama cuando el recolector de basura elimina un objeto, aunque su uso es desaconsejado en versiones recientes.  
 - **`getClass()`**: Devuelve un objeto `Class` que representa la clase en tiempo de ejecución del objeto.
 
-**Importancia en la Herencia**
+**Importancia en la Herencia:**
 
 La clase `Object` actúa como un punto común en la jerarquía de clases, lo que asegura que todas las clases en Java compartan un conjunto mínimo de funcionalidades. Esto facilita el manejo genérico de objetos y permite construir estructuras de datos o implementar mecanismos como el polimorfismo de manera uniforme.
 
 Por ejemplo, puedes almacenar cualquier objeto en una lista genérica, como `ArrayList<Object>`, gracias a que todos los objetos comparten `Object` como ancestro.
 
-**Sobrescritura de Métodos de Object**
+**Sobrescritura de Métodos de Object:**
 
 Es común sobrescribir métodos como `toString()`, `equals()`, y `hashCode()` para adaptar su comportamiento a las necesidades específicas de la clase. A continuación, un ejemplo:
 
@@ -765,7 +761,7 @@ La palabra reservada `final` puede ser empleada sobre las clases o sus métodos,
 - Clases `final`: No pueden ser extendidas.
 - Métodos `final`: No pueden ser sobreescritos.
 
-A continuación se muestran dos ejemplos. En el primero, la clase `Usuario` lleva el modificador `final`, por lo que directamente no se podrían definir clases que hereden de ella. En el segundo, la clase `Animal` no es final, pero sí su método respirar, por lo que no se puede sobreescribir. 
+A continuación se muestran dos ejemplos. En el primero, la clase `Usuario` lleva el modificador `final`, por lo que directamente no se podrían definir clases que hereden de ella. En el segundo, la clase `Animal` no es final, pero sí su método respirar, por lo que no se puede sobreescribir.
 
 ```java
 final class Usuario {
@@ -1075,7 +1071,6 @@ public class Main {
 }
 ```
 
-
 ## 5. Polimorfismo en Programación Orientada a Objetos
 
 El **polimorfismo** es uno de los pilares fundamentales de la programación orientada a objetos (POO), junto con la encapsulación y la herencia. Este concepto describe la capacidad de un objeto para adoptar múltiples formas, lo que permite a diferentes clases responder de manera única a la misma operación o mensaje.
@@ -1084,7 +1079,7 @@ El **polimorfismo** es uno de los pilares fundamentales de la programación orie
 
 El término "polimorfismo" proviene del griego, que significa "muchas formas". En POO, el polimorfismo permite que un método, una interfaz o un operador tenga diferentes implementaciones o comportamientos según el contexto.
 
-**Ventajas del Polimorfismo**
+**Ventajas del Polimorfismo:**
 
 1. **Flexibilidad del código**: Permite escribir código genérico que puede trabajar con cualquier clase que cumpla ciertas condiciones.  
 2. **Reutilización del código**: Facilita extender o modificar programas sin cambiar el código existente.  
@@ -1094,15 +1089,14 @@ El término "polimorfismo" proviene del griego, que significa "muchas formas". E
 
 Existen dos tipos principales de polimorfismo en POO: **polimorfismo estático** y **polimorfismo dinámico**.
 
-**Polimorfismo Estático (Early Binding)**
+**Polimorfismo Estático (Early Binding):**
 
 El polimorfismo estático, también conocido como **ligadura temprana**, ocurre cuando el compilador decide cuál versión de un método o función se ejecutará en tiempo de compilación. Este tipo de polimorfismo se logra principalmente a través de:
 
-1. **Sobrecarga de métodos**: Permite que varias versiones de un método tengan el mismo nombre, pero con diferentes firmas (tipo o número de parámetros). Ver [Sobrecarga de métodos](#141-sobrecarga-de-métodos)
-
+1. **Sobrecarga de métodos**: Permite que varias versiones de un método tengan el mismo nombre, pero con diferentes firmas (tipo o número de parámetros). Ver [Sobrecarga de métodos](#41-sobrecarga-de-métodos)
 2. **Sobrecarga de operadores** (disponible en algunos lenguajes, como C++, pero no en Java). Permite redefinir el funcionamiento de operadores básicos, como el de asignación `=`, el de suma `+`, el de multiplicación `*`... En Java, el único operador sobrecargado de manera predeterminada es el `+`, para realizar la concatenación de cadenas, pero se trata de una sobrecarga interna del lenguaje.
 
-**Polimorfismo Dinámico (Late Binding)**
+**Polimorfismo Dinámico (Late Binding):**
 
 El polimorfismo dinámico, o **ligadura tardía**, ocurre cuando la decisión sobre qué método invocar se toma en **tiempo de ejecución**. Este tipo de polimorfismo se logra mediante la **sobreescritura de métodos**: Permite que una subclase proporcione su propia implementación de un método heredado de la clase padre.  
 **Ejemplo de sobreescritura de métodos para polimorfismo dinámico:**  
@@ -1141,14 +1135,15 @@ public class Main {
 }
 ```
 
-**Relación con la herencia y las interfaces**:  
-   * En Java, las **interfaces** también son una herramienta clave para implementar el polimorfismo dinámico, ya que permiten definir un contrato común para múltiples clases, como veremos en apartados posteriores.
+**Relación con la herencia y las interfaces:**
+
+- En Java, las **interfaces** también son una herramienta clave para implementar el polimorfismo dinámico, ya que permiten definir un contrato común para múltiples clases, como veremos en apartados posteriores.
 
 ### 5.3. Relación con Ligadura Dinámica
 
 La **ligadura dinámica** (dynamic binding) es un mecanismo mediante el cual la invocación de un método se resuelve en tiempo de ejecución. Esto está directamente relacionado con el polimorfismo dinámico.
 
-* Cuando un objeto de una clase derivada es tratado como si fuera de su clase base, el método que se ejecuta es el correspondiente a la clase del objeto real, no el de la referencia.
+- Cuando un objeto de una clase derivada es tratado como si fuera de su clase base, el método que se ejecuta es el correspondiente a la clase del objeto real, no el de la referencia.
 
 **Ejemplo de ligadura dinámica:**
 
@@ -1197,7 +1192,6 @@ public class Main {
 1. **Mayor complejidad**: Puede dificultar la comprensión del flujo del programa para desarrolladores novatos.  
 2. **Impacto en el rendimiento**: La resolución de métodos en tiempo de ejecución (ligadura dinámica) puede ser ligeramente más lenta que en tiempo de compilación.
 
-
 ### 5.6. Comparativa entre encapsulamiento, herencia y polimorfismo
 
 | Aspecto              | Encapsulamiento                                                               | Herencia                                                                  | Polimorfismo                                                                       |
@@ -1206,7 +1200,7 @@ public class Main {
 | Ventaja principal    | Protección de datos y modularidad.                                            | Reutilización de código.                                                  | Flexibilidad y adaptabilidad.                                                      |
 | Relación entre ellos | La herencia respeta el encapsulamiento (p.ej., no hereda atributos privados). | La herencia aprovecha el encapsulamiento al reutilizar la implementación. | El polimorfismo utiliza el encapsulamiento para trabajar con interfaces genéricas. |
 
-## 6. **`instanceof` en Java**
+## 6. `instanceof` en Java
 
 El operador `instanceof` en Java es una herramienta utilizada para verificar si un objeto pertenece a un tipo específico o si es una instancia de una clase o interfaz. Es particularmente útil cuando trabajamos con herencia o polimorfismo, ya que permite determinar dinámicamente el tipo real de un objeto.
 
@@ -1216,26 +1210,22 @@ El operador `instanceof` en Java es una herramienta utilizada para verificar si 
 objeto instanceof Tipo
 ```
 
-* **`objeto`**: Es el objeto que deseas verificar.  
-* **`Tipo`**: Es la clase o interfaz contra la que se está verificando.
+- **`objeto`**: Es el objeto que deseas verificar.  
+- **`Tipo`**: Es la clase o interfaz contra la que se está verificando.
 
 El resultado de la expresión es un valor booleano (`true` o `false`):
 
-* **`true`**: Si el objeto pertenece al tipo especificado o a una subclase de este tipo.  
-* **`false`**: Si el objeto no pertenece al tipo especificado.
+- **`true`**: Si el objeto pertenece al tipo especificado o a una subclase de este tipo.  
+- **`false`**: Si el objeto no pertenece al tipo especificado.
 
 ### 6.2. Reglas Básicas
 
-1. **Verifica relaciones de herencia**:  
-   * Si el tipo de `objeto` es una subclase o la misma clase que `Tipo`, `instanceof` devuelve `true`.  
-2. **Compatible con interfaces**:  
-   * Si el objeto implementa una interfaz específica, `instanceof` devuelve `true` al verificar contra esa interfaz.  
-3. **Objetos nulos**:  
-   * Si `objeto` es `null`, `instanceof` siempre devuelve `false`.  
-4. **Evita excepciones**:  
-   * No genera errores de tipo o de tiempo de ejecución, incluso si `objeto` no está relacionado con `Tipo`.
+1. **Verifica relaciones de herencia**: Si el tipo de `objeto` es una subclase o la misma clase que `Tipo`, `instanceof` devuelve `true`.  
+2. **Compatible con interfaces**:  Si el objeto implementa una interfaz específica, `instanceof` devuelve `true` al verificar contra esa interfaz.  
+3. **Objetos nulos**: Si `objeto` es `null`, `instanceof` siempre devuelve `false`.  
+4. **Evita excepciones**: No genera errores de tipo o de tiempo de ejecución, incluso si `objeto` no está relacionado con `Tipo`.
 
-**Ejemplo Básico**
+**Ejemplo Básico:**
 
 ```java
 class Animal {}
@@ -1287,7 +1277,7 @@ public class Biblioteca {
 
 **Salida:**
 
-```
+```plaintext
 Es un libro
 Es una revista
 ```
@@ -1301,7 +1291,7 @@ Es una revista
 3. **Evitar errores de `ClassCastException`**:  
    - Antes de realizar un `casting`, puedes usar `instanceof` para asegurarte de que la conversión es válida.
 
-### 6.5. **Limitaciones**
+### 6.5. Limitaciones
 
 1. **No sustituye un diseño sólido**:  
    - Un uso excesivo de `instanceof` puede indicar que el diseño de tu programa necesita una revisión, ya que a menudo rompe con el principio de polimorfismo.  
@@ -1346,10 +1336,9 @@ public class Biblioteca {
 
 ### 6.6. Resumen
 
-* **`instanceof`** es una herramienta útil para verificar dinámicamente el tipo de un objeto.  
-* Es seguro de usar, ya que evita errores de tiempo de ejecución.  
-* Sin embargo, debe usarse con moderación, y siempre que sea posible, preferir un diseño polimórfico que sobrescriba métodos.
-
+- **`instanceof`** es una herramienta útil para verificar dinámicamente el tipo de un objeto.  
+- Es seguro de usar, ya que evita errores de tiempo de ejecución.  
+- Sin embargo, debe usarse con moderación, y siempre que sea posible, preferir un diseño polimórfico que sobrescriba métodos.
 
 ## 7. Clases abstractas
 
@@ -1516,6 +1505,7 @@ interface Animal {
 ```
 
 - **No contienen atributos con estado**: las interfaces no pueden tener atributos con estado mutable, pero pueden tener constantes (public static final).
+  
 ```java
 interface Configuracion {
     int TIEMPO_MAXIMO = 60; // Equivalente a "public static final int TIEMPO_MAXIMO = 60;"
@@ -1589,90 +1579,91 @@ Las **clases internas** son aquellas definidas dentro de otra clase, y están as
 **Tipos de Clases Internas:**
 
 1. **Inner Classes**  
-   Son clases **no estáticas** definidas dentro de otra clase.  
-   * Tienen acceso directo a los atributos y métodos de la clase externa.  
-   * Se crean siempre en relación con una instancia de la clase externa.
+    Son clases **no estáticas** definidas dentro de otra clase.  
+    - Tienen acceso directo a los atributos y métodos de la clase externa.  
+    - Se crean siempre en relación con una instancia de la clase externa.
 
-**Ejemplo:** 
+    **Ejemplo:**
 
-```java  
-public class Externa {
-    private String mensaje = "Hola desde la clase externa";
+    ```java  
+    public class Externa {
+        private String mensaje = "Hola desde la clase externa";
 
-    public class Interna {
-        public void imprimir() {
-            System.out.println(mensaje); // Accede al atributo de la clase externa
+        public class Interna {
+            public void imprimir() {
+                System.out.println(mensaje); // Accede al atributo de la clase externa
+            }
         }
     }
-}
 
-public class Main {
-    public static void main(String[] args) {
-        Externa externa = new Externa();
-        Externa.Interna interna = externa.new Interna(); // Crear instancia de la clase interna
-        interna.imprimir(); // Hola desde la clase externa
+    public class Main {
+        public static void main(String[] args) {
+            Externa externa = new Externa();
+            Externa.Interna interna = externa.new Interna(); // Crear instancia de la clase interna
+            interna.imprimir(); // Hola desde la clase externa
+        }
     }
-}
-```
-
+    ```
 
 2. **Local Inner Classes**  
-Son clases internas declaradas dentro de un bloque, generalmente un método o un constructor. Estas tienen acceso a las variables locales del bloque, siempre que sean **final** o **efectivamente final**.  
+    Son clases internas declaradas dentro de un bloque, generalmente un método o un constructor. Estas tienen acceso a las variables locales del bloque, siempre que sean **final** o **efectivamente final**.  
 
-**Ejemplo:**  
-```java  
+    **Ejemplo:**
 
-public class Externa {
+    ```java  
 
-    public void metodo() {
-        String local = "Variable local";
+    public class Externa {
 
-        class LocalInterna {
-            public void imprimir() {
-                System.out.println(local); // Accede a la variable local
+        public void metodo() {
+            String local = "Variable local";
+
+            class LocalInterna {
+                public void imprimir() {
+                    System.out.println(local); // Accede a la variable local
+                }
             }
-        }
 
-        LocalInterna interna = new LocalInterna();
-        interna.imprimir(); // Variable local
+            LocalInterna interna = new LocalInterna();
+            interna.imprimir(); // Variable local
+        }
     }
-}
-```
+    ```
 
 3. **Anonymous Classes**  
-Son clases internas sin nombre que se declaran e instancian en una única línea. Se usan comúnmente para implementar interfaces o extender clases de forma breve.  
+    Son clases internas sin nombre que se declaran e instancian en una única línea. Se usan comúnmente para implementar interfaces o extender clases de forma breve.  
 
-**Ejemplo:**  
+    **Ejemplo:**  
 
-```java  
- 
-interface Saludo {
-    void decirHola();
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Saludo saludo = new Saludo() { // Clase anónima que implementa la interfaz
-            @Override
-            public void decirHola() {
-                System.out.println("Hola desde una clase anónima");
-            }
-        };
-
-        saludo.decirHola(); // Hola desde una clase anónima
+    ```java  
+    
+    interface Saludo {
+        void decirHola();
     }
-}
 
-```
+    public class Main {
+        public static void main(String[] args) {
+            Saludo saludo = new Saludo() { // Clase anónima que implementa la interfaz
+                @Override
+                public void decirHola() {
+                    System.out.println("Hola desde una clase anónima");
+                }
+            };
+
+            saludo.decirHola(); // Hola desde una clase anónima
+        }
+    }
+
+    ```
 
 ### 9.2. Clases Estáticas Anidadas
 
 Las clases estáticas anidadas son clases definidas dentro de otra clase pero con el modificador **static**. A diferencia de las clases internas, no están asociadas a una instancia de la clase externa y solo pueden acceder a miembros estáticos de esta.
 
-* Se comportan como clases independientes pero están agrupadas dentro de otra clase por motivos lógicos.  
-* No tienen acceso implícito a los atributos o métodos de instancia de la clase externa.
+- Se comportan como clases independientes pero están agrupadas dentro de otra clase por motivos lógicos.  
+- No tienen acceso implícito a los atributos o métodos de instancia de la clase externa.
 
 **Ejemplo:**
+
 ```java
 
 public class Externa {
@@ -1692,7 +1683,6 @@ public class Main {
     }
 }
 ```
-
 
 ### 9.3. Ventajas y Desventajas de las Clases Anidadas
 
