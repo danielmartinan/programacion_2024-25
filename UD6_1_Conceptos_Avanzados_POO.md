@@ -825,6 +825,7 @@ public class Main {
 }
 ```
 
+
 ### 3.10. Problemas y limitaciones de la herencia
 
 - Acoplamiento: Las clases derivadas dependen fuertemente de la clase base. Cambios en la clase base pueden romper el comportamiento de las derivadas.
