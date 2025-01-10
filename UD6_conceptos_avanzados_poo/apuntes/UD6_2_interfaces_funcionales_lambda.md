@@ -1,8 +1,22 @@
-# 1. Interfaces funcionales y expresiones Lambda
+# Interfaces funcionales y expresiones Lambda
+
+- [1. Introducción a las Interfaces Funcionales](#1-introducción-a-las-interfaces-funcionales)
+- [2. Interfaces Funcionales Predefinidas en Java](#2-interfaces-funcionales-predefinidas-en-java)
+- [3. Uso de Expresiones Lambda para Simplificar Código](#3-uso-de-expresiones-lambda-para-simplificar-código)
+  - [3.1. Sintaxis de las Expresiones Lambda](#31-sintaxis-de-las-expresiones-lambda)
+  - [3.2. Ejemplo Simple](#32-ejemplo-simple)
+- [4. Ventajas de las Expresiones Lambda](#4-ventajas-de-las-expresiones-lambda)
+- [5. Ejemplos y Aplicaciones Prácticas](#5-ejemplos-y-aplicaciones-prácticas)
+  - [5.1. Filtrado de Elementos con `Predicate`](#51-filtrado-de-elementos-con-predicate)
+  - [5.2. Transformación con `Function`](#52-transformación-con-function)
+  - [5.3. Iteración con `Consumer`](#53-iteración-con-consumer)
+  - [5.4. Suministrar Datos con `Supplier`](#54-suministrar-datos-con-supplier)
+  - [5.5. Composición de Funciones](#55-composición-de-funciones)
+- [6. Conclusión](#6-conclusión)
 
 Las expresiones lambda, introducidas en **Java 8**, representan un cambio importante en el paradigma de programación del lenguaje, permitiendo escribir código más conciso y funcional. Se utilizan principalmente para implementar interfaces funcionales de forma clara y simplificada.
 
-## 1.1. Introducción a las Interfaces Funcionales
+## 1. Introducción a las Interfaces Funcionales
 
 Una **interfaz funcional** es una interfaz que tiene exactamente **un único método abstracto**. Este método abstracto representa la funcionalidad que implementará la expresión lambda.  
 Las interfaces funcionales pueden tener:
@@ -21,7 +35,7 @@ public interface Operacion {
 }
 ```
 
-## 1.2. Interfaces Funcionales Predefinidas en Java
+## 2. Interfaces Funcionales Predefinidas en Java
 
 Java 8 incluye muchas interfaces funcionales en el paquete `java.util.function`. Algunas de las más comunes son:
 
@@ -55,9 +69,9 @@ T get();
 R apply(T t, U u);
 ```
 
-## 1.3. Uso de Expresiones Lambda para Simplificar Código
+## 3. Uso de Expresiones Lambda para Simplificar Código
 
-### 1.3.1. Sintaxis de las Expresiones Lambda
+### 3.1. Sintaxis de las Expresiones Lambda
 
 La expresión lambda permite definir un comportamiento en una única línea o bloque compacto. Su estructura es:
 
@@ -69,7 +83,7 @@ La expresión lambda permite definir un comportamiento en una única línea o bl
 - **Operador `->`:** Separa los parámetros del cuerpo de la función.  
 - **Cuerpo:** El bloque de código que implementa la funcionalidad.
 
-### 1.3.2. Ejemplo Simple
+### 3.2. Ejemplo Simple
 
 ```java
 Operacion suma = (a, b) -> a + b;
@@ -81,7 +95,7 @@ En este caso:
 * `(a, b)` son los parámetros.  
 * `a + b` es la implementación del método `ejecutar`.
 
-## 1.4. Ventajas de las Expresiones Lambda
+## 4. Ventajas de las Expresiones Lambda
 
 1. **Concisión:** Eliminan la necesidad de clases anónimas para implementar interfaces funcionales.  
 2. **Legibilidad:** Reducen el código ceremonial y facilitan la comprensión.  
@@ -106,9 +120,9 @@ Operacion suma = (a, b) -> a + b;
 ```
 
 
-## 1.5. Ejemplos y Aplicaciones Prácticas
+## 5. Ejemplos y Aplicaciones Prácticas
 
-### 1.5.1. Filtrado de Elementos con `Predicate`
+### 5.1. Filtrado de Elementos con `Predicate`
 
 Las expresiones lambda son ideales para filtrar colecciones.
 
@@ -131,7 +145,7 @@ public class Main {
 }
 ```
 
-### 1.5.2. Transformación con `Function`
+### 5.2. Transformación con `Function`
 
 Permiten transformar datos fácilmente.
 
@@ -150,7 +164,7 @@ public class Main {
 
 ```
 
-### 1.5.3. Iteración con `Consumer`
+### 5.3. Iteración con `Consumer`
 
 Ideal para realizar operaciones sobre cada elemento de una colección.
 
@@ -175,7 +189,7 @@ public class Main {
 }
 ```
 
-### 1.5.4. Suministrar Datos con `Supplier`
+### 5.4. Suministrar Datos con `Supplier`
 
 Se utilizan para generar datos dinámicamente.
 
@@ -194,7 +208,7 @@ public class Main {
 ```
 
 
-### 1.5.5. Composición de Funciones
+### 5.5. Composición de Funciones
 
 Las expresiones lambda permiten la composición de múltiples operaciones.
 
@@ -215,6 +229,6 @@ public class Main {
 }
 ```
 
-## 1.6. Conclusión
+## 6. Conclusión
 
 Las expresiones lambda son una herramienta poderosa para escribir código funcional y conciso en Java. Junto con las interfaces funcionales y las herramientas de la API de streams, permiten manejar colecciones y funciones de una manera más declarativa y legible, mejorando la productividad del desarrollo.
