@@ -1,10 +1,3 @@
----
-puppeteer:
-  landscape: false
-  style: "C:/Users/danielmartinan/.crossnote/stylesPdf.css"
-  format: "A4"
-  timeout: 3000 # <= Special config, which means waitFor 3000 ms
----
 # Conceptos avanzados de programación orientada a objetos
 
 - [1. Relaciones entre clases](#1-relaciones-entre-clases)
