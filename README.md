@@ -1,7 +1,7 @@
 # Programación. Curso 2024-25
 En este repositorio encontrarás apuntes del módulo de Programación, de los CFGS de Desarrollo de Aplicaciones Web y Desarrollo de Aplicaciones Multiplataforma
 
-### [UD6 - Conceptos avanzados de la POO](/UD6_conceptos_avanzados_poo/UD6_1_Conceptos_Avanzados_POO.md)
+### [UD6 - Conceptos avanzados de la POO](/UD6_conceptos_avanzados_poo/apuntes/UD6_1_Conceptos_Avanzados_POO.md)
 
 ## Licencia de uso
 
