@@ -35,14 +35,14 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
 
 ### Interfaces
 
-1. Crea una interfaz `Prestable` 
+1. Crea una interfaz `Prestable`:
    1. Estas interfaz debe contar con los métodos:  
       * `prestar()`  
       * `devolver()`  
       * `isPrestado()`: Devuelve un boolean indicando si la publicación está prestada.  
-    2. Haz que **`Libro`** implemente `Prestable`.  
+   2. Haz que **`Libro`** implemente `Prestable`.  
          * Actualiza la clase para llevar un estado interno (`prestado`) que indique si el libro está prestado o disponible. Es decir, añade un atributo booleano donde se almacene si el Libro está prestado o no.
-         * Añade también dos atributos de tipo `LocalDate` para registrar la fecha de préstamo y la de devolución, teniendo en cuenta que cuando se invoque el método `prestar()`, deberá registrarse la fecha actual como fecha de préstamo, y la fecha 14 días posterior a la actual como fecha de devolución. Cuando se invoque a `devolver()`, ambas fechas se pondran a ``null`. 
+         * Añade también dos atributos de tipo `LocalDate` para registrar la fecha de préstamo y la de devolución, teniendo en cuenta que cuando se invoque el método `prestar()`, deberá registrarse la fecha actual como fecha de préstamo, y la fecha 14 días posterior a la actual como fecha de devolución. Cuando se invoque a `devolver()`, ambas fechas se pondran a ``null`.
 2. Añade una nueva interfaz `Multimedia` para publicaciones digitales o audiovisuales.  
      1. Métodos:  
         * `descargar()`  
@@ -51,23 +51,24 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
 
 ### Encapsulamiento
 
-1. Refactoriza todas las clases para:  
-   * Hacer que los atributos sean privados.  
-   * Implementar getters y setters con validaciones:  
-     * Validar que el título y el autor no estén vacíos.  
-     * Validar que el año de publicación no sea mayor al año actual.  
-     * Validar que valores como `ISBN`, `numeroPaginas` o `duracion` sean válidos (no vacíos o positivos).
-     * Haz uso de las Excepciones personalizadas creadas en la UD anterior para implementar dichas validaciones.
+Refactoriza todas las clases para:
+
+* Hacer que los atributos sean **privados**.  
+* Implementar **getters** y **setters** con validaciones:  
+  * Validar que el título y el autor no estén vacíos.  
+  * Validar que el año de publicación no sea mayor al año actual.  
+  * Validar que valores como `ISBN`, `numeroPaginas` o `duracion` sean válidos (no vacíos o positivos).
+  * Haz uso de las **Excepciones personalizadas** creadas en la UD anterior para implementar dichas validaciones e implementa las nuevas excepciones que consideres necesarias.
 
 ## Modificaciones en la Clase Biblioteca
 
-- Sustituye el **array** de `Libro` por un **array** de `Publicacion` (no utilices colecciones como `List`, `ArrayList`...).
-- Ajusta los métodos existentes (`agregarLibro`, `listarLibros`, etc.) para que funcionen con `Publicacion`. Cambia los nombres de los métodos para reflejar el cambio general a publicaciones.
-- Agrega validaciones para asegurarte de que no se supere la capacidad del array.
-- Agrega métodos para listar tipos específicos de Publicaciones: `listarLibros`, `listarRevistas`... Haz uso del operador `instanceof` si es necesario.
-- Agrega métodos para buscar tipos específicos de Publicaciones: `buscarLibro`, `buscarRevista`... Haz uso del operador `instanceof` si es necesario.
-- Agrega los métodos necesarios para gestionar los préstamos y devoluciones de publicaciones prestables.
-- Agrega los metodos necesarios para gestionar las publicaciones multimedia
+* Sustituye el **array** de `Libro` por un **array** de `Publicacion` (no utilices colecciones como `List`, `ArrayList`...).
+* Ajusta los métodos existentes (`agregarLibro`, `listarLibros`, etc.) para que funcionen con `Publicacion`. Cambia los nombres de los métodos para reflejar el cambio general a publicaciones.
+* Agrega validaciones para asegurarte de que no se supere la capacidad del array.
+* Agrega métodos para listar tipos específicos de Publicaciones: `listarLibros`, `listarRevistas`... Haz uso del operador `instanceof` si es necesario.
+* Agrega métodos para buscar tipos específicos de Publicaciones: `buscarLibro`, `buscarRevista`... Haz uso del operador `instanceof` si es necesario.
+* Agrega los métodos necesarios para gestionar los préstamos y devoluciones de publicaciones prestables.
+* Agrega los metodos necesarios para gestionar las publicaciones multimedia
 
 Recuerda que, desde el menú principal, no se podrá instanciar ninguna otra clase que no sea la `Biblioteca`.
 
@@ -93,7 +94,7 @@ Amplía el menú con opciones que reflejen las nuevas funcionalidades:
 
 **Ejemplo de Menú:**
 
-```
+```plaintext
 Menú de Biblioteca:
 1. Agregar una publicación
 2. Listar todas las publicaciones
@@ -109,18 +110,18 @@ Menú de Biblioteca:
 12. Comprobar formato de un audiolibro
 13. Salir
 Opción:
-``` 
+```
 
 ## Calificación
 
-- **Herencia e Interfaces (4 puntos)**
-  - Implementación de la clase `Publicacion` y subclases: 2 puntos.  
-  - Implementación de interfaces (`Prestable`, `Multimedia`): 1 punto 
-- **Encapsulamiento (1 puntos)**
-  - Uso adecuado de getters/setters y validaciones.
-- **Menú Principal (4 puntos)**
-  - Correcta actualización del menú y manejo de opciones nuevas.
-- **Memoria y Documentación (0.5 punto)**
-  - Explicación clara de la implementación.
-- **Otros Aspectos (0.5 punto)**
-  - Calidad del código (nombres, indentado, comentarios).
+* **Herencia e Interfaces (3.5 puntos)**
+  * Implementación de la clase `Publicacion` y subclases: 2 puntos.  
+  * Implementación de interfaces (`Prestable`, `Multimedia`): 1.5 punto
+* **Encapsulamiento (1.5 puntos)**
+  * Uso adecuado de getters/setters y validaciones.
+* **Menú Principal (4 puntos)**
+  * Correcta actualización del menú y manejo de opciones nuevas.
+* **Memoria y Documentación (0.5 punto)**
+  * Explicación clara de la implementación.
+* **Otros Aspectos (0.5 punto)**
+  * Calidad del código (nombres, indentado, comentarios).
