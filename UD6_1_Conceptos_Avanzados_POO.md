@@ -1,3 +1,10 @@
+---
+puppeteer:
+  landscape: false
+  style: "C:/Users/danielmartinan/.crossnote/stylesPdf.css"
+  format: "A4"
+  timeout: 3000 # <= Special config, which means waitFor 3000 ms
+---
 # Conceptos avanzados de programación orientada a objetos
 
 - [1. Relaciones entre clases](#1-relaciones-entre-clases)
@@ -21,10 +28,10 @@
   - [3.3. Tipos de Herencia](#33-tipos-de-herencia)
   - [3.4. Modificadores de acceso en la herencia](#34-modificadores-de-acceso-en-la-herencia)
   - [3.5. Sobreescritura de métodos (Override)](#35-sobreescritura-de-métodos-override)
-  - [3.6. Uso del operador superr\`](#36-uso-del-operador-superr)
+  - [3.6. Uso del operador `super`](#36-uso-del-operador-super)
   - [3.7. Constructores en la herencia](#37-constructores-en-la-herencia)
-  - [3.8. La Clase Object en Javava\*\*](#38-la-clase-object-en-javava)
-  - [3.9. Palabra clave final en herenciaia](#39-palabra-clave-final-en-herenciaia)
+  - [3.8. La Clase Object en Java](#38-la-clase-object-en-java)
+  - [3.9. Palabra clave final en herencia](#39-palabra-clave-final-en-herencia)
   - [3.10. Problemas y limitaciones de la herencia](#310-problemas-y-limitaciones-de-la-herencia)
   - [3.11. Buenas prácticas en el uso de la herencia](#311-buenas-prácticas-en-el-uso-de-la-herencia)
 - [4. Sobrecarga y sobrescritura](#4-sobrecarga-y-sobrescritura)
@@ -642,7 +649,7 @@ Reglas:
 - El nivel de acceso no puede ser más restrictivo que en la clase base.
 - Si el método de la clase base es final, no puede sobreescribirse.
 
-### 3.6. Uso del operador superr`
+### 3.6. Uso del operador `super`
 
 El operador `super` se utiliza para:
 
@@ -702,7 +709,7 @@ class Perro extends Animal {
 }
 ```
 
-### 3.8. La Clase Object en Javava**
+### 3.8. La Clase Object en Java
 
 En Java, **`Object`** es la superclase principal de todas las clases. Esto significa que cualquier clase que declares hereda implícitamente de `Object`, ya sea de manera directa o indirecta. La clase `Object` proporciona un conjunto de métodos básicos que están disponibles para todos los objetos en Java, como:
 
@@ -754,7 +761,7 @@ public class Persona {
 
 ```
 
-### 3.9. Palabra clave final en herenciaia
+### 3.9. Palabra clave final en herencia
 
 La palabra reservada `final` puede ser empleada sobre las clases o sus métodos, con comportamientos diferentes a su habitual aplicación sobre los atributos (que implica que su valor no puede ser modificado en el programa, es decir, que es constante).
 
@@ -952,7 +959,7 @@ class Perro extends Animal {
 
 ***¿Es obligatorio el uso de `@override`?***
 
-En Java no es obligatorio usar la etiqueta @Override. Sin embargo, es altamente recomendable incluirla siempre que sobrescribas un método, por las siguientes razones:
+En Java no es obligatorio usar la etiqueta `@Override`. Sin embargo, es altamente recomendable incluirla siempre que sobrescribas un método, por las siguientes razones:
 
 - **Detección de errores de compilación**: Si accidentalmente escribes un método que no coincide con la firma del método en la clase base (por ejemplo, por un error tipográfico o un tipo de parámetro incorrecto), el compilador **generará un error** si usas @Override. Sin esta anotación, el compilador trataría el método como uno nuevo en lugar de sobrescribir el existente, lo que podría causar problemas en la lógica de tu programa.
 - **Mayor claridad**: La anotación hace explícito para otros desarrolladores (y para ti mismo en el futuro) que un método está sobrescribiendo uno de la clase base. Esto mejora la legibilidad del código.
@@ -962,7 +969,7 @@ En Java no es obligatorio usar la etiqueta @Override. Sin embargo, es altamente 
 
 Si decides no usar `@Override`, el método seguirá funcionando y sobrescribirá correctamente el método de la clase base **si y solo si** la firma del método coincide exactamente con el método padre. No obstante, perderás las ventajas de detección de errores y claridad mencionadas.
 
-Ejemplo sin @Override (**riesgos**):
+Ejemplo sin `@Override` (**riesgos**):
 
 ```java
 class Animal {
@@ -1185,8 +1192,6 @@ public class Main {
 2. **Extensibilidad**: Facilita la extensión de aplicaciones al permitir añadir nuevas clases con comportamientos específicos.  
 3. **Reutilización**: Reduce la duplicación de código al centralizar funcionalidades en clases base.
 
----
-
 ### 5.5. Desventajas y Consideraciones
 
 1. **Mayor complejidad**: Puede dificultar la comprensión del flujo del programa para desarrolladores novatos.  
@@ -1358,106 +1363,106 @@ Figura figura = new Figura(); // Error: no se puede instanciar una clase abstrac
 
 - **Pueden contener métodos abstractos y concretos**: los métodos abstractos no tienen implementación en la clase abstracta; las clases derivadas están obligadas a implementarlos; mientras tanto, los métodos concretos tienen una implementación por defecto que las clases derivadas pueden usar o sobrescribir si lo necesitan.
 
-```java
+    ```java
 
-abstract class Figura {
-    abstract double calcularArea(); // Método abstracto
+    abstract class Figura {
+        abstract double calcularArea(); // Método abstracto
 
-    void descripcion() { // Método concreto
-        System.out.println("Soy una figura.");
+        void descripcion() { // Método concreto
+            System.out.println("Soy una figura.");
+        }
     }
-}
-```
+    ```
 
 - **Pueden tener atributos y constructores**: aunque no se puedan instanciar, las clases abstractas pueden tener atributos y constructores que serán utilizados por sus subclases.
   
-```java
+    ```java
 
-abstract class Figura {
-    String color;
+    abstract class Figura {
+        String color;
 
-    Figura(String color) {
-        this.color = color;
+        Figura(String color) {
+            this.color = color;
+        }
+
+        String getColor() {
+            return color;
+        }
     }
-
-    String getColor() {
-        return color;
-    }
-}
-```
+    ```
 
 - **Sirven como punto común para la herencia**: permiten crear una jerarquía de clases que comparten una estructura común, promoviendo el concepto de reutilización de código.
 
-```java
-// Clase abstracta Empleado
-abstract class Empleado {
-    private String nombre;
-    private double salarioBase;
+    ```java
+    // Clase abstracta Empleado
+    abstract class Empleado {
+        private String nombre;
+        private double salarioBase;
 
-    public Empleado(String nombre, double salarioBase) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
+        public Empleado(String nombre, double salarioBase) {
+            this.nombre = nombre;
+            this.salarioBase = salarioBase;
+        }
+
+        // Método concreto: común para todas las clases derivadas
+        public void mostrarInformacion() {
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Salario Base: " + salarioBase);
+        }
+
+        // Método abstracto: cada tipo de empleado lo implementará de forma distinta
+        public abstract double calcularSalario();
     }
 
-    // Método concreto: común para todas las clases derivadas
-    public void mostrarInformacion() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Salario Base: " + salarioBase);
+    // Clase concreta: EmpleadoFijo
+    class EmpleadoFijo extends Empleado {
+        private double bonificacion;
+
+        public EmpleadoFijo(String nombre, double salarioBase, double bonificacion) {
+            super(nombre, salarioBase);
+            this.bonificacion = bonificacion;
+        }
+
+        @Override
+        public double calcularSalario() {
+            return super.salarioBase + bonificacion;
+        }
     }
 
-    // Método abstracto: cada tipo de empleado lo implementará de forma distinta
-    public abstract double calcularSalario();
-}
+    // Clase concreta: EmpleadoPorHoras
+    class EmpleadoPorHoras extends Empleado {
+        private double horasTrabajadas;
+        private double tarifaPorHora;
 
-// Clase concreta: EmpleadoFijo
-class EmpleadoFijo extends Empleado {
-    private double bonificacion;
+        public EmpleadoPorHoras(String nombre, double salarioBase, double horasTrabajadas, double tarifaPorHora) {
+            super(nombre, salarioBase);
+            this.horasTrabajadas = horasTrabajadas;
+            this.tarifaPorHora = tarifaPorHora;
+        }
 
-    public EmpleadoFijo(String nombre, double salarioBase, double bonificacion) {
-        super(nombre, salarioBase);
-        this.bonificacion = bonificacion;
+        @Override
+        public double calcularSalario() {
+            return super.salarioBase + (horasTrabajadas * tarifaPorHora);
+        }
     }
 
-    @Override
-    public double calcularSalario() {
-        return super.salarioBase + bonificacion;
+    public class Main {
+        public static void main(String[] args) {
+            // Crear empleados de diferentes tipos
+            Empleado empleadoFijo = new EmpleadoFijo("Ana López", 1500, 300);
+            Empleado empleadoPorHoras = new EmpleadoPorHoras("Carlos García", 1000, 40, 15);
+
+            // Mostrar información y calcular salario para cada empleado
+            System.out.println("Empleado Fijo:");
+            empleadoFijo.mostrarInformacion();
+            System.out.println("Salario Total: " + empleadoFijo.calcularSalario());
+
+            System.out.println("\nEmpleado Por Horas:");
+            empleadoPorHoras.mostrarInformacion();
+            System.out.println("Salario Total: " + empleadoPorHoras.calcularSalario());
+        }
     }
-}
-
-// Clase concreta: EmpleadoPorHoras
-class EmpleadoPorHoras extends Empleado {
-    private double horasTrabajadas;
-    private double tarifaPorHora;
-
-    public EmpleadoPorHoras(String nombre, double salarioBase, double horasTrabajadas, double tarifaPorHora) {
-        super(nombre, salarioBase);
-        this.horasTrabajadas = horasTrabajadas;
-        this.tarifaPorHora = tarifaPorHora;
-    }
-
-    @Override
-    public double calcularSalario() {
-        return super.salarioBase + (horasTrabajadas * tarifaPorHora);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        // Crear empleados de diferentes tipos
-        Empleado empleadoFijo = new EmpleadoFijo("Ana López", 1500, 300);
-        Empleado empleadoPorHoras = new EmpleadoPorHoras("Carlos García", 1000, 40, 15);
-
-        // Mostrar información y calcular salario para cada empleado
-        System.out.println("Empleado Fijo:");
-        empleadoFijo.mostrarInformacion();
-        System.out.println("Salario Total: " + empleadoFijo.calcularSalario());
-
-        System.out.println("\nEmpleado Por Horas:");
-        empleadoPorHoras.mostrarInformacion();
-        System.out.println("Salario Total: " + empleadoPorHoras.calcularSalario());
-    }
-}
-```
+    ```
 
 ### 7.2. Métodos abstractos
 
@@ -1497,65 +1502,65 @@ En programación orientada a objetos, una interfaz es un **contrato** que define
 
 - **Definición de métodos abstractos**: Todos los métodos definidos en una interfaz son **implícitamente** abstractos y públicos (hasta Java 8, cuando no tenían implementación predeterminada).
 
-```java
-interface Animal {
-    void comer();
-    void dormir();
-}
-```
+    ```java
+    interface Animal {
+        void comer();
+        void dormir();
+    }
+    ```
 
 - **No contienen atributos con estado**: las interfaces no pueden tener atributos con estado mutable, pero pueden tener constantes (public static final).
   
-```java
-interface Configuracion {
-    int TIEMPO_MAXIMO = 60; // Equivalente a "public static final int TIEMPO_MAXIMO = 60;"
-}
-```
+    ```java
+    interface Configuracion {
+        int TIEMPO_MAXIMO = 60; // Equivalente a "public static final int TIEMPO_MAXIMO = 60;"
+    }
+    ```
 
 - **Implementación múltiple**: una clase puede implementar múltiples interfaces, lo que permite una forma de herencia múltiple, algo que no es posible con clases.
 
-```java
-interface Volador {
-    void volar();
-}
-
-interface Nadador {
-    void nadar();
-}
-
-class Pato implements Volador, Nadador {
-    @Override
-    public void volar() {
-        System.out.println("El pato vuela.");
+    ```java
+    interface Volador {
+        void volar();
     }
 
-    @Override
-    public void nadar() {
-        System.out.println("El pato nada.");
+    interface Nadador {
+        void nadar();
     }
-}
-```
+
+    class Pato implements Volador, Nadador {
+        @Override
+        public void volar() {
+            System.out.println("El pato vuela.");
+        }
+
+        @Override
+        public void nadar() {
+            System.out.println("El pato nada.");
+        }
+    }
+    ```
 
 - **Métodos predeterminados y estáticos** (desde Java 8): los métodos predeterminados (`default`) permiten a las interfaces proporcionar implementaciones básicas que las clases pueden sobrescribir si lo necesitan. Los métodos estáticos  (`static`) pertenecen a la interfaz y no a las clases que la implementan.
 
-```java
+    ```java
 
-interface Saludo {
-    default void saludar() {
-        System.out.println("Hola!");
-    }
+    interface Saludo {
+        default void saludar() {
+            System.out.println("Hola!");
+        }
 
-    static void despedirse() {
-        System.out.println("Adiós!");
+        static void despedirse() {
+            System.out.println("Adiós!");
+        }
     }
-}
-```
+    ```
 
 - **No pueden ser instanciadas**: las interfaces no se pueden usar directamente para crear objetos.
   
-```java
-Animal a = new Animal(); // Error: no se puede instanciar una interfaz
-```
+    ```java
+    Animal a = new Animal(); // Error: no se puede instanciar una interfaz
+    ```
 
 ### 8.2. Diferencia entre clases abstractas e interfaces
 

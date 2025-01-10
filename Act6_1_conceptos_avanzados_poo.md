@@ -15,23 +15,38 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
      * `anioPublicacion` (int)  
    * **Métodos**:  
      * `mostrarInfo()` (abstracto): Método que será implementado por las subclases.  
-     * Getters y setters con validaciones.  
+     * Métodos para la **validación** de atributos:
+
+        ```java
+        public static void validarTitulo(String titulo) { ... }
+        ```
+
+     * Getters y setters con **validaciones**.
 2. Crea las siguientes subclases:  
    * **`Libro`** (esta clase ya existe, pero tendrás que modificarla para que herede de `Publicacion`):  
      * Atributos adicionales:  
        * `ISBN` (String)  
        * `numeroPaginas` (int)  
-     * Implementa `mostrarInfo()` para mostrar toda la información del libro.  
+     * Implementa mostrarInfo() para mostrar toda la información del libro.
+     * Métodos para la validación de atributos.
+     * Getters y setters con validaciones.  
    * **`Revista`**:  
      * Atributos adicionales:  
        * `numeroEdicion` (int)  
-       * `mesPublicacion` (String)  
+       * `mesPublicacion` (enum Mes, que tendrás que crear)  
+       * `categoría` (enum `CategoriaRevista`, que tendrás que crear; añade las categorías que creas convenientes: Prensa Rosa, Economía, Motor, Tecnología, Videojuegos...)  
+       * `ISSN` (String)
+        _Nota: busca el significado del ISSN y su formato adecuado._
      * Implementa `mostrarInfo()` para mostrar toda la información de la revista.  
+     * Métodos para la **validación** de atributos.
+     * Getters y setters con **validaciones**.
    * **`Audiolibro`**:  
      * Atributos adicionales:  
-       * `duracion` (double): Duración en horas.  
-       * `narrador` (String)  
-     * Implementa `mostrarInfo()`.
+       * `duracion` (double): Duración en segundos.  
+       * `narrador` (String)
+       * `formatoAudio`(enum FormatoAudio, que tendrás que crear; añade algunas categorías: .mp3, .wav, .aac, .aa, ...)
+       * `idioma`(String)
+     * Implementa `mostrarInfo()`, Métodos para la **validación** de atributos y getters y setters con **validaciones**.
 
 ### Interfaces
 
