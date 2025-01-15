@@ -30,7 +30,7 @@
 - [4. Sobrecarga y sobrescritura](#4-sobrecarga-y-sobrescritura)
   - [4.1. Sobrecarga de métodos](#41-sobrecarga-de-métodos)
   - [4.2. Sobreescritura de Métodos](#42-sobreescritura-de-métodos)
-  - [4.3. Uso de la anotación @overridee\`](#43-uso-de-la-anotación-overridee)
+  - [4.3. Uso de la anotación `@override`](#43-uso-de-la-anotación-override)
   - [4.4. Diferencias entre Sobrecarga y Sobreescritura](#44-diferencias-entre-sobrecarga-y-sobreescritura)
   - [4.5. Aplicación Práctica Combinada](#45-aplicación-práctica-combinada)
 - [5. Polimorfismo en Programación Orientada a Objetos](#5-polimorfismo-en-programación-orientada-a-objetos)
@@ -932,7 +932,7 @@ public class Main {
 } 
 ```
 
-### 4.3. Uso de la anotación @overridee`
+### 4.3. Uso de la anotación `@override`
 
 La etiqueta `@Override` es una anotación en Java que indica que un método en una subclase sobrescribe un método en su clase base. Es una herramienta importante que mejora la legibilidad y la seguridad del código, ya que permite al compilador verificar que la firma del método sobrescrito coincide exactamente con la del método en la clase padre. Si la anotación se usa incorrectamente (por ejemplo, si el método no sobrescribe realmente uno en la clase base), el compilador **generará un error**, lo que ayuda a evitar errores sutiles como diferencias en nombres de métodos o tipos de parámetros. Aunque **no es obligatoria**, su uso es altamente recomendado para mejorar la claridad y garantizar que el propósito de sobrescritura sea explícito.
 
