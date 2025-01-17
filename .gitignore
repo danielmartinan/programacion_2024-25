@@ -1,2 +1,5 @@
 #ignore pdf files
 *.pdf
+
+#ignore private folder
+private/
