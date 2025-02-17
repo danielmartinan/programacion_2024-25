@@ -13,6 +13,8 @@
   - [2.1. Definición y beneficios del encapsulamiento](#21-definición-y-beneficios-del-encapsulamiento)
   - [2.2. Implementación del Encapsulamiento](#22-implementación-del-encapsulamiento)
   - [2.3. Relación con herencia y acoplamiento](#23-relación-con-herencia-y-acoplamiento)
+    - [Encapsulamiento y Herencia](#encapsulamiento-y-herencia)
+    - [Encapsulamiento y Acoplamiento](#encapsulamiento-y-acoplamiento)
   - [2.4. Beneficios del encapsulamiento](#24-beneficios-del-encapsulamiento)
   - [2.5. Buenas prácticas del encapsulamiento](#25-buenas-prácticas-del-encapsulamiento)
 - [3. Herencia](#3-herencia)
@@ -1827,3 +1829,5 @@ public class Main {
 Sin **generics**, tendríamos que utilizar una lista sin tipo y realizar conversiones manuales, lo cual es propenso a errores.
 
 Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas.
+
+**Siguiente seccion:** [Interfaces funcionales y lambdas en Java](./UD6_2_interfaces_funcionales_lambda.md)

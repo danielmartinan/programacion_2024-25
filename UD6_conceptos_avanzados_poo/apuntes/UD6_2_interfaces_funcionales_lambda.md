@@ -604,3 +604,5 @@ public class Main {
 ## 7. Conclusión
 
 Las expresiones lambda son una herramienta poderosa para escribir código funcional y conciso en Java. Junto con las interfaces funcionales y las herramientas de la API de streams, permiten manejar colecciones y funciones de una manera más declarativa y legible, mejorando la productividad del desarrollo.
+
+**Siguiente seccion:** [Anexo: uso avanzado de enums en Java](./UD6_anexo_enums_avanzados.md)
