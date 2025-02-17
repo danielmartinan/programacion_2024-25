@@ -784,7 +784,7 @@ Dentro de las estructuras no lineales, podemos distinguir:
 
 ### 4.1. Estructuras jerárquicas: árboles (trees)
 
-![Estructura de un árbol](./resources/ud07_1_tree.svg)
+![Estructura de un árbol](./resources/ud07_1_trees.svg)
 
 Un árbol es una estructura de datos no lineal que representa una jerarquía. Está compuesto por **nodos**, donde cada nodo tiene un valor (pueden ser de tipos primitivos, por ejemplo, números enteros, booleanos... o no primitivos, como objetos de una clase). Esos nodos puede tener hijos (nodos dependientes). Para estos nodos hijos, llamamos nodo padre a su nodo superior.
 
