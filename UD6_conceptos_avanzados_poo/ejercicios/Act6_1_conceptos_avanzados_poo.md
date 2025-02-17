@@ -57,7 +57,7 @@ En esta práctica, extenderás la funcionalidad del proyecto de la biblioteca in
       * `isPrestado()`: Devuelve un boolean indicando si la publicación está prestada.  
    2. Haz que **`Libro`** implemente `Prestable`.  
          * Actualiza la clase para llevar un estado interno (`prestado`) que indique si el libro está prestado o disponible. Es decir, añade un atributo booleano donde se almacene si el Libro está prestado o no.
-         * Añade también dos atributos de tipo `LocalDate` para registrar la fecha de préstamo y la de devolución, teniendo en cuenta que cuando se invoque el método `prestar()`, deberá registrarse la fecha actual como fecha de préstamo, y la fecha 14 días posterior a la actual como fecha de devolución. Cuando se invoque a `devolver()`, ambas fechas se pondran a ``null`.
+         * Añade también dos atributos de tipo `LocalDate` para registrar la fecha de préstamo y la de devolución, teniendo en cuenta que cuando se invoque el método `prestar()`, deberá registrarse la fecha actual como fecha de préstamo, y la fecha 14 días posterior a la actual como fecha de devolución. Cuando se invoque a `devolver()`, ambas fechas se pondrán a `null`.
 2. Añade una nueva interfaz `Multimedia` para publicaciones digitales o audiovisuales.  
      1. Métodos:  
         * `descargar()`  
@@ -83,7 +83,7 @@ Refactoriza todas las clases para:
 * Agrega métodos para listar tipos específicos de Publicaciones: `listarLibros`, `listarRevistas`... Haz uso del operador `instanceof` si es necesario.
 * Agrega métodos para buscar tipos específicos de Publicaciones: `buscarLibro`, `buscarRevista`... Haz uso del operador `instanceof` si es necesario.
 * Agrega los métodos necesarios para gestionar los préstamos y devoluciones de publicaciones prestables.
-* Agrega los metodos necesarios para gestionar las publicaciones multimedia
+* Agrega los métodos necesarios para gestionar las publicaciones multimedia
 
 Recuerda que, desde el menú principal, no se podrá instanciar ninguna otra clase que no sea la `Biblioteca`.
 
