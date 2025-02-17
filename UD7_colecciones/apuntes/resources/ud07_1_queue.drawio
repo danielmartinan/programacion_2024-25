@@ -1,0 +1,70 @@
+<mxfile host="65bd71144e">
+    <diagram id="PUEc6icXgBoAl9McdDUV" name="Page-1">
+        <mxGraphModel dx="1655" dy="1139" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="24" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="10" width="790" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="3" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="193" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="4" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="273" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="5" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="353" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="6" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="433" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="7" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="513" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="8" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="593" y="200" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="9" style="rounded=0;whiteSpace=wrap;html=1;fontSize=25;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="713" y="120" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="2" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Georgia;fontSize=25;horizontal=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="280" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="183" y="230" as="sourcePoint"/>
+                        <mxPoint x="113" y="270" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="113" y="230"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="&lt;i&gt;dequeue&lt;br&gt;&lt;/i&gt;desencolar" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="200" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="752.9999999999999" y="190.0299999999999" as="sourcePoint"/>
+                        <mxPoint x="682.9999999999999" y="230.0299999999999" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="753" y="230"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;i&gt;enqueue&lt;br&gt;&lt;/i&gt;encolar" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="738" y="230" width="70" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Front/head" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="173" y="160" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="back/tail/rear" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="573" y="160" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="COLA - FIFO (first-in, first-out)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=45;fontFamily=Georgia;" parent="1" vertex="1">
+                    <mxGeometry x="93" y="30" width="660" height="70" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
