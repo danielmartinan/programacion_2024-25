@@ -1830,4 +1830,4 @@ Sin **generics**, tendríamos que utilizar una lista sin tipo y realizar convers
 
 Los generics son una herramienta poderosa en Java que facilita la creación de clases y métodos flexibles y seguros. Su uso adecuado promueve la reutilización de código, mejora la seguridad en tiempo de compilación y reduce la complejidad del desarrollo. Además, son fundamentales para trabajar con las colecciones del framework estándar de Java (`List`, `Map`, `Set`, etc.), lo que los convierte en un concepto esencial para cualquier desarrollador en el ecosistema Java. Todo lo relacionado con las colecciones de datos en Java, lo veremos en próximas unidades didácticas.
 
-**Siguiente seccion:** [Interfaces funcionales y lambdas en Java](./UD6_2_interfaces_funcionales_lambda.md)
+**Siguiente sección:** [Interfaces funcionales y lambdas en Java](./UD6_2_interfaces_funcionales_lambda.md)

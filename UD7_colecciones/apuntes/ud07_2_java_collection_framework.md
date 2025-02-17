@@ -92,7 +92,7 @@
     - [16.2.2. Métodos clave de `String`](#1622-métodos-clave-de-string)
   - [16.3. `StringBuilder` y `StringBuffer`](#163-stringbuilder-y-stringbuffer)
     - [16.3.1. Métodos clave de `StringBuilder`](#1631-métodos-clave-de-stringbuilder)
-    - [16.3.2. **3. Conversión entre `String`, `StringBuilder` y otras estructuras**](#1632-3-conversión-entre-string-stringbuilder-y-otras-estructuras)
+    - [16.3.2. Conversión entre `String`, `StringBuilder` y otras estructuras](#1632-conversión-entre-string-stringbuilder-y-otras-estructuras)
   - [16.4. Buenas prácticas y optimización con Strings](#164-buenas-prácticas-y-optimización-con-strings)
   - [16.5. Conclusión](#165-conclusión)
 - [17. Problemas resueltos](#17-problemas-resueltos)
@@ -2710,7 +2710,7 @@ A continuación se muestran las operaciones más comunes que se pueden realizar 
 | `int`           | `indexOf(String str)`                         | Encuentra el primer índice donde aparece la cadena buscada. |
 | `String`        | `substring(int indiceIni, int indiceFin)`     | Devuelve una subcadena comprendida entre los dos índices. |
 
-#### 16.3.2. **3. Conversión entre `String`, `StringBuilder` y otras estructuras**  
+#### 16.3.2. Conversión entre `String`, `StringBuilder` y otras estructuras
 
 **De `String` a `StringBuilder`**
 

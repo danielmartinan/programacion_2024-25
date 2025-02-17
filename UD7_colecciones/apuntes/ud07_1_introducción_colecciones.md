@@ -1069,3 +1069,5 @@ A continuación se presenta una tabla comparativa de las estructuras de datos m�
 
 5. **Uso Común**:
    - Proporciona ejemplos prácticos de cuándo usar cada estructura.
+
+**Siguiente sección:** [Java Framework Collection](./ud07_2_java_collection_framework.md)
