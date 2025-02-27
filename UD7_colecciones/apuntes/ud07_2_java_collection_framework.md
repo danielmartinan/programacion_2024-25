@@ -1889,7 +1889,7 @@ Las tres principales clases utilitarias son:
 ✔ **`Arrays`** → Métodos para trabajar con arrays (`sort()`, `asList()`, `binarySearch()`, etc.).  
 ✔ **`Collectors`** → Métodos para recolectar datos desde Streams (`groupingBy()`, `toList()`, `joining()`, etc.).
 
-Podemos consultar la documentacion oficial para encontrar todos los métodos de [Collections](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html), [Arrays](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) y [Collectors](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html).
+Podemos consultar la documentación oficial para encontrar todos los métodos de [Collections](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html), [Arrays](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) y [Collectors](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html).
 
 #### 15.4.1. Métodos clave de la clase `Collections`
 
