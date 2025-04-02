@@ -17,7 +17,7 @@ En este repositorio encontrarás apuntes del módulo de Programación, de los CF
   - [Java Framework Collection](/private/UD7_colecciones/apuntes/ud07_2_java_collection_framework.md)
   - [Algoritmos](/UD7_colecciones/apuntes/ud07_3_algoritmos.md)
 - **UD8 - Gestión de ficheros**
-  - [Gestión de ficheros](/programacion/UD8_ficheros/apuntes/UD8_1_gestion_ficheros.md)
+  - [Gestión de ficheros](/UD8_ficheros/apuntes/UD8_1_gestion_ficheros.md)
 
 ## Licencia de uso
 
