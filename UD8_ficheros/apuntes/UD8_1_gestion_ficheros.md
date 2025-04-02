@@ -654,7 +654,8 @@ public class ContadorPalabras {
 Si creamos un archivo "entrada.txt" con el siguiente contenido:
 
 ```plaintext
-Este es un ejemplo de texto. Un ejemplo de palabras. Podemos poner todas las palabras que queramos: palabras bonitas, palabras feas, palabras largas y palabras cortas.
+Este es un ejemplo de texto. Un ejemplo de palabras. Podemos poner todas las palabras que queramos: 
+palabras bonitas, palabras feas, palabras largas y palabras cortas.
 ```
 
 Al ejecutar el programa, se generará un archivo "salida.txt" con el siguiente contenido:
