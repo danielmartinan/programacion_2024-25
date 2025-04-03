@@ -280,6 +280,45 @@ La clase `File` representa un fichero o directorio en el sistema de archivos. Al
 - **Comprobar si existe un fichero o directorio**: `exists()`.
 - **Listar los ficheros de un directorio**: `listFiles()`.
 - **Obtener información sobre un fichero o directorio**: `getName()`, `getPath()`, `isFile()`, `isDirectory()`, etc.
+- Obtener el path absoluto: `getAbsolutePath()`.
+- Crear un directorio: `mkdirs()` (crea todos los directorios intermedios necesarios).
+
+```java
+// ejemplo fichero
+File fichero = new File("ejemplo1.txt");
+if(fichero.exists()) System.out.println("El fichero existe");
+else System.out.println("El fichero no existe");
+System.out.println("Nombre: " + fichero.getName());
+System.out.println("Longitud: " + fichero.length());
+System.out.println("Ruta absoluta: " + fichero.getAbsolutePath());
+
+// ejemplo carpeta
+File carpeta = new File("ruta_carpeta");
+if(carpeta.exists()) System.out.println("La carpeta existe");
+else System.out.println("La carpeta no existe");
+System.out.println("Nombre: " + carpeta.getName());
+System.out.println("Longitud: " + carpeta.length());
+System.out.println("Ruta absoluta: " + carpeta.getAbsolutePath());
+```
+
+Sopongamos que tenemos  la siguiente estructura de carpetas:
+
+`C:\Users\myUser\Desktop\curso-programacion-java>`
+
+```java
+File carpetaActual = new File("."); // carpeta actual
+File carpetaPadre = new File(".."); // carpeta superior → C:/Users/myUser/Desktop
+File carpetaRaiz = new File("C:/"); // carpeta raíz de la unidad C: en Windows
+File carpeta1 = new File("C:/Users/myUser"); // carpeta myUser unidad C: en Windows
+File carpeta2 = new File("../.."); // carpeta myUser unidad C: en Windows
+File carpeta3 = new File("../../.."); // carpeta Users unidad C: en Windows
+File carpeta4 = new File("../imgs"); // C:/Users/myUser/Desktop/imgs
+File archivo1 = new File("../img1.png"); // C:/Users/myUser/Desktop/img1.png
+File archivo2 = new File("C:/img2.png"); // C:/img2.png
+File archivo3 = new File("../../img3.png"); // C:/Users/myUser/img3.png
+File archivo4 = new File("img4.png"); // carpeta actual → img4.png
+File archivo5 = new File("imgs/img5.png"); // C:/Users/myUser/Desktop/curso-programacion-java/imgs/img5.png
+```
 
 ##### Clase `Path` y `Files`
 
@@ -654,8 +693,7 @@ public class ContadorPalabras {
 Si creamos un archivo "entrada.txt" con el siguiente contenido:
 
 ```plaintext
-Este es un ejemplo de texto. Un ejemplo de palabras. Podemos poner todas las palabras que queramos: 
-palabras bonitas, palabras feas, palabras largas y palabras cortas.
+Este es un ejemplo de texto. Un ejemplo de palabras. Podemos poner todas las palabras que queramos: palabras bonitas, palabras feas, palabras largas y palabras cortas.
 ```
 
 Al ejecutar el programa, se generará un archivo "salida.txt" con el siguiente contenido:
