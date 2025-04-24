@@ -38,6 +38,7 @@
   - [4.4. Ficheros ZIP](#44-ficheros-zip)
     - [4.4.1. Compresión de archivos](#441-compresión-de-archivos)
     - [4.4.2. Descompresión de archivos](#442-descompresión-de-archivos)
+    - [4.4.3. Métodos clave](#443-métodos-clave)
 - [5. Flujos de consola](#5-flujos-de-consola)
   - [5.1. Flujos de entrada estándar](#51-flujos-de-entrada-estándar)
   - [5.2. Flujos de salida estándar](#52-flujos-de-salida-estándar)
@@ -48,8 +49,12 @@
   - [6.3. Uso de BufferedReader con StringReader](#63-uso-de-bufferedreader-con-stringreader)
   - [6.4. Uso práctico de `StringReader`](#64-uso-práctico-de-stringreader)
 - [7. Flujos tokenizados](#7-flujos-tokenizados)
-  - [7.1. La clase `StreamTokenizer`](#71-la-clase-streamtokenizer)
-    - [7.1.1. Configuración de `StreamTokenizer`](#711-configuración-de-streamtokenizer)
+  - [7.1. Definición formal de token](#71-definición-formal-de-token)
+    - [7.1.1. 📚 Desde la perspectiva de análisis léxico](#711--desde-la-perspectiva-de-análisis-léxico)
+    - [7.1.2. Ejemplo en análisis léxico](#712-ejemplo-en-análisis-léxico)
+    - [7.1.3. Token en el contexto de `StreamTokenizer`](#713-token-en-el-contexto-de-streamtokenizer)
+  - [7.2. La clase `StreamTokenizer`](#72-la-clase-streamtokenizer)
+    - [7.2.1. Configuración de `StreamTokenizer`](#721-configuración-de-streamtokenizer)
 - [8. Flujos orientados a objetos](#8-flujos-orientados-a-objetos)
   - [8.1. Serialización de objetos](#81-serialización-de-objetos)
   - [8.2. Deserialización de objetos](#82-deserialización-de-objetos)
@@ -545,6 +550,10 @@ public class LeerFicheroTexto {
 }
 ```
 
+La clase `FileReader` permite leer caracteres de un fichero de texto utilizando el método `read()`. En el ejemplo anterior, utilizamos un bucle `while` para leer cada carácter del fichero hasta que se alcanza el final (indicado por `-1`). El metodo `read()` devuelve un entero que representa el carácter leído, que luego convertimos a `char` para mostrarlo en la consola. Ademáas, el método `read(char[] cbuf, int off, int len)` permite leer un bloque de caracteres en un array. El parámetro `off` indica la posición inicial en el array donde se comenzará a escribir, y `len` es la longitud máxima de caracteres a leer. En esta caso, el método devuelve el número de caracteres leídos.
+
+Si el archivo no existe o no se puede leer, se lanzará una excepción `IOException`, que debemos manejar adecuadamente.
+
 ##### Clase BufferedReader
 
 La clase `BufferedReader` se utiliza para leer líneas de texto de un fichero. Proporciona métodos como `readLine()` para leer una línea completa y `read()` para leer caracteres individuales. Al igual que con `FileReader`, es importante cerrar el flujo de datos al finalizar su uso. A diferencia de `FileReader`, `BufferedReader` permite leer líneas completas de texto, y es, en general, más eficiente para leer ficheros de texto.
@@ -628,6 +637,12 @@ Con `BufferedWriter`, podemos escribir líneas de texto en un fichero de manera 
 Si no utilizásemos un bloque `try-with-resources`, tendríamos que cerrar manualmente el flujo de datos al finalizar la escritura, mediante el método `close()`, al igual que en el caso de la lectura.
 
 Otros métodos útiles de `BufferedWriter` incluyen `write(char[] cbuf, int off, int len)` para escribir una porción de un array de caracteres, y `flush()` para forzar la escritura de los datos almacenados en el búfer.
+
+A diferencia de `FileReader` y `BufferedReader`, si el nombre de fichero especificado en el constructor no existe, `FileWriter` lo creará automáticamente. Si el fichero ya existe, se sobrescribirá su contenido a menos que se especifique el modo de apertura en modo append (añadir al final del fichero) utilizando el segundo parámetro del constructor `FileWriter`:
+
+```java
+FileWriter fw = new FileWriter("archivo.txt", true); // Modo append
+```
 
 #### 4.1.3. Ejemplo práctico de lectura y escritura de archivos de texto
 
@@ -1247,6 +1262,62 @@ public class ComprimirArchivos {
 }
 ```
 
+`ZipInputStream` permite leer entradas individuales dentro de un archivo **ZIP**. Cada entrada representa un archivo comprimido dentro del contenedor `.zip`.
+
+Funcionamiento básico:
+
+- Se crea un `ZipInputStream` envolviendo un `FileInputStream`.
+- Se llama a `getNextEntry()` para acceder a cada entrada (`ZipEntry`).
+- Se lee el contenido de esa entrada como si fuera un archivo normal.
+- Se llama a `closeEntry()` y luego se pasa a la siguiente entrada.
+
+##### ¿Qué es un `ZipEntry`?
+
+`ZipEntry` es una clase de la API `java.util.zip` que representa **una entrada individual (archivo o directorio) dentro de un archivo `.zip`**.
+
+> 📌 Puedes pensar en un archivo `.zip` como un sistema de archivos comprimido.  
+> Cada `ZipEntry` es como un archivo (o carpeta) dentro de ese sistema.
+
+**¿Qué contiene un `ZipEntry`?**
+
+Un objeto `ZipEntry` **no contiene directamente los datos del archivo**, sino **los metadatos** necesarios para identificarlo y manipularlo dentro del `.zip`.
+
+**Atributos principales de `ZipEntry`**:
+
+| Atributo                 | Descripción                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `name`                   | Ruta dentro del ZIP (p. ej., `"docs/archivo.txt"`)                         |
+| `size`                   | Tamaño del archivo original (no comprimido)                                |
+| `compressedSize`         | Tamaño del archivo comprimido                                               |
+| `crc`                    | Checksum CRC-32 para verificar integridad                                   |
+| `time`                   | Marca de tiempo (timestamp de modificación)                                |
+| `method`                 | Algoritmo de compresión (por defecto: DEFLATED)                             |
+| `extra`                  | Campos extendidos (opcional, binario)                                       |
+| `comment`                | Comentario opcional de la entrada                                           |
+| `isDirectory()`          | Indica si la entrada representa un directorio (ruta termina en `/`)         |
+
+**Ejemplo**: inspección de una entrada
+
+```java
+try (ZipInputStream zis = new ZipInputStream(new FileInputStream("archivos.zip"))) {
+    ZipEntry entry;
+    while ((entry = zis.getNextEntry()) != null) {
+        System.out.println("Nombre: " + entry.getName());
+        System.out.println("Tamaño (original): " + entry.getSize());
+        System.out.println("Tamaño (comprimido): " + entry.getCompressedSize());
+        System.out.println("Es directorio: " + entry.isDirectory());
+        System.out.println("Última modificación: " + new Date(entry.getTime()));
+        zis.closeEntry();
+    }
+}
+```
+
+✅ **Buenas prácticas**
+
+- Usa rutas dentro del `name` para simular jerarquías (`"carpeta/archivo.txt"`).
+- Para directorios, **termina el nombre con `/`**: `new ZipEntry("imagenes/")`.
+- Siempre **llama a `closeEntry()`** después de terminar de escribir o leer.
+
 #### 4.4.2. Descompresión de archivos
 
 ```java
@@ -1288,6 +1359,17 @@ public class DescomprimirArchivos {
     }
 }
 ```
+
+#### 4.4.3. Métodos clave
+
+| Clase | Método | Descripción |
+|-------|--------|-------------|
+| `ZipInputStream` | `getNextEntry()` | Avanza a la siguiente entrada ZIP (ZipEntry) |
+| `ZipInputStream` | `read(byte[])` | Lee los datos comprimidos de la entrada actual |
+| `ZipOutputStream` | `putNextEntry(ZipEntry)` | Comienza una nueva entrada dentro del ZIP |
+| `ZipOutputStream` | `write(byte[])` | Escribe el contenido comprimido |
+| Ambas | `closeEntry()` | Cierra la entrada actual |
+| Ambas | `close()` | Cierra el flujo |
 
 ## 5. Flujos de consola
 
@@ -1512,9 +1594,62 @@ Este enfoque es útil para manejar respuestas de APIs o datos en memoria sin dep
 
 Los flujos tokenizados permiten leer datos de un archivo o flujo de entrada dividiéndolos en tokens (unidades lógicas de información) según delimitadores específicos. Java proporciona la clase `StreamTokenizer` para este propósito.
 
-Se puede utilizar tanto con flujos de fiche
+Se puede utilizar tanto con flujos de fichero (como `BufferedReader`) como con flujos de memoria (como `StringReader`). La clase `StreamTokenizer` permite dividir un flujo de entrada en tokens, que pueden ser palabras, números o caracteres especiales. Esto es útil para procesar datos estructurados, como archivos de texto o entradas de usuario.
 
-### 7.1. La clase `StreamTokenizer`
+### 7.1. Definición formal de token
+
+Un **token** es la **unidad léxica mínima con significado reconocible** por un analizador léxico (**lexer** o **tokenizer**) dentro de un lenguaje formal (como un lenguaje de programación, de marcado o un lenguaje natural controlado).
+
+#### 7.1.1. 📚 Desde la perspectiva de análisis léxico
+
+Durante la primera etapa de compilación o interpretación (el análisis léxico), un **analizador léxico** toma una **secuencia de caracteres** y la divide en **tokens**, donde cada token es una instancia de una categoría léxica, como:
+
+- Identificadores (`miVariable`)
+- Palabras clave (`if`, `while`, `class`)
+- Números (`42`, `3.14`)
+- Operadores (`+`, `==`, `&&`)
+- Delimitadores (`;`, `(`, `)`)
+- Cadenas (`"hola mundo"`)
+- Comentarios (a veces tratados como tokens, otras veces ignorados)
+
+Un token generalmente tiene dos componentes:
+
+| Componente        | Descripción                                                |
+|-------------------|------------------------------------------------------------|
+| **Tipo (o clase léxica)** | Qué tipo de elemento representa (ej. `IDENTIFIER`, `NUMBER`) |
+| **Valor (lexema)**        | El texto exacto que se ha reconocido (ej. `"x"`, `"123"`)      |
+
+#### 7.1.2. Ejemplo en análisis léxico
+
+Texto fuente:
+
+```java
+int edad = 25;
+```
+
+Tokens extraídos:
+
+| Token tipo    | Valor       |
+|---------------|-------------|
+| `KEYWORD`     | `int`       |
+| `IDENTIFIER`  | `edad`      |
+| `OPERATOR`    | `=`         |
+| `NUMBER`      | `25`        |
+| `DELIMITER`   | `;`         |
+
+#### 7.1.3. Token en el contexto de `StreamTokenizer`
+
+Cada **token** devuelto por `nextToken()` es una unidad léxica reconocida, y se clasifica como:
+
+- **`TT_WORD`** → palabra (cadena de letras o caracteres válidos)
+- **`TT_NUMBER`** → número
+- **`TT_EOL`** → fin de línea (si se configura)
+- **`TT_EOF`** → fin de archivo
+- **otros caracteres ordinarios** → tratados como tokens individuales (`=`, `,`, `;`, etc.)
+
+De forma breve y clara, un **token** es una **subsecuencia de caracteres contiguos** que conforman una **unidad léxica válida** dentro de un lenguaje definido.
+
+### 7.2. La clase `StreamTokenizer`
 
 La clase `StreamTokenizer` lee un flujo de entrada y lo divide en "tokens", que pueden ser:
 
@@ -1530,7 +1665,7 @@ Características principales:
 - Permite configurar qué caracteres se consideran delimitadores
 - Mantiene un contador de líneas
 
-Ejemplo básico de uso:
+Ejemplo básico de uso (sin configuración avanzada):
 
 ```java
 import java.io.StreamTokenizer;
@@ -1563,43 +1698,9 @@ Atributos de `StreamTokenizer`:
 - `nval`: Valor numérico del token.
 - `sval`: Valor de cadena del token.
 
-Métodos de `StreamTokenizer`:
+Métodos de `StreamTokenizer`: proporciona diferentes métodos para manipular el flujo de entrada, que veremos más adelante. El método más básico es `nextToken()` y que permite leer el siguiente token.
 
-- `nextToken()`: Lee el siguiente token.
-- `resetSyntax()`: Restablece la configuración a su estado inicial.
-- `wordChars(int low, int high)`: Define el rango de caracteres que se consideran parte de una palabra.
-- `whitespaceChars(int low, int high)`: Define el rango de caracteres que se consideran espacios en blanco.
-
-Configuración avanzada de `StreamTokenizer`:
-
-```java
-import java.io.StreamTokenizer;
-import java.io.StringReader;
-
-public class EjemploStreamTokenizer {
-    public static void main(String[] args) {
-        String texto = "Hola mundo, esto es una prueba.";
-        StringReader reader = new StringReader(texto);
-        StreamTokenizer tokenizer = new StreamTokenizer(reader);
-
-        try {
-            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
-                if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
-                    System.out.println("Palabra: " + tokenizer.sval);
-                } else if (tokenizer.ttype == StreamTokenizer.TT_NUMBER) {
-                    System.out.println("Número: " + tokenizer.nval);
-                }       
-            }
-        } catch (IOException e) {
-            System.err.println("Error al tokenizar el texto: " + e.getMessage());
-        }
-    }
-}
-```
-
-En este ejemplo, se configura el `StreamTokenizer` para reconocer palabras en inglés y números.
-
-#### 7.1.1. Configuración de `StreamTokenizer`
+#### 7.2.1. Configuración de `StreamTokenizer`
 
 La clase `StreamTokenizer` ofrece varias opciones de configuración para personalizar cómo se analizan los tokens. Estas son algunas de las configuraciones más importantes:
 
@@ -1610,6 +1711,7 @@ La clase `StreamTokenizer` ofrece varias opciones de configuración para persona
    - `ordinaryChars(int low, int high)`: Define un rango de caracteres como ordinarios.
    - `commentChar(int ch)`: Define un carácter que inicia un comentario de línea.
    - `quoteChar(int ch)`: Define un carácter como delimitador de cadenas.
+   - `eolIsSignificant(boolean flag)`: Indica si el final de la línea es significativo.
 
 2. **Configuración de números**:
    - `parseNumbers()`: Habilita el reconocimiento de números.
