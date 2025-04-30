@@ -21,13 +21,13 @@ La clase debe incluir los siguientes métodos:
 - `leerLibrosDeCsv(String nombreFichero)`: Este método debe leer un fichero de texto con formato CSV y devolver una lista de objetos `Libro`.
 - `escribirLibrosACsv(String nombreFichero, List<Libro> publicaciones)`: Este método debe escribir una lista de objetos `Libro` en un fichero de texto con formato CSV.
 
-El formato del archivo CSV debe ser el siguiente:
+    El formato del archivo CSV debe ser el siguiente:
 
-```plaintext
-titulo, autor, anioPublicacion, tipoPublicacion, isbn, numeroPaginas
-```
+    ```plaintext
+    titulo, autor, anioPublicacion, isbn, numeroPaginas
+    ```
 
-El archivo CSV resultante debe incluir en la primera fila las cabeceras de las columnas, y cada fila posterior debe contener los datos de un libro. En caso de que alguna de las filas no contenga todos los campos, se debe omitir esa fila pero debe seguir leyendo el resto del archivo. Se indicará en la salida estándar el número de filas leídas y el número de filas válidas.
+    El archivo CSV resultante debe incluir en la primera fila las cabeceras de las columnas, y cada fila posterior debe contener los datos de un libro. En caso de que alguna de las filas no contenga todos los campos, se debe omitir esa fila pero debe seguir leyendo el resto del archivo. Se indicará en la salida estándar el número de filas leídas y el número de filas válidas.
 
 - `escribirUsuariosBin(String nombreFichero, List<Usuario> usuarios)`: Este método debe escribir una lista de objetos `Usuario` en un fichero binario. Utilizar la serialización de objetos para guardar los datos.
 - `leerUsuariosBin(String nombreFichero)`: Este método debe leer un fichero binario y devolver una lista de objetos `Usuario`. Utilizar la deserialización de objetos para recuperar los datos.
@@ -65,7 +65,7 @@ Deberás crear un informe en formato pdf que incluya las actividades realizadas,
 
 Deberás entregar un archivo comprimido que incluya el proyecto de Intellij IDEA (o IDE alternativo) completo, el informe descrito previamente, y un ejemplo de los archivos csv y binario creados, con el nombre
 
-**apellido1_apellido2_nombre_PROG07_1.zip**
+**apellido1_apellido2_nombre_PROG08_1.zip**
 
 ## Calificación
 

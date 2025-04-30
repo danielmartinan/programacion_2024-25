@@ -939,6 +939,62 @@ public class EjemploPriorityQueue {
 
 **Por defecto, `PriorityQueue<E>` usa el orden natural (`Comparable<E>`).**  
 
+Ejemplo de `PriorityQueue<E>` con objetos de una clase y **comparador personalizado**:
+
+```java
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+class Persona {
+    private final String nombre;
+    private final int edad;
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + edad + " años)";
+    }
+}
+
+public class ComparadorPersonaPorEdad implements Comparator<Persona> {
+    @Override
+    public int compare(Persona p1, Persona p2) {
+        return Integer.compare(p2.getEdad(), p1.getEdad());
+    }
+}
+
+public class EjemploPriorityQueue {
+    public static void main(String[] args) {
+        PriorityQueue<Persona> colaPrioridad = new PriorityQueue<>(new ComparadorPersonaPorEdad());
+
+        colaPrioridad.add(new Persona("Ana", 30));
+        colaPrioridad.add(new Persona("Carlos", 20));
+        colaPrioridad.add(new Persona("Beatriz", 25));
+        colaPrioridad.add(new Persona("David", 35));
+        colaPrioridad.add(new Persona("Fernanda", 35));
+        colaPrioridad.add(new Persona("Gabriela", 35));
+
+        System.out.println(colaPrioridad.poll()); // David (35 años)
+        System.out.println(colaPrioridad.poll()); // Fernanda (35 años)
+        System.out.println(colaPrioridad.poll()); // Gabriela (35 años)
+        System.out.println(colaPrioridad.poll()); // Ana (30 años)
+        System.out.println(colaPrioridad.poll()); // Beatriz (25 años)
+    }
+}
+```
+
 ### 9.1. Cuándo usar `PriorityQueue<E>`
 
 ✔️ Cuando se requiere procesar elementos en un orden de prioridad en lugar de FIFO.
