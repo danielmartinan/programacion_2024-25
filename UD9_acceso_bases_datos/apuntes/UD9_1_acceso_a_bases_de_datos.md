@@ -1,5 +1,74 @@
 # Introducción al acceso a bases de datos desde Java
 
+- [1. Introducción](#1-introducción)
+  - [1.1. ¿Qué es una base de datos?](#11-qué-es-una-base-de-datos)
+  - [1.2. Tipos de bases de datos](#12-tipos-de-bases-de-datos)
+  - [1.3. ¿Qué es un SGBD?](#13-qué-es-un-sgbd)
+  - [1.4. ¿Qué es SQL?](#14-qué-es-sql)
+  - [1.5. ¿Por qué necesitamos conectar Java con bases de datos?](#15-por-qué-necesitamos-conectar-java-con-bases-de-datos)
+  - [1.6. Conclusión](#16-conclusión)
+- [2. Bases de datos relacionales](#2-bases-de-datos-relacionales)
+  - [2.1. ¿Qué es una base de datos relacional?](#21-qué-es-una-base-de-datos-relacional)
+    - [2.1.1. Ejemplo de modelo relacional](#211-ejemplo-de-modelo-relacional)
+  - [2.2. Ventajas del modelo relacional](#22-ventajas-del-modelo-relacional)
+  - [2.3. Principales SGBD relacionales](#23-principales-sgbd-relacionales)
+- [3. Introducción a JDBC](#3-introducción-a-jdbc)
+  - [3.1. ¿Qué es JDBC?](#31-qué-es-jdbc)
+  - [3.2. ¿Cómo funciona JDBC?](#32-cómo-funciona-jdbc)
+  - [3.3. Clases principales de JDBC](#33-clases-principales-de-jdbc)
+  - [3.4. Ejemplo básico del flujo JDBC](#34-ejemplo-básico-del-flujo-jdbc)
+  - [3.5. Conclusión](#35-conclusión)
+- [4. Establecimiento de conexión a una base de datos desde Java](#4-establecimiento-de-conexión-a-una-base-de-datos-desde-java)
+  - [4.1. Requisitos previos](#41-requisitos-previos)
+  - [4.2. ¿Que es un conector JDBC?](#42-que-es-un-conector-jdbc)
+  - [4.3. Instalación del conector JDBC](#43-instalación-del-conector-jdbc)
+    - [4.3.1. Opción 1: Uso de Maven (recomendado si se usa Maven)](#431-opción-1-uso-de-maven-recomendado-si-se-usa-maven)
+    - [4.3.2. Opción 2: Manual (sin Maven)](#432-opción-2-manual-sin-maven)
+  - [4.4. Registro del controlador JDBC](#44-registro-del-controlador-jdbc)
+  - [4.5. Establecimiento de conexión](#45-establecimiento-de-conexión)
+    - [4.5.1. Componentes de la URL de conexión](#451-componentes-de-la-url-de-conexión)
+  - [4.6. Buenas prácticas](#46-buenas-prácticas)
+- [5. Clases y métodos principales de JDBC](#5-clases-y-métodos-principales-de-jdbc)
+  - [5.1. `DriverManager`](#51-drivermanager)
+  - [5.2. `Driver`](#52-driver)
+  - [5.3. `Connection`](#53-connection)
+  - [5.4. `Statement`](#54-statement)
+  - [5.5. `PreparedStatement`](#55-preparedstatement)
+  - [5.6. `ResultSet`](#56-resultset)
+- [6. Ejecución de sentencias SQL](#6-ejecución-de-sentencias-sql)
+  - [6.1. Consultas con `Statement`](#61-consultas-con-statement)
+  - [6.2. Consultas con parámetros: `PreparedStatement`](#62-consultas-con-parámetros-preparedstatement)
+    - [6.2.1. ¿Que es la inyección SQL?](#621-que-es-la-inyección-sql)
+    - [6.2.2. Consultas con `PreparedStatement`](#622-consultas-con-preparedstatement)
+  - [6.3. Inserción, modificación y eliminación de datos](#63-inserción-modificación-y-eliminación-de-datos)
+    - [6.3.1. Recuperación de claves generadas (`getGeneratedKeys()`)](#631-recuperación-de-claves-generadas-getgeneratedkeys)
+  - [6.4. Cierre de la conexión](#64-cierre-de-la-conexión)
+  - [6.5. Excepciones JDBC](#65-excepciones-jdbc)
+- [7. Gestión de transacciones](#7-gestión-de-transacciones)
+- [8. Operaciones DDL desde Java](#8-operaciones-ddl-desde-java)
+  - [8.1. Crear una tabla desde Java](#81-crear-una-tabla-desde-java)
+  - [8.2. Eliminar una tabla desde Java](#82-eliminar-una-tabla-desde-java)
+  - [8.3. Consideraciones importantes](#83-consideraciones-importantes)
+  - [8.4. Buenas prácticas](#84-buenas-prácticas)
+- [9. El desfase objeto-relacional](#9-el-desfase-objeto-relacional)
+  - [9.1. El "desfase objeto-relacional" (Object-Relational Impedance Mismatch) ¿En qué consiste exactamente este desfase?](#91-el-desfase-objeto-relacional-object-relational-impedance-mismatch-en-qué-consiste-exactamente-este-desfase)
+  - [9.2. Ejemplo simple](#92-ejemplo-simple)
+  - [9.3. Estrategias para mapear herencia](#93-estrategias-para-mapear-herencia)
+  - [9.4. Soluciones al desfase objeto-relacional](#94-soluciones-al-desfase-objeto-relacional)
+    - [9.4.1. Mapeo Objeto-Relacional (ORM)](#941-mapeo-objeto-relacional-orm)
+    - [9.4.2. Bases de datos orientadas a objetos (OODBMS)](#942-bases-de-datos-orientadas-a-objetos-oodbms)
+  - [9.5. Conclusión](#95-conclusión)
+- [10. Buenas prácticas en el acceso a bases de datos](#10-buenas-prácticas-en-el-acceso-a-bases-de-datos)
+  - [10.1. Uso del patrón DAO (Data Access Object)](#101-uso-del-patrón-dao-data-access-object)
+    - [10.1.1. Ejemplo simple de DAO](#1011-ejemplo-simple-de-dao)
+  - [10.2. No mezclar lógica de negocio y lógica de acceso](#102-no-mezclar-lógica-de-negocio-y-lógica-de-acceso)
+  - [10.3. Evitar consultas dentro de bucles](#103-evitar-consultas-dentro-de-bucles)
+  - [10.4. Uso de logs y control de errores](#104-uso-de-logs-y-control-de-errores)
+    - [10.4.1. Ejemplo simple de control de errores](#1041-ejemplo-simple-de-control-de-errores)
+  - [10.5. Resumen de buenas prácticas](#105-resumen-de-buenas-prácticas)
+- [11. Conclusión](#11-conclusión)
+- [12. Referencias](#12-referencias)
+
 ## 1. Introducción
 
 ### 1.1. ¿Qué es una base de datos?
@@ -402,12 +471,12 @@ Puedes encontrar más información en la [documentación oficial de Java](https:
 - `executeBatch()`: Ejecuta todas las sentencias SQL añadidas al lote y devuelve un array con el número de filas afectadas por cada sentencia.
 - `clearParameters()`: Limpia los parámetros establecidos en la sentencia.
 - `setXXX(int parameterIndex, XXX value)`: Establece el valor de un parámetro en la sentencia SQL. `XXX` puede ser, entre otros:
-  - `setString(int parameterIndex, String value)`: Establece un parámetro de tipo `String`.
-  - `setInt(int parameterIndex, int value)`: Establece un parámetro de tipo `int`.
-  - `setDouble(int parameterIndex, double value)`: Establece un parámetro de tipo `double`.
-  - `setBoolean(int parameterIndex, boolean value)`: Establece un parámetro de tipo `boolean`.
-  - `setDate(int parameterIndex, Date value)`: Establece un parámetro de tipo `Date`.
-  - `setTime(int parameterIndex, Time value)`: Establece un parámetro de tipo `Time`.  
+    - `setString(int parameterIndex, String value)`: Establece un parámetro de tipo `String`.
+    - `setInt(int parameterIndex, int value)`: Establece un parámetro de tipo `int`.
+    - `setDouble(int parameterIndex, double value)`: Establece un parámetro de tipo `double`.
+    - `setBoolean(int parameterIndex, boolean value)`: Establece un parámetro de tipo `boolean`.
+    - `setDate(int parameterIndex, Date value)`: Establece un parámetro de tipo `Date`.
+    - `setTime(int parameterIndex, Time value)`: Establece un parámetro de tipo `Time`.  
 
 Puedes encontrar más información en la [documentación oficial de Java](https://docs.oracle.com/en/java/javase/23/docs/api/java.sql/java/sql/PreparedStatement.html).
 
@@ -417,12 +486,12 @@ Puedes encontrar más información en la [documentación oficial de Java](https:
 
 - `next()`: Mueve el cursor al siguiente registro del `ResultSet`. Devuelve `true` si hay más registros, `false` si no.
 - `getXxx(int columnIndex)`: Devuelve el valor de la columna especificada en el índice. `Xxx` puede ser
-  - `String` (columna definida como VARCHAR o CHAR)
-  - `int` (columna definida como INT o INTEGER)
-  - `double` (columna definida como DECIMAL o FLOAT)
-  - `boolean` (columna definida como BOOLEAN o TINYINT)
-  - `Date` (columna definida como DATE)
-  - `Time` (columna definida como TIME)
+    - `String` (columna definida como VARCHAR o CHAR)
+    - `int` (columna definida como INT o INTEGER)
+    - `double` (columna definida como DECIMAL o FLOAT)
+    - `boolean` (columna definida como BOOLEAN o TINYINT)
+    - `Date` (columna definida como DATE)
+    - `Time` (columna definida como TIME)
 - `getXxx(String columnLabel)`: Devuelve el valor de la columna especificada por su etiqueta (nombre). `Xxx` puede ser el mismo que en `getXxx(int columnIndex)`.
 - `getMetaData()`: Devuelve un objeto `ResultSetMetaData` que contiene información sobre las columnas del `ResultSet`.
 - `close()`: Cierra el `ResultSet` y libera los recursos asociados.
@@ -981,7 +1050,6 @@ Supongamos que tenemos una clase `Usuario` y queremos acceder a ella desde la ba
     -String email
     }
     class UsuarioDAO {
-    <>
     +obtenerTodos() Usuario[*]
     +obtenerPorId(id : int) Usuario
     +insertar(usuario : Usuario) Boolean
@@ -1005,7 +1073,7 @@ Supongamos que tenemos una clase `Usuario` y queremos acceder a ella desde la ba
     }
     UsuarioService --> UsuarioDAO
     UsuarioService --> Usuario
-    UsuarioDAOImpl --|> UsuarioDAO
+    UsuarioDAOImpl ..|> UsuarioDAO
 ```
 
 Explicación:
@@ -1233,7 +1301,7 @@ Es fundamental controlar adecuadamente los errores y registrar lo que ocurre dur
 - **Registrar errores importantes** mediante un sistema de logging (por ejemplo, `java.util.logging` o frameworks como `Log4j` o `SLF4J`).
 - Mostrar mensajes de error **informativos pero seguros**, sin revelar detalles sensibles (como nombres de tablas, rutas o contraseñas).
 
-#### 10.4.1. Ejemplo simple de control de errores:
+#### 10.4.1. Ejemplo simple de control de errores
 
 ```java
 try {
