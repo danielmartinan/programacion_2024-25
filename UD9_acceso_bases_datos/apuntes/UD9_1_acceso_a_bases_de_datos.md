@@ -138,7 +138,7 @@ INSERT INTO productos VALUES (1, 'Ratón inalámbrico', 19.95);
 SELECT * FROM productos;
 ```
 
-En [este anexo](ud9_anexo_resumen_sql.md) puedes ver un resumen de las instrucciones SQL más comunes.
+En [este anexo](UD9_anexo_resumen_sql.md) puedes ver un resumen de las instrucciones SQL más comunes.
 
 ### 1.5. ¿Por qué necesitamos conectar Java con bases de datos?
 
